@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/login/login.vue'
 import Sidebar from '../components/Sidebar.vue'
+import Status from '../views/status/status.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -10,14 +11,18 @@ const routes = [
     name: 'Home',
     component: Sidebar,
     children:[
+      {
+        path:'/status',
+        name:'Status',
+        component: Status
+      }
     ]
   },
   {
     path:'/',
     name:'Login',
     component: Login
-  }
- 
+  },
 ]
 
 const router = new VueRouter({

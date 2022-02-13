@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container-side">
     <div
       class="sidebar-box"
       :class="{ 'w-0': !sidebarOpen, 'w-200': sidebarOpen }"
@@ -39,7 +39,7 @@ export default {
   },
   data() {
     return {
-      sidebarOpen: true,
+      sidebarOpen: false,
     };
   },
   methods: {
@@ -52,7 +52,7 @@ export default {
 </script>
 
 <style>
-.container {
+.container-side {
   display: flex;
 }
 .sidebar-box {
