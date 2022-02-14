@@ -1,0 +1,77 @@
+<template>
+  <div class="container-interview">
+    <h3>รายละเอียดวันนัดสัมภาษณ์</h3>
+    <center>
+      <div class="main-interview">
+        <h5>สัมภาษณ์ผ่านช่องทางออนไลน์์ วันพฤหัสที่ 18 / 01 / 2564 เวลา 12.00 น.</h5>
+          <p>สิ่งที่นิสิตควรเตรียมพร้อมก่อนทำการสอบสัมภาษณ์<br/>
+            a แต่งกายชุดนิสิตสุภาพ<br/>
+            b. กล้องและไมค์โครโฟนพร้อมใช้งานได้<br/>
+            c. และอื่นๆ</p>
+        <div class="go-interview">
+          <button type="button" class="btn btn-danger">ห้องสอบสัมภาษณ์<i class="fas fa-camera-retro"></i></button>
+        </div>
+      </div>
+    </center>
+    <div class="back-interview">
+     <button type="button" class="btn btn-danger">Back</button>
+    </div>
+  </div>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+  .container-interview{
+    width: 100%;
+    height: 600px;
+    text-align: center;
+  }
+  .container-interview h3{
+    margin: 25px  0;
+    color: rgba(104, 12, 7, 1);
+    text-decoration-line:underline;
+  }
+  .container-interview h5{
+    text-decoration-line:underline;
+  }
+  .main-interview{ 
+    margin: 10px 0 0;
+    width: 70%;
+    box-shadow: 3px 3px 10px black;
+    border-radius: 80px;
+    overflow: hidden;
+    height: 450px;
+  }
+  .main-interview p{
+    width: 90%;
+    height: 65%;
+  }
+  .main-interview .go-interview button{
+  font-size:15px;
+  height: 50px;
+  width:230px;
+  border-radius: 25px 25px 25px 25px;
+  color:#FFFFFF;
+  background-color:rgba(255, 13, 0, 1);
+  }
+  .back-interview{
+    margin: 50px 0;
+  }
+  .container-interview .back-interview button{
+    position: relative;
+    font-size:15px;
+    height: 50px;
+    width:130px;
+    border-radius: 25px 25px 25px 25px;
+    color:#FFFFFF;
+    background-color:rgba(180, 45, 37, 1);
+    left: 40%;
+
+  }
+  
+</style>

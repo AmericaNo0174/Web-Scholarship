@@ -155,7 +155,7 @@ export default {
   width:130px;
   border-radius: 25px 25px 25px 25px;
   color:#FFFFFF;
-  background-color:#680c07;
+  background-color:rgba(180, 45, 37, 1);
   }
   #yes{
     color: rgba(0, 255, 10, 1);
