@@ -82,11 +82,15 @@
           </table>
         </div>
       </center>
-      <div>
-        <button type="button" class="btn btn-danger">Danger</button>
-        <p><i class="fas fa-check-circle"></i> ผ่าน</p>
-        <p><i class="fas fa-times-circle"></i> ไม่ผ่าน</p>
-        <p><i class="fas fa-clock"></i> รอดำเนินการ</p>
+      <div class="end-status">
+        <div class="back-status">
+          <button type="button" class="btn btn-danger">Danger</button>
+        </div>
+        <div class="check-status">
+          <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>
+          <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน</p>
+          <p><i class="fas fa-clock" id="load"></i>รอดำเนินการ</p>
+        </div>
       </div>
   </div>
 </template>
@@ -99,9 +103,9 @@ export default {
 
 <style >
   .container-status{
-    height: 100%;
     width: 100%;
     text-align: center;
+    height: 650px;
   }
   .profile{
     margin: 10px;
@@ -113,23 +117,54 @@ export default {
   .table-status{
     width: 100%;
     height: auto;
-    border: 1px solid red;
     justify-content: center;
     align-items: center;
     
   }
   .table-status table{
     width: 80%; 
-    border: 1px solid darkblue;
-
+    border: 1px solid black;
+    margin: 0%;
+    height: auto;
   }
   
   .table-status table thead ,tr,th,td{
-    /* border: 1px solid violet; */
     text-align: center;
-    border: 1px solid darkblue;
+    border: 1px solid black;
   }
   .table-status table thead ,tr,th,td p{
     color: rgba(104, 12, 7, 1);
   }
+  .end-status{
+    display: flex;
+    justify-content: space-between;
+    margin: 200px 0;
+    
+  }
+  .check-status {
+    display: flex;
+  }
+  .check-status p,i{
+    font-size: 18px;
+    display: flex;
+    margin: 0 20px;
+  }
+  .back-status button{
+  font-size:15px;
+  height: 50px;
+  width:130px;
+  border-radius: 25px 25px 25px 25px;
+  color:#FFFFFF;
+  background-color:#680c07;
+  }
+  #yes{
+    color: rgba(0, 255, 10, 1);
+  }
+  #load{
+    color: rgba(250, 255, 0, 1);
+  }
+  #no{
+    color: rgba(255, 0, 0, 1);
+  }
+
 </style>
