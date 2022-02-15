@@ -46,7 +46,7 @@
               </tr>
             </tbody>
           </table> -->
-          <table class="table">
+          <table class="table table-sm">
             <thead>
               <tr>
                 <th scope="col">ทุนที่สมัค</th>
@@ -58,26 +58,27 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row"><p>โครงการทุนการศึกษา</p></th>
+                <td scope="row">โครงการทุนการศึกษา</td>
                 <td><i class="fas fa-check-circle"></i></td>
                 <td>15/8/2563</td>
                 <td><i class="fas fa-check-circle"></i></td>
                 <td><i class="fas fa-mouse-pointer"></i> click</td>
               </tr>
               <tr>
-                <th scope="row">ทุนฉลองสมโภชพระเจ้าหลานเธอ</th>
+                <td scope="row">ทุนฉลองสมโภชพระเจ้าหลานเธอ</td>
                 <td><i class="fas fa-check-circle"></i></td>
                 <td>21/9/2563</td>
                 <td><i class="fas fa-clock"></i></td>
                 <td><i class="fas fa-minus"></i></td>
               </tr>
               <tr>
-                <th scope="row">ทุนการศึกษาประจำปีการศึกษา2564</th>
+                <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
                 <td><i class="fas fa-times-circle"></i></td>
                 <td>@25/10/2563</td>
                 <td><i class="fas fa-times-circle"></i></td>
                 <td><i class="fas fa-minus"></i></td>
               </tr>
+           
             </tbody>
           </table>
         </div>
@@ -123,15 +124,25 @@ export default {
   }
   .table-status table{
     width: 80%; 
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: 0%;
     height: auto;
   }
   
-  .table-status table thead ,tr,th,td{
+  .table-status table thead ,tbody{
     text-align: center;
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
+   .table-status table thead th{
+     font-size: 20px;
+      border: 1px solid black;
+      padding-block: 10px;
+   }
+   .table-status table tbody td{
+     padding-block: 10px;
+      border: 1px solid gray;
+   }
+
   .table-status table thead ,tr,th,td p{
     color: rgba(104, 12, 7, 1);
   }
