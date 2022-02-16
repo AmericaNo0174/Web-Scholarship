@@ -85,7 +85,7 @@
       </center>
       <div class="end-status">
         <div class="back-status">
-          <button type="button" class="btn btn-danger">Danger</button>
+          <button type="button" class="btn btn-danger">Back</button>
         </div>
         <div class="check-status">
           <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>

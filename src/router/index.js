@@ -4,6 +4,8 @@ import Login from '../views/login/login.vue'
 import Sidebar from '../components/Sidebar.vue'
 import Status from '../views/status/status.vue'
 import Interview from '../views/date_interview/interview.vue'
+import History from '../views/capital_history/history.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +23,11 @@ const routes = [
         path:'/interview',
         name:'Interview',
         component: Interview
+      },
+      {
+        path:'/history',
+        name:'History',
+        component: History
       }
     ]
   },
