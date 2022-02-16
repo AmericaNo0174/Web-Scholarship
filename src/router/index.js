@@ -4,6 +4,7 @@ import Login from '../views/login/login.vue'
 import Sidebar from '../components/Sidebar.vue'
 import Status from '../views/status/status.vue'
 import Interview from '../views/date_interview/interview.vue'
+import Contract from '../views/Contract/Contract.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -21,6 +22,11 @@ const routes = [
         path:'/interview',
         name:'Interview',
         component: Interview
+      },
+      {
+        path:'/contract',
+        name:'Contracr',
+        component: Contract
       }
     ]
   },
