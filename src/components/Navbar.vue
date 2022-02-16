@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar">
+  <div class="navbar-web">
       <div  @click="openSidebar" class="menu-icon"><i class="fa fa-bars text-white" aria-hidden="true"></i></div>
       <div class="logout"><i class="fa fa-power-off text-white" aria-hidden="true"></i></div>
   </div>
@@ -22,7 +22,7 @@ export default {
 </script>
 
 <style>
-.navbar{
+.navbar-web{
   height: 40px;
   /* width: 100vh;
   max-width: 100vh; */
