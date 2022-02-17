@@ -8,6 +8,7 @@ import History from '../views/capital_history/history.vue'
 import form from '../views/form/form.vue'
 import uploadform from '../views/form/uploadform.vue'
 import Open from '../views/open_capital/open_capital.vue'
+import Main from '../views/main/main.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -41,6 +42,11 @@ const routes = [
         path:'/uploadform',
         name:'uploadform',
         component: uploadform
+      },
+      {
+        path:'/main',
+        name:'main',
+        component: Main
       },
       {
         path:'/open_capital',
