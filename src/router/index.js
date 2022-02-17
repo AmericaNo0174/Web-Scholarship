@@ -5,6 +5,11 @@ import Sidebar from '../components/Sidebar.vue'
 import Status from '../views/status/status.vue'
 import Interview from '../views/date_interview/interview.vue'
 import Open from '../views/open_capital/open_capital.vue'
+import Step from '../views/step/step.vue'
+import DetailsCP from '../views/details/detailsCP.vue'
+import DetailsKU from '../views/details/detailsKU.vue'
+import Detailsrub from '../views/details/detailsrub.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -27,6 +32,26 @@ const routes = [
         path:'/open_capital',
         name:'Open',
         component: Open
+      },
+      {
+        path:'/step',
+        name:'Step',
+        component: Step
+      },
+      {
+        path:'/detailsCP',
+        name:'DetailsCP',
+        component: DetailsCP
+      },
+      {
+        path:'/detailsKU',
+        name:'DetailsKU',
+        component: DetailsKU
+      },
+      {
+        path:'/detailsrub',
+        name:'Detailsrub',
+        component: Detailsrub
       }
     ]
   },
