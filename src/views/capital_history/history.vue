@@ -120,10 +120,10 @@ export default {
     width: 99%;
     text-align: center;
     /* border: 1px solid red; */
-    height: 640px;
+    height: 600px;
   }
   .container-history h3{
-    margin: 20px;
+    margin: 10px;
     color: rgba(104, 12, 7, 1);
   }
   .container-history label b{
@@ -181,7 +181,7 @@ export default {
   .end-history{
     display: flex;
     justify-content: space-between;
-    margin: 250px 0;
+    margin: 220px 0;
     /* border: 1px solid gold; */
   
   }
