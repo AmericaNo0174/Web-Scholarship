@@ -5,7 +5,9 @@ import Sidebar from '../components/Sidebar.vue'
 import Status from '../views/status/status.vue'
 import Interview from '../views/date_interview/interview.vue'
 import History from '../views/capital_history/history.vue'
-
+import form from '../views/form/form.vue'
+import uploadform from '../views/form/uploadform.vue'
+import Open from '../views/open_capital/open_capital.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -28,7 +30,25 @@ const routes = [
         path:'/history',
         name:'History',
         component: History
+
+        path:'/form',
+        name:'form',
+        component: form
+      },
+      {
+        path:'/uploadform',
+        name:'uploadform',
+        component: uploadform
+      },
+      
+      
+
+        path:'/open_capital',
+        name:'Open',
+        component: Open
+
       }
+
     ]
   },
   {
@@ -37,6 +57,7 @@ const routes = [
     component: Login
   },
 ]
+
 
 const router = new VueRouter({
   mode: 'history',
