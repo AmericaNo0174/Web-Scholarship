@@ -70,9 +70,9 @@ export default {
     width: 100%;
     text-align: center;
     height: 615px;
-    /* border: 1px solid black; */
+    border: 1px solid black;
   }
-  .profile{
+  .container-status .profile{
     margin: 10px;
   }
   .profile h2,h5{
