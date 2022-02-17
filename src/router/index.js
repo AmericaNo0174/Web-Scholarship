@@ -30,24 +30,23 @@ const routes = [
         path:'/history',
         name:'History',
         component: History
-
+      },
+      {
         path:'/form',
         name:'form',
         component: form
+
       },
       {
         path:'/uploadform',
         name:'uploadform',
         component: uploadform
       },
-      
-      
-
+      {
         path:'/open_capital',
         name:'Open',
         component: Open
-
-      }
+      },
 
     ]
   },
