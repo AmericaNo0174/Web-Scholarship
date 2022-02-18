@@ -56,12 +56,16 @@
           <p><i class="fas fa-clock" id="load"></i>รอดำเนินการ</p>
         </div>
       </div>
+      <Footer/>
   </div>
 </template>
 
 <script>
+import Footer from '../../components/footer.vue';
 export default {
-
+  components: {
+    Footer,
+  }
 }
 </script>
 
@@ -70,7 +74,7 @@ export default {
     width: 100%;
     text-align: center;
     height: 615px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
   }
   .container-status .profile{
     margin: 10px;
@@ -89,7 +93,6 @@ export default {
   .table-status table{
     width: 80%; 
     /* border: 1px solid black; */
-    margin: 0%;
     height: auto;
   }
   

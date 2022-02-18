@@ -9,7 +9,7 @@ import form from '../views/form/form.vue'
 import uploadform from '../views/form/uploadform.vue'
 import Open from '../views/open_capital/open_capital.vue'
 import Statusname from '../views/statusname/statusname.vue'
-// import Statusinterview  from '../views/statusinterview/statusinterview.vue'
+import Statusinterview  from '../views/statusinterview/statusinterview.vue'
 // import Nameorder from '../views/nameorder/nameorder.vue'
 Vue.use(VueRouter)
 
@@ -55,11 +55,11 @@ const routes = [
         name:'Statusname',
         component: Statusname
       },
-      // {
-      //   path:'/statusinterview',
-      //   name:'Statusinterview',
-      //   component: Statusinterview
-      // },
+      {
+        path:'/statusinterview',
+        name:'Statusinterview',
+        component: Statusinterview
+      },
       // {
       //   path:'/nameorder',
       //   name:'Nameorder',

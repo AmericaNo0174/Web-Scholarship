@@ -1,8 +1,6 @@
 <template>
   <div class="container-statusname">
-      <div class="profile">
-        <h2>รายชื่อผู้ขอทุน</h2>
-      </div>
+      <h2>รายชื่อผู้ขอทุน</h2>
       <div class="row height d-flex justify-content-center align-items-center">
         <div class="col-md-8">
           <div class="search">
@@ -13,7 +11,7 @@
       </div>
       <center>
         <div class="table-statusname">
-          <table class="table table-sm">
+          <table class="table">
             <thead>
               <tr>
                 <th scope="col">ลำดับ</th>
@@ -96,16 +94,11 @@ export default {
     width: 99%;
     text-align: center;
     height: 600px;
-    /* border: 1px solid blue; */
-    /* border: 1px solid black; */
   }
-  .container-statusname .profile{
-    margin: 10px;
-  }
-  .profile h2,h5{
+  .container-statusname h2{
     margin: 20px;
     color: rgba(104, 12, 7, 1);
-    /* border: 1px solid orange; */
+    
   }
   .table-statusname{
     width: 100%;
@@ -113,11 +106,15 @@ export default {
     height: auto;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid blue; */
     
   }
   .search{
     display: flex;
+    height: 40px;
+  }
+  .search button,i{
+    display: flex;
+    align-items: center;
   }
   .table-statusname table{
     width: 80%; 
@@ -128,7 +125,7 @@ export default {
   
   .table-statusname table thead ,tr,th,td{
     text-align: center;
-    /* border: 1px solid rebeccapurple; */
+    border: 1px solid black;
   }
   .table-statusname table thead ,tr,th,td p{
     color: rgba(104, 12, 7, 1);
@@ -136,23 +133,18 @@ export default {
   .end-statusname{
     display: flex;
     justify-content: space-between;
-    margin: 170px 0;
+    margin: 150px 0;
     /* border: 1px solid blue; */
     
   }
   .check-statusname {
     display: flex;
   }
-
-  .space {
-    margin: 0 200px;
-    height: 200px;
-    
-  }
   .check-statusname p,i{
     font-size: 18px;
     display: flex;
     margin: 0 20px;
+    align-items: center;
   }
   .back-statusname button{
   font-size:15px;
@@ -164,9 +156,6 @@ export default {
   }
   #yes{
     color: rgba(0, 255, 10, 1);
-  }
-  #load{
-    color: rgba(250, 255, 0, 1);
   }
   #no{
     color: rgba(255, 0, 0, 1);
