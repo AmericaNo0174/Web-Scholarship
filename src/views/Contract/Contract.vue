@@ -51,7 +51,6 @@
             color:#FFFFFF;
             background-color:rgba(180, 45, 37, 1);
             left: 45%;
-
          } 
         .container-contract{
             width: 100%;
