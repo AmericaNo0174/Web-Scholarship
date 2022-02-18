@@ -11,6 +11,15 @@ import Open from '../views/open_capital/open_capital.vue'
 import Statusname from '../views/statusname/statusname.vue'
 import Statusinterview  from '../views/statusinterview/statusinterview.vue'
 // import Nameorder from '../views/nameorder/nameorder.vue'
+
+import Step from '../views/step/step.vue'
+import DetailsCP from '../views/details/detailsCP.vue'
+import DetailsKU from '../views/details/detailsKU.vue'
+import Detailsrub from '../views/details/detailsrub.vue'
+
+
+import Main from '../views/main/main.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -46,6 +55,11 @@ const routes = [
         component: uploadform
       },
       {
+        path:'/main',
+        name:'main',
+        component: Main
+      },
+      {
         path:'/open_capital',
         name:'Open',
         component: Open
@@ -65,6 +79,29 @@ const routes = [
       //   name:'Nameorder',
       //   component: Nameorder
       // }
+
+
+      {
+        path:'/step',
+        name:'Step',
+        component: Step
+      },
+      {
+        path:'/detailsCP',
+        name:'DetailsCP',
+        component: DetailsCP
+      },
+      {
+        path:'/detailsKU',
+        name:'DetailsKU',
+        component: DetailsKU
+      },
+      {
+        path:'/detailsrub',
+        name:'Detailsrub',
+        component: Detailsrub
+      }
+
 
 
     ]
