@@ -7,45 +7,6 @@
       </div>
       <center>
         <div class="table-status">
-          <!-- <table class="table">
-            <thead>
-              <tr>
-                <th scope="col"><p>ทุนที่สมัค</p></th>
-                <th scope="col"><p>เอกสาร</p></th>
-                <th scope="col"><p>วันสัมภาษณ์</p></th>
-                <th scope="col"><p>สัมภาษณ์</p></th>
-                <th scope="col"><p>รายละเอียดในการสัมภาษณ์</p></th>
-                <th scope="col">ทุนที่สมัค</th>
-                <th scope="col">เอกสาร</th>
-                <th scope="col">วันสัมภาษณ์</th>
-                <th scope="col">สัมภาษณ์</th>
-                <th scope="col">รายละเอียดในการสัมภาษณ์</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row"><p>โครงการทุนการศึกษา</p></th>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td>15/8/2563</td>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td><i class="fas fa-mouse-pointer"></i> click</td>
-              </tr>
-              <tr>
-                <th scope="row">ทุนฉลองสมโภชพระเจ้าหลานเธอ</th>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td>21/9/2563</td>
-                <td><i class="fas fa-clock"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-              </tr>
-              <tr>
-                <th scope="row">ทุนการศึกษาประจำปีการศึกษา2564</th>
-                <td><i class="fas fa-times-circle"></i></td>
-                <td>@25/10/2563</td>
-                <td><i class="fas fa-times-circle"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-              </tr>
-            </tbody>
-          </table> -->
           <table class="table table-sm">
             <thead>
               <tr>
@@ -78,6 +39,8 @@
                 <td><i class="fas fa-times-circle"></i></td>
                 <td><i class="fas fa-minus"></i></td>
               </tr>
+              
+
            
             </tbody>
           </table>
@@ -85,7 +48,7 @@
       </center>
       <div class="end-status">
         <div class="back-status">
-          <button type="button" class="btn btn-danger">Danger</button>
+          <button type="button" class="btn btn-danger">Back</button>
         </div>
         <div class="check-status">
           <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>
@@ -93,12 +56,16 @@
           <p><i class="fas fa-clock" id="load"></i>รอดำเนินการ</p>
         </div>
       </div>
+      <Footer/>
   </div>
 </template>
 
 <script>
+import Footer from '../../components/footer.vue';
 export default {
-
+  components: {
+    Footer,
+  }
 }
 </script>
 
@@ -106,9 +73,10 @@ export default {
   .container-status{
     width: 100%;
     text-align: center;
-    height: 650px;
+    height: 615px;
+    /* border: 1px solid black; */
   }
-  .profile{
+  .container-status .profile{
     margin: 10px;
   }
   .profile h2,h5{
@@ -125,7 +93,6 @@ export default {
   .table-status table{
     width: 80%; 
     /* border: 1px solid black; */
-    margin: 0%;
     height: auto;
   }
   
@@ -149,7 +116,8 @@ export default {
   .end-status{
     display: flex;
     justify-content: space-between;
-    margin: 200px 0;
+    margin: 150px 0;
+    /* border: 1px solid black; */
     
   }
   .check-status {

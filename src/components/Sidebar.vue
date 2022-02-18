@@ -16,10 +16,22 @@
         </div>
       </div>
       <router-link class="menu-list py-9" to="/home"
-        ><span>Home</span></router-link
+        ><span><i class="fas fa-user-circle"></i>ข้อมูลส่วนตัว</span></router-link
       >
-      <router-link class="menu-list py-9" to="/about"
-        ><span>About</span></router-link
+      <router-link class="menu-list py-9" to="/open_capital"
+        ><span><i class="fas fa-graduation-cap"></i>ทุนที่เปิดให้ลงทะเบียน</span></router-link
+      >
+       <router-link class="menu-list py-9" to="/about"
+        ><span><i class="fas fa-book"></i>ขั้นตอนการสมัครขอทุน</span></router-link
+      >
+       <router-link class="menu-list py-9" to="/status"
+        ><span><i class="fas fa-edit"></i>สถานะ</span></router-link
+      >
+       <router-link class="menu-list py-9" to="/about"
+        ><span><i class="fas fa-phone-alt"></i>ติดต่อเรา</span></router-link
+      >
+       <router-link class="menu-list py-9" to="/history"
+        ><span><i class="fas fa-history"></i>ประวัติการขอทุน</span></router-link
       >
     </div>
     <div style="display: flex; flex-direction: column; width: 100vmax">
@@ -91,13 +103,16 @@ export default {
 .sidebar-box .menu-list {
   display: flex;
   flex-shrink: 0;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center;
+  justify-content: center; */
   flex: initial;
   border-bottom: 2px solid rgb(235, 235, 235);
   color: whitesmoke;
-
+  text-align: left;
+  text-decoration-line: none;
+  padding-block: 15px;
   width: 100%;
+  /* background-color: rgb(128, 0, 0) */
 }
 .sidebar-box .menu-list:hover {
   background-color: rgb(3, 19, 51);
@@ -113,7 +128,7 @@ export default {
   animation-duration: 1s;
 }
 .content-box {
-  padding: 10px;
+  padding: 0px;
 }
 .py-9 {
   padding-top: 9px;
