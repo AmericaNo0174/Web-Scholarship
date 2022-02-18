@@ -8,6 +8,9 @@ import History from '../views/capital_history/history.vue'
 import form from '../views/form/form.vue'
 import uploadform from '../views/form/uploadform.vue'
 import Open from '../views/open_capital/open_capital.vue'
+import Statusname from '../views/statusname/statusname.vue'
+import Statusinterview  from '../views/statusinterview/statusinterview.vue'
+// import Nameorder from '../views/nameorder/nameorder.vue'
 
 import Step from '../views/step/step.vue'
 import DetailsCP from '../views/details/detailsCP.vue'
@@ -61,6 +64,22 @@ const routes = [
         name:'Open',
         component: Open
       },
+      {
+        path:'/statusname',
+        name:'Statusname',
+        component: Statusname
+      },
+      {
+        path:'/statusinterview',
+        name:'Statusinterview',
+        component: Statusinterview
+      },
+      // {
+      //   path:'/nameorder',
+      //   name:'Nameorder',
+      //   component: Nameorder
+      // }
+
 
       {
         path:'/step',
