@@ -9,12 +9,15 @@
     <div class="nav2">
         <div class="nav-name"><p>คณะวิศวกรรมศาสตร์ศรีราชา มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา</p></div>
     </div>
-
   </div>
 </template>
 
 <script>
+
 export default {
+    components: {
+ 
+  },
     data(){
         return{
             isOpen:true
@@ -32,7 +35,7 @@ export default {
 <style>
 .navbar-web{
     /* border: 1px solid hotpink;  */
-    height: auto;
+    height: 10vh;
 
 }
 .navbar-web .nav1{
@@ -75,5 +78,8 @@ export default {
 }
 .text-white{
     color: white;
+}
+.footer{
+    margin-bottom: 0%;
 }
 </style>

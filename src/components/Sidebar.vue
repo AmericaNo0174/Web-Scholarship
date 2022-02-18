@@ -103,11 +103,14 @@ export default {
 .sidebar-box .menu-list {
   display: flex;
   flex-shrink: 0;
+  align-items: center;
+  justify-content: left;
   /* align-items: center;
   justify-content: center; */
   flex: initial;
   border-bottom: 2px solid rgb(235, 235, 235);
   color: whitesmoke;
+
   text-align: left;
   text-decoration-line: none;
   padding-block: 15px;
@@ -126,8 +129,10 @@ export default {
   width: 300px;
   transition: 0.3s;
   animation-duration: 1s;
+  height: auto;
 }
 .content-box {
+  padding: 10px;
   padding: 0px;
 }
 .py-9 {

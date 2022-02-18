@@ -11,14 +11,19 @@ export default {
 
 <style>
   .footer-web{
+    display: flex;
     background-color: rgba(104, 12, 7, 1);
-    text-align: center;
+    bottom: 1;
     width: 100%;
-    height: 30px;
-    margin: 0;
-    padding: 0;
+    color: white;
+    text-align: center;
+    height: 5vh;
+    align-items: center;
+    margin-top: 5vh;
+
   }
   .footer-web h5{
     color: white;
+    margin: auto;
   }
 </style>

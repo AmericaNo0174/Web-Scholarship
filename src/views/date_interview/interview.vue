@@ -1,6 +1,7 @@
 <template>
+<div>
   <div class="container-interview">
-    <h3>รายละเอียดวันนัดสัมภาษณ์</h3>
+    <h3 style="text-decoration-line:underline;">รายละเอียดวันนัดสัมภาษณ์</h3>
     <center>
       <div class="main-interview">
         <h5>สัมภาษณ์ผ่านช่องทางออนไลน์์ วันพฤหัสที่ 18 / 01 / 2564 เวลา 12.00 น.</h5>
@@ -16,27 +17,30 @@
     <div class="back-interview">
      <button type="button" class="btn btn-danger">Back</button>
     </div>
+    <div class="Footer-innterview">
+      <Footer/>
+    </div>
   </div>
+</div>
 </template>
 
 <script>
+import Footer from '../../components/footer.vue';
 export default {
-
+  components: {
+    Footer,
+  }
 }
 </script>
 
 <style>
   .container-interview{
     width: 100%;
-    height: 600px;
     text-align: center;
   }
   .container-interview h3{
     margin: 25px  0;
     color: rgba(104, 12, 7, 1);
-    text-decoration-line:underline;
-  }
-  .container-interview h5{
     text-decoration-line:underline;
   }
   .main-interview{ 
@@ -60,7 +64,7 @@ export default {
   background-color:rgba(255, 13, 0, 1);
   }
   .back-interview{
-    margin: 50px 0;
+    margin-top: 13px;
   }
   .container-interview .back-interview button{
     position: relative;
@@ -71,7 +75,6 @@ export default {
     color:#FFFFFF;
     background-color:rgba(180, 45, 37, 1);
     left: 40%;
-
   }
   
 </style>

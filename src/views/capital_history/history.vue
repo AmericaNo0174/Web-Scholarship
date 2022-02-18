@@ -106,34 +106,39 @@
           <p type="output">20000 บาท</p>
         </div>
       </div>
+    <div class="Footer-history">
+      <Footer/>
+    </div>
   </div>
 </template>
 
 <script>
+import Footer from '../../components/footer.vue';
 export default {
-
+  components: {
+    Footer,
+  }
 }
 </script>
 
 <style>
   .container-history{
-    width: 99%;
+    width: 100%;
     text-align: center;
     /* border: 1px solid red; */
-    height: 600px;
   }
   .container-history h3{
-    margin: 10px;
+    margin-top: 10px;
     color: rgba(104, 12, 7, 1);
   }
   .container-history label b{
     color:rgba(104, 12, 7, 1);
   }
   .container-history form{
-    width: 100%;
-    margin:30px auto;
-    /* border: 1px solid blue;
-     */
+    width: 98%;
+    margin:25px auto;
+    /* border: 1px solid blue; */
+   
   }
   .container-history #ID,#Type,#Name,#Year{
     margin: 10px auto;
@@ -144,6 +149,7 @@ export default {
   .container-history form .button-search{
     display: flex;
     width: 120px;
+    align-items: center;
     /* border: 1px solid darkcyan; */
     height: 50px;
   }
@@ -152,7 +158,6 @@ export default {
     height: auto;
     justify-content: center;
     align-items: center;
-    
   }
   .table-history table{
     width: 90%; 
@@ -181,7 +186,7 @@ export default {
   .end-history{
     display: flex;
     justify-content: space-between;
-    margin: 220px 0;
+    margin-top: 180px;
     /* border: 1px solid gold; */
   
   }
@@ -192,13 +197,13 @@ export default {
     background-color: rgba(255, 236, 235, 1);
     border-radius: 25px 25px 25px 25px;
     width: 300px;
+    margin-right: 20px;
   }
   .sum-history p,i{
      /* border: 1px solid olivedrab; */
      margin: 0 5px;
 
   }
- 
   .back-status button{
   font-size:15px;
   height: 50px;
@@ -206,6 +211,10 @@ export default {
   border-radius: 25px 25px 25px 25px;
   color:#FFFFFF;
   background-color:rgba(180, 45, 37, 1);
+  margin-left: 20px;
+  }
+  .Footer-history{
+    margin-top: 48px;
   }
   
 </style>

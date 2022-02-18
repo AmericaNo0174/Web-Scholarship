@@ -14,15 +14,15 @@
     <br>
     <div class="CP">
       <h1>
-        <img src="../../assets/CP.png">
+        <img src="../../assets/CP.svg">
         <br>
       </h1>
     </div>
-    <div class="topfont">
+    <div class="one">
       <h2>
-        01 โครงการทุนการศึกษา เครือเจริญโภคภัณฑ์ 2564
+        01 โครงการทุนการศึกษา เครือเจิญโภคภัณฑ์ 2564
       </h2>
-    <div class="twofont">
+    <div class="onefont">
         <p>
         เครือเจริญโภคภัณฑ์ตระหนักถึงความสำคัญของการศึกษาซึ่งเป็นปัจจัย<br>
         หลักในการพัฒนาเยาวชนของชาติจึงมีนโยบายสนับสนุนช่วยเหลือนักเรียน<br>
@@ -37,13 +37,13 @@
     <br><br>
     
     <div class="KU">
-        <img src="../../assets/KU.svg">
+        <img src="../../assets/ku.svg">
     </div>
-    <div class="topfont"> 
+    <div class="two"> 
       <h2>
         02 ทุนฉลองสมโภชพระเจ้าหลานเธอ พระองค์เจ้าทีปังกรรัศมีโชติ
       </h2>
-    <div class="twofont">
+    <div class="onefont">
         <p>
         หน่วยกองกิจการนิสิตจะดำเนินการสมัครและคัดเลือกผู้ประสงค์ขอรับทุน<br>
         ฉลองสมโภชพระเจ้าหลานเธอพระองค์เจ้าทีปังกรรัศมีโชติประจำ<br>
@@ -60,11 +60,11 @@
         <img src="../../assets/rubtun.svg">
     </div>
       <br><br>
-      <div class="topfont">
+      <div class="three">
         <h2>
           03 รับสมัครทุนการศึกษา ประจำปีการศึกษา 2564<br>
         </h2>
-      <div class="twofont">
+      <div class="onefont">
         <p>
           รับสมัครทุนการศึกษา ประจำปีการศึกษา 2564 <br>
           สำหรับนิสิตระดับปริญญาตรีทุกชั้นปี ทุกคณะ ทุกสาขาวิชา ทุกวิทยาเขต
@@ -78,8 +78,8 @@
     <div class="contect">
       <img src="../../assets/contect.svg">
     </div>
-    <button class="Back">Back</button>
-    <br><br>
+    <button class="Black">Black</button>
+    <br><br><br><br>
   </center>
 </div>
 </template>
@@ -104,7 +104,7 @@
   justify-content:auto;                   
   
 }
-.Back {
+.Black {
 	font-size:15px;
   font-style:Roboto;
   padding:13px;
@@ -169,13 +169,23 @@
   
   
 }
-.topfont{
+.one{
   color: #680c07;
 }
 .onefont{
   color: #87120c;;
 }
-
-
+.two{
+  color: #680c07;
+}
+.twofont{
+  color: #87120c;;
+}
+.three{
+  color: #680c07;
+}
+/*.threefont{
+  color: #87120c;;
+}*/
 
 </style>

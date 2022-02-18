@@ -1,83 +1,146 @@
 <template>
-  <div class="container-status">
-      <div class="profile">
-        <a href="#"><img src="../../assets/profile.svg" alt=""></a>
-        <h2>สภานะขอทุน</h2>
-        <h5>นายกิตติ์ธเนศ ธานี 6230300xxx</h5>
+  <div class="container-main">
+    <div class="profile">
+      <a href="#"><img src="../../assets/profile.svg" alt=""></a>
+      <h2>สภานะขอทุน</h2>
+      <h5>นายกิตติ์ธเนศ ธานี 6230300xxx</h5>
+    </div>
+    <center>
+      <div class="table-status">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">ทุนที่สมัค</th>
+              <th scope="col">เอกสาร</th>
+              <th scope="col">วันสัมภาษณ์</th>
+              <th scope="col">สัมภาษณ์</th>
+              <th scope="col">รายละเอียดในการสัมภาษณ์</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td scope="row">โครงการทุนการศึกษา</td>
+              <td><i class="fas fa-check-circle"></i></td>
+              <td>15/8/2563</td>
+              <td><i class="fas fa-check-circle"></i></td>
+              <td><i class="fas fa-mouse-pointer"></i> click</td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนฉลองสมโภชพระเจ้าหลานเธอ</td>
+              <td><i class="fas fa-check-circle"></i></td>
+              <td>21/9/2563</td>
+              <td><i class="fas fa-clock"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            <tr>
+              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td>@25/10/2563</td>
+              <td><i class="fas fa-times-circle"></i></td>
+              <td><i class="fas fa-minus"></i></td>
+            </tr>
+            
+            
+          </tbody>
+        </table>
       </div>
-      <center>
-        <div class="table-status">
-          <table class="table table-sm">
-            <thead>
-              <tr>
-                <th scope="col">ทุนที่สมัค</th>
-                <th scope="col">เอกสาร</th>
-                <th scope="col">วันสัมภาษณ์</th>
-                <th scope="col">สัมภาษณ์</th>
-                <th scope="col">รายละเอียดในการสัมภาษณ์</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td scope="row">โครงการทุนการศึกษา</td>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td>15/8/2563</td>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td><i class="fas fa-mouse-pointer"></i> click</td>
-              </tr>
-              <tr>
-                <td scope="row">ทุนฉลองสมโภชพระเจ้าหลานเธอ</td>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td>21/9/2563</td>
-                <td><i class="fas fa-clock"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-              </tr>
-              <tr>
-                <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-                <td><i class="fas fa-times-circle"></i></td>
-                <td>@25/10/2563</td>
-                <td><i class="fas fa-times-circle"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-              </tr>
-              
-
-           
-            </tbody>
-          </table>
-        </div>
-      </center>
-      <div class="end-status">
-        <div class="back-status">
-          <button type="button" class="btn btn-danger">Back</button>
-        </div>
-        <div class="check-status">
-          <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>
-          <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน</p>
-          <p><i class="fas fa-clock" id="load"></i>รอดำเนินการ</p>
-        </div>
+    </center>
+    <div class="end-status">
+      <div class="back-status">
+        <button type="button" class="btn btn-danger">Back</button>
       </div>
-      <Footer/>
-  </div>
+      <div class="check-status">
+        <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>
+        <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน</p>
+        <p><i class="fas fa-clock" id="load"></i>รอดำเนินการ</p>
+      </div>
+    </div>
+  <Footer/>
+</div>
 </template>
 
 <script>
-import Footer from '../../components/footer.vue';
+import Footer from '../../components/footer.vue'
 export default {
-  components: {
-    Footer,
+  components:{
+    Footer
   }
 }
 </script>
 
 <style >
-  .container-status{
+  .container-main{
     width: 100%;
     text-align: center;
-    height: 615px;
-    /* border: 1px solid black; */
+    max-height: 90vh;
+    overflow-y:auto;
+     /* border: 1px solid violet; */
   }
-  .container-status .profile{
-    margin: 10px;
+  .profile a img{
+    margin-top: 10px;
   }
   .profile h2,h5{
     margin: 20px;
@@ -85,10 +148,10 @@ export default {
   }
   .table-status{
     width: 100%;
-    height: auto;
     justify-content: center;
     align-items: center;
-    
+    /* border: 1px solid violet; */
+
   }
   .table-status table{
     width: 80%; 
@@ -98,7 +161,7 @@ export default {
   
   .table-status table thead ,tbody{
     text-align: center;
-    /* border: 1px solid black; */
+    border: 1px solid black;
   }
    .table-status table thead th{
      font-size: 20px;
@@ -116,9 +179,11 @@ export default {
   .end-status{
     display: flex;
     justify-content: space-between;
-    margin: 150px 0;
+    margin-top: 100px;
     /* border: 1px solid black; */
-    
+    align-items: center;
+
+
   }
   .check-status {
     display: flex;
@@ -130,11 +195,18 @@ export default {
   }
   .back-status button{
   font-size:15px;
+  margin-left: 20px;
   height: 50px;
   width:130px;
   border-radius: 25px 25px 25px 25px;
   color:#FFFFFF;
   background-color:rgba(180, 45, 37, 1);
+  }
+  .Footer-status{
+    display: flex;
+    /* background: yellow; */
+    border: 1px solid orange;
+    align-items: center;
   }
   #yes{
     color: rgba(0, 255, 10, 1);
