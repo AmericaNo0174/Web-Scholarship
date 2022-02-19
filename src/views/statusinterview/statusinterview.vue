@@ -1,7 +1,7 @@
 <template>
   <div class="container-statusinterview">
     <h2>รายชื่อผู้มีสิททธิ์สัมภาษณ์</h2>
-      <div class="row height d-flex justify-content-center align-items-center">
+      <div class="main-search">
         <div class="col-md-8">
           <div class="search">
             <input type="text" class="form-control" placeholder="ชื่อ/รหัสนิสิต">
@@ -49,98 +49,110 @@
               </tr>
               <tr>
                 <th scope="row">4</th>
-                  <th>6030300429</th>
-                  <th>Fin</th>
-                  <td>T05</td>
-                  <td>sss</td>
-                  <button class="btn"><i class="fas fa-video"></i></button>
+                <th>6030300429</th>
+                <th>Fin</th>
+                <td>T05</td>
+                <td>sss</td>
+                <button class="btn"><i class="fas fa-video"></i></button>
               </tr>
               <tr>
-                <th scope="row">5</th>
-                <th>.</th>
-                <th>.</th>
-                <td>.</td>
-                <td>.</td>
-                <td>.</td>
+                <th scope="row">4</th>
+                <th>6030300429</th>
+                <th>Fin</th>
+                <td>T05</td>
+                <td>sss</td>
+                <button class="btn"><i class="fas fa-video"></i></button>
               </tr>
               <tr>
-                <th scope="row">6</th>
-                <th>.</th>
-                <th>.</th>
-                <td>.</td>
-                <td>.</td>
-                <td>.</td>
+                <th scope="row">4</th>
+                <th>6030300429</th>
+                <th>Fin</th>
+                <td>T05</td>
+                <td>sss</td>
+                <button class="btn"><i class="fas fa-video"></i></button>
               </tr>
             </tbody>
-        </table>
+          </table>
+          <button class="btn"><i class="fas fa-chevron-left"></i></button>
+          <button class="btn"><i class="fas fa-chevron-right"></i></button>
         </div>
-    <button class="btn"><i class="fas fa-chevron-left"></i></button>
-    <button class="btn"><i class="fas fa-chevron-right"></i></button>
-    </center>
+      </center>
     <div class="end-statusinterview">
         <div class="back-statusinterview">
           <button type="button" class="btn btn-danger">Back</button>
         </div>
     </div>
+    <Footer/>
 </div>
 </template>
 
 
 <script>
+import Footer from '../../components/footer.vue'
 export default {
+  components:{
+    Footer
+  }
 
 }
 </script>
 
-
-
 <style >
   .container-statusinterview{
-    width: 99%;
+    width: 100%;
     text-align: center;
-    height: auto;
+    max-height: 90vh;
+    overflow-y:auto;
   }
   .container-statusinterview h2{
-    margin: 20px;
+    margin-top: 25px;
     color: rgba(104, 12, 7, 1);
+  }
+  .main-search{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
   .search{
     display: flex;
     height: 40px;
+    width: 100%;
   }
   .search button,i{
     display: flex;
     align-items: center;
   }
   .table-statusinterview{
-    width: 100%;
-    height: auto;
+    margin-top: 20px;
+    width: 90%;
+    height: 50vh;
     justify-content: center;
     align-items: center;
-  
+  /* background-color: black; */
   }
-
   .table-statusinterview table{
     width: 80%; 
     margin: 30px;
-    height: 30px;
-    border: 2px solid brown;
+    padding-block: 30px;
   }
-   .table-statusinterview table td,th,thead,tbody{
-     border: 1px solid black;
+   .table-statusinterview table td,th,thead,tbody,tr{
+     border: 0.5px solid black;
    }
-  /* .table-statusinterview table thead {
+  .table-statusinterview table thead {
     text-align: center;
-
+  }
+  .table-statusinterview table thead th{
+    padding-block: 10px;
+    tab-size: 20px;
   }
   .table-statusinterview table tbody th{
     text-align: left;
-    border: 1px solid rebeccapurple ;
+    padding-left: 10px;
   }
   .table-statusinterview table tbody tr,td{
     text-align: center;
-    border: 1px solid  red ;
-  } */
+  }
   .end-statusinterview{
     display: flex;
     justify-content: space-between;
@@ -153,7 +165,7 @@ export default {
   .check-statusinterview p,i{
     font-size: 18px;
     display: flex;
-    margin: 0 20px;
+  align-items: center;
   }
   .back-statusinterview button{
     font-size:15px;
@@ -162,6 +174,7 @@ export default {
     border-radius: 25px 25px 25px 25px;
     color:#FFFFFF;
     background-color:rgba(180, 45, 37, 1);
+    margin-left: 30px;
     }
  
 </style>

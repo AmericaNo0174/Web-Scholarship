@@ -1,5 +1,5 @@
 <template>
-  <div class="container-main">
+  <div class="container-status">
     <div class="profile">
       <a href="#"><img src="../../assets/profile.svg" alt=""></a>
       <h2>สภานะขอทุน</h2>
@@ -39,70 +39,6 @@
               <td><i class="fas fa-times-circle"></i></td>
               <td><i class="fas fa-minus"></i></td>
             </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            <tr>
-              <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td>@25/10/2563</td>
-              <td><i class="fas fa-times-circle"></i></td>
-              <td><i class="fas fa-minus"></i></td>
-            </tr>
-            
             
           </tbody>
         </table>
@@ -123,40 +59,40 @@
 </template>
 
 <script>
-import Footer from '../../components/footer.vue'
-export default {
-  components:{
-    Footer
+  import Footer from '../../components/footer.vue'
+  export default {
+    components:{
+      Footer
+    }
   }
-}
 </script>
 
 <style >
-  .container-main{
+  .container-status{
     width: 100%;
     text-align: center;
     max-height: 90vh;
     overflow-y:auto;
-     /* border: 1px solid violet; */
   }
   .profile a img{
-    margin-top: 10px;
+    margin-top: 25px;
   }
   .profile h2,h5{
-    margin: 20px;
+    margin: 18px 0;
     color: rgba(104, 12, 7, 1);
+    font-weight: bold;
   }
   .table-status{
     width: 100%;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid violet; */
+    height: 40vh;
+    /* background-color: darkblue; */
 
   }
   .table-status table{
     width: 80%; 
     /* border: 1px solid black; */
-    height: auto;
   }
   
   .table-status table thead ,tbody{
@@ -179,11 +115,9 @@ export default {
   .end-status{
     display: flex;
     justify-content: space-between;
-    margin-top: 100px;
+    margin-top: 50px;
     /* border: 1px solid black; */
     align-items: center;
-
-
   }
   .check-status {
     display: flex;
@@ -202,12 +136,7 @@ export default {
   color:#FFFFFF;
   background-color:rgba(180, 45, 37, 1);
   }
-  .Footer-status{
-    display: flex;
-    /* background: yellow; */
-    border: 1px solid orange;
-    align-items: center;
-  }
+
   #yes{
     color: rgba(0, 255, 10, 1);
   }

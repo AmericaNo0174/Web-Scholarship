@@ -64,31 +64,31 @@
             </thead>
             <tbody>
               <tr>
-                <td scope="row">1</td>
-                <td>623030XXXX</td>
-                <td >นายกิตติ์ธเนศ ธานี</td>
-                <td>ทุนเรียนดี</td>
-                <td>ทุนเรียนดีก็เรียนฟรีไปเลยสิจ๊ะ</td>
+                <th scope="row">1</th>
+                <th>623030XXXX</th>
+                <th >นายกิตติ์ธเนศ ธานี</th>
+                <th>ทุนเรียนดี</th>
+                <th>ทุนเรียนดีก็เรียนฟรีไปเลยสิจ๊ะ</th>
                 <td>15/08/2554</td>
                 <td>25,000 บาท</td>
                 <td>-</td>
               </tr>
               <tr>
-                <td scope="row">2</td>
-                <td>623030XXXX</td>
-                <td>นายนพวัสสต์ กาญจนนินทร์</td>
-                <td>ทุนเรียนเด็กขยัน</td>
-                <td>ทุนเด็กมีพรสวรรค์</td>
+                <th scope="row">2</th>
+                <th>623030XXXX</th>
+                <th>นายนพวัสสต์ กาญจนนินทร์</th>
+                <th>ทุนเรียนเด็กขยัน</th>
+                <th>ทุนเด็กมีพรสวรรค์</th>
                 <td>18/08/2544</td>
                 <td>100,000 บาท</td>
                 <td>-</td>
               </tr>
               <tr>
-                <td scope="row">3</td>
-                <td>623030XXXX</td>
-                <td>นายชม พู</td>
-                <td>ทุนเรียนดี</td>
-                <td>ทุนฉลองสมโภชพระเจ้าหลานเธอ</td>
+                <th scope="row">3</th>
+                <th>623030XXXX</th>
+                <th>นายชม พู</th>
+                <th>ทุนเรียนดี</th>
+                <th>ทุนฉลองสมโภชพระเจ้าหลานเธอ</th>
                 <td>12/08/2554</td>
                 <td>15,000 บาท</td>
                 <td>-</td>
@@ -125,17 +125,18 @@ export default {
   .container-history{
     width: 100%;
     text-align: center;
-    /* border: 1px solid red; */
+    max-height: 90vh;
+    overflow-y:auto;
   }
   .container-history h3{
-    margin-top: 10px;
+    margin-top: 20px;
     color: rgba(104, 12, 7, 1);
   }
   .container-history label b{
     color:rgba(104, 12, 7, 1);
   }
   .container-history form{
-    width: 98%;
+    width: 97%;
     margin:25px auto;
     /* border: 1px solid blue; */
    
@@ -150,10 +151,10 @@ export default {
     display: flex;
     width: 120px;
     align-items: center;
-    /* border: 1px solid darkcyan; */
     height: 50px;
   }
   .table-history{
+    margin-top: 20px;
     width: 100%;
     height: auto;
     justify-content: center;
@@ -161,32 +162,30 @@ export default {
   }
   .table-history table{
     width: 90%; 
-    /* border: 1px solid black; */
-    margin: 0%;
     height: auto;
   }
-  
-  .table-history table thead ,tbody{
+    .table-history table thead {
     text-align: center;
-    /* border: 1px solid black; */
-  }
-   .table-history table thead th{
-      font-size: 20px;
-      /* border: 1px solid black; */
-      padding-block: 10px;
-   }
-   .table-history table tbody td{
-      padding-block: 10px;
-      /* border: 1px solid gray; */
-   }
+     font-size: 20px;
+    padding-block: 10px;
 
+  }
+  .table-history table tbody th{
+    text-align: left;
+    padding-block: 10px;
+    padding-left: 10px;
+  }
+  .table-history table tbody tr,td{
+    text-align: center;
+    padding-block: 10px;
+  } 
   .table-history table thead ,tr,th,td p{
     color: rgba(104, 12, 7, 1);
-  }
+  } 
   .end-history{
     display: flex;
     justify-content: space-between;
-    margin-top: 180px;
+    margin-top: 177px;
     /* border: 1px solid gold; */
   
   }
@@ -197,7 +196,7 @@ export default {
     background-color: rgba(255, 236, 235, 1);
     border-radius: 25px 25px 25px 25px;
     width: 300px;
-    margin-right: 20px;
+    margin-right: 30px;
   }
   .sum-history p,i{
      /* border: 1px solid olivedrab; */
@@ -211,7 +210,7 @@ export default {
   border-radius: 25px 25px 25px 25px;
   color:#FFFFFF;
   background-color:rgba(180, 45, 37, 1);
-  margin-left: 20px;
+  margin-left: 30px;
   }
   .Footer-history{
     margin-top: 48px;

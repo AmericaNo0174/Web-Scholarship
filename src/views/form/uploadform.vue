@@ -1,68 +1,76 @@
 <template>
   <!DOCTYPE html>
   <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Uploadform</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="upload container mt-5 mb-5 hup">
-      <h1 class="hfup" ><b>อัพโหลดเอกสาร</b></h1>
-      </div>
-    
-    <form class="upload container mb-5"> 
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Uploadform</title>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    </head>
+    <body class="container-upload">
+      <div class="upload container mt-5 mb-5 hup">
+        <h1 class="hfup" ><b>อัพโหลดเอกสาร</b></h1>
+        </div>
+      
+      <form class="upload container mb-5"> 
 
-      <div class="mb-4">
-        <label for="formFile" class="lup form-label"><b> สำเนาบัตรประชาชนผู้สมัคร </b></label>
-        <input class="upf form-control" type="file" id="formFile">
-      </div>
+        <div class="mb-4">
+          <label for="formFile" class="lup form-label"><b> สำเนาบัตรประชาชนผู้สมัคร </b></label>
+          <input class="upf form-control" type="file" id="formFile">
+        </div>
 
-      <div class="mb-4">
-        <label for="formFile" class="lup  form-label"><b> สำเนาทะเบียนบ้านของผู้สมัคร </b></label>
-        <input class="upf form-control" type="file" id="formFile">
-      </div>
+        <div class="mb-4">
+          <label for="formFile" class="lup  form-label"><b> สำเนาทะเบียนบ้านของผู้สมัคร </b></label>
+          <input class="upf form-control" type="file" id="formFile">
+        </div>
 
-      <div class="mb-4">
-        <label for="formFile" class="lup form-label"><b> รูปถ่ายนิสิต </b></label>
-        <input class="upf form-control" type="file" id="formFile">
-      </div>
+        <div class="mb-4">
+          <label for="formFile" class="lup form-label"><b> รูปถ่ายนิสิต </b></label>
+          <input class="upf form-control" type="file" id="formFile">
+        </div>
 
-      <div class="mb-4">
-        <label for="formFile" class="lup form-label"><b> รูปถ่ายที่พักอาศัยตามภูมิลำเนา </b></label>
-        <input class="upf form-control" type="file" id="formFile">
-      </div>
+        <div class="mb-4">
+          <label for="formFile" class="lup form-label"><b> รูปถ่ายที่พักอาศัยตามภูมิลำเนา </b></label>
+          <input class="upf form-control" type="file" id="formFile">
+        </div>
 
-      <div class="mb-4">
-        <label for="formFile" class="lup form-label"><b> ใบรายงานผลการศึกษา </b></label>
-        <input class="upf form-control" type="file" id="formFile">
-      </div>
+        <div class="mb-4">
+          <label for="formFile" class="lup form-label"><b> ใบรายงานผลการศึกษา </b></label>
+          <input class="upf form-control" type="file" id="formFile">
+        </div>
 
-      <div class="mb-4">
-        <label class="lup  form-label" for="address"><b> เรียงความเล่าประวัติส่วนตัวของตนเองและปัญหาความเดือดร้อน </b></label>
-        <textarea name="" class="upf form-control"  cols="5" rows="35" placeholder="กรอกเรียงความประวัติของนิสิต"></textarea>
-      </div>
+        <div class="mb-4">
+          <label class="lup  form-label" for="address"><b> เรียงความเล่าประวัติส่วนตัวของตนเองและปัญหาความเดือดร้อน </b></label>
+          <textarea name="" class="upf form-control"  cols="5" rows="35" placeholder="กรอกเรียงความประวัติของนิสิต"></textarea>
+        </div>
 
-      <div class="bbbup">
-        <button class="btfup"> Next </button>
-      </div>
+        <div class="bbbup">
+          <button class="btfup"> Next </button>
+        </div>
 
-    </form>
-  </body>
+      </form>
+      <Footer/>
+    </body>
   </html>
 </template>
 
 <script>
-
+import Footer from '../../components/footer.vue'
 export default {
-  name: 'App',
-
+  components:{
+    Footer,
+  },
 }
 </script>
 
 <style scoped>
+.container-upload{
+  width: 100%;
+  text-align: center;
+  max-height: 90vh;
+  overflow-y:auto;
+}
 .hfup{
   color: #680C07 ;
 }

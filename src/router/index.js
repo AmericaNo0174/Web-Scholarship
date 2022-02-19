@@ -9,15 +9,17 @@ import History from '../views/capital_history/history.vue'
 import form from '../views/form/form.vue'
 import uploadform from '../views/form/uploadform.vue'
 import Open from '../views/open_capital/open_capital.vue'
+import Adminstatusinterview from '../views/admin-statusinterview/admin-statusinterview.vue'
 import Statusname from '../views/statusname/statusname.vue'
 import Statusinterview  from '../views/statusinterview/statusinterview.vue'
+import list_tun_nisit from '../views/totalboard_score/list_tun_nisit.vue'
 // import Nameorder from '../views/nameorder/nameorder.vue'
 // import Step from '../views/step/step.vue'
 // import DetailsCP from '../views/details/detailsCP.vue'
 // import DetailsKU from '../views/details/detailsKU.vue'
 // import Detailsrub from '../views/details/detailsrub.vue'
 // import Main from '../views/main/main.vue'
-
+import Profile from '../views/profile/profile'
 Vue.use(VueRouter)
 
 const routes = [
@@ -64,6 +66,11 @@ const routes = [
         component: Open
       },
       {
+        path:'/admin-statusinterview',
+        name:'Adminstatusinterview',
+        component: Adminstatusinterview
+      },
+      {
         path:'/statusname',
         name:'Statusname',
         component: Statusname
@@ -73,6 +80,16 @@ const routes = [
         name:'Statusinterview',
         component: Statusinterview
       },
+      {
+        path:'/list_tun_nisit',
+        name:'list_tun_nisit',
+        component: list_tun_nisit
+      },
+      {
+        path:'/profile',
+        name:'Profile',
+        component: Profile
+      }
       // {
       //   path:'/nameorder',
       //   name:'Nameorder',

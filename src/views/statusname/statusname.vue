@@ -1,7 +1,7 @@
 <template>
   <div class="container-statusname">
       <h2>รายชื่อผู้ขอทุน</h2>
-      <div class="row height d-flex justify-content-center align-items-center">
+      <div class="main-search">
         <div class="col-md-8">
           <div class="search">
             <input type="text" class="form-control" placeholder="ชื่อ/รหัสนิสิต">
@@ -75,30 +75,30 @@
           <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน/ไม่สมบุรณ์</p>
         </div>
       </div>
+      <Footer/>
   </div>
 </template>
 
 
 
 <script>
+import Footer from '../../components/footer.vue'
 export default {
-
+  components:{
+    Footer
+  }
 }
 </script>
-
-
-
-
 <style >
   .container-statusname{
-    width: 99%;
+    width: 100%;
     text-align: center;
-    height: 600px;
+    max-height: 90vh;
+    overflow-y:auto;
   }
   .container-statusname h2{
-    margin: 20px;
+    margin-top: 25px;
     color: rgba(104, 12, 7, 1);
-    
   }
   .table-statusname{
     width: 100%;
@@ -108,51 +108,76 @@ export default {
     align-items: center;
     
   }
+  .main-search{
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
   .search{
     display: flex;
     height: 40px;
+    width: 100%;
   }
   .search button,i{
     display: flex;
     align-items: center;
   }
+  .table-statusname{
+    margin-top: 20px;
+    width: 90%;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+  /* background-color: black; */
+  }
   .table-statusname table{
     width: 80%; 
-    border: 1px solid black;
     margin: 30px;
-    height: auto;
+    padding-block: 30px;
   }
-  
-  .table-statusname table thead ,tr,th,td{
+   .table-statusname table td,th,thead,tbody,tr{
+     border: 0.5px solid black;
+   }
+  .table-statusname table thead {
     text-align: center;
-    border: 1px solid black;
   }
-  .table-statusname table thead ,tr,th,td p{
-    color: rgba(104, 12, 7, 1);
+  .table-statusname table thead th{
+    padding-block: 10px;
+    tab-size: 20px;
+  }
+  .table-statusname table tbody th{
+    text-align: left;
+    padding-left: 10px;
+  }
+  .table-statusname table tbody tr,td{
+    text-align: center;
   }
   .end-statusname{
     display: flex;
     justify-content: space-between;
-    margin: 150px 0;
-    /* border: 1px solid blue; */
-    
+    bottom: 1;
+    align-items: center;
   }
   .check-statusname {
     display: flex;
+    margin-right: 30px;
+    align-items: center;
   }
   .check-statusname p,i{
     font-size: 18px;
     display: flex;
-    margin: 0 20px;
     align-items: center;
+    margin-left: 30px ;
   }
   .back-statusname button{
-  font-size:15px;
-  height: 50px;
-  width:130px;
-  border-radius: 25px 25px 25px 25px;
-  color:#FFFFFF;
-  background-color:rgba(180, 45, 37, 1);
+    font-size:15px;
+    height: 50px;
+    width:130px;
+    border-radius: 25px 25px 25px 25px;
+    color:#FFFFFF;
+    background-color:rgba(180, 45, 37, 1);
+    margin-left: 30px;
   }
   #yes{
     color: rgba(0, 255, 10, 1);
