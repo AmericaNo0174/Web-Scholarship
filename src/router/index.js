@@ -89,7 +89,7 @@ const routes = [
         path:'/profile',
         name:'Profile',
         component: Profile
-      }
+      },
       // {
       //   path:'/nameorder',
       //   name:'Nameorder',
