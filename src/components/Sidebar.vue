@@ -15,19 +15,19 @@
             <p>Kasetsart University</p>
         </div>
       </div>
-      <router-link class="menu-list py-9" to="/home"
+      <router-link class="menu-list py-9" to="/profile"
         ><span><i class="fas fa-user-circle"></i>ข้อมูลส่วนตัว</span></router-link
       >
       <router-link class="menu-list py-9" to="/open_capital"
         ><span><i class="fas fa-graduation-cap"></i>ทุนที่เปิดให้ลงทะเบียน</span></router-link
       >
-       <router-link class="menu-list py-9" to="/about"
+       <router-link class="menu-list py-9" to="/step"
         ><span><i class="fas fa-book"></i>ขั้นตอนการสมัครขอทุน</span></router-link
       >
        <router-link class="menu-list py-9" to="/status"
         ><span><i class="fas fa-edit"></i>สถานะ</span></router-link
       >
-       <router-link class="menu-list py-9" to="/about"
+       <router-link class="menu-list py-9" to="/contact"
         ><span><i class="fas fa-phone-alt"></i>ติดต่อเรา</span></router-link
       >
        <router-link class="menu-list py-9" to="/history"
