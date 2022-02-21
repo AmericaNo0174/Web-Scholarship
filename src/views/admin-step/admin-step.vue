@@ -1,7 +1,7 @@
 <template>
-  <div class="container-step">
+  <div class="container-adminstep">
     <h3>ขั้นตอนการสมัครขอทุนการศึกษา</h3>
-    <div class="data-step">
+    <div class="data-adminstep">
       <div class="step1">
         <h5>1. login ด้วยอีเมล KU</h5>
         <div class="img-step1">
@@ -23,11 +23,12 @@
         </div>
       </div>    
     </div> 
-    <div class="end-step">
-      <div class="back-step">
+    <div class="end-adminstep">
+      <div class="back-adminstep">
         <button type="button" class="btn btn-danger">Back</button>
+        <button id="editcapital" type="button" class="btn btn-danger">EDIT</button>
       </div>
-      <div class="contract-step">
+      <div class="contract-adminstep">
         <p>@Contract</p>
         <a href=""><i id="fb" class="fab fa-facebook"></i></a>
         <a href=""><i id="fm" class="fab fa-facebook-messenger"></i></a>
@@ -49,38 +50,38 @@ export default {
 </script>
 
 <style>
-  .container-step{
+  .container-adminstep{
     width: 100%;
     text-align: center;
     max-height: 90vh;
     overflow-y:auto;
   }
-  .container-step h3{
+  .container-adminstep h3{
     margin: 35px 0;
     color: rgba(104, 12, 7, 1);
     font-weight: bold;
   }
-  .data-step{
+  .data-adminstep{
     height: 100%;
     text-align: center;
     justify-content: center;
     
   }
-  .data-step h5{
+  .data-adminstep h5{
     font-size: 22px;
     width: 50%;
     text-align: left;
     margin: 0 auto;
     margin-bottom: 20px;
   }
-  .data-step p{
+  .data-adminstep p{
     font-size: 18px;
     width: 45%;
     text-align: left;
     margin: 30px auto;
     color: rgba(104, 12, 7, 1);
   }
-  .data-step .step1{
+  .data-adminstep .step1{
     margin: 50px 0;
   }
   .step1{
@@ -130,13 +131,13 @@ export default {
     height: 500px;
     margin: 0 auto;
   }
-  .end-step{
+  .end-adminstep{
     margin-top: 10px;
   }
-  .end-step .back-step{
+  .end-adminstep .back-adminstep{
     text-align: end;
   }
-  .back-step button{
+  .back-adminstep button{
   font-size:15px;
   height: 50px;
   width:130px;
@@ -145,14 +146,14 @@ export default {
   background-color:rgba(180, 45, 37, 1);
   margin-right: 40px;
   }
-  .end-step .contract-step
+  .end-adminstep .contract-adminstep
   {
     text-align: center;
   }
-  .end-step .contract-step p{
+  .end-adminstep .contract-adminstep p{
     text-align: center;
   }
-  .end-step.contract-stepi{
+  .end-adminstep.contract-adminstep i{
     text-align: center;
     margin: 0 12px;
   }

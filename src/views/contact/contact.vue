@@ -87,18 +87,15 @@ export default {
     font-weight: bold;
   }
   .ku-contact{
-    /* background-color: red; */
     width: 300px;
     margin: 0 25px;
   }
   .fb-contact{
-    /* background-color: brown; */
     width: 300px;
     margin: 0 25px;
     
   }
   .phone-connntact{
-    /* background-color: black; */
     width: 300px;
     margin: 0 25px;
   }

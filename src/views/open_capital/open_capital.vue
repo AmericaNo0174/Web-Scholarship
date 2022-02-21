@@ -46,7 +46,7 @@
     </div>  -->
   </div>
   <div class="end-capital">
-    <div class="back-status">
+    <div class="back-capital">
       <button type="button" class="btn btn-danger">Back</button>
     </div>
     <div class="contract-capital">
@@ -139,11 +139,11 @@
   .end-capital {
     margin-top: 30px;
   }
-  .end-capital .back-status{
+  .end-capital .back-capital{
     text-align: end;
     margin-right: 30px;
   }
-  .end-capital .back-status button{
+  .end-capital .back-capital button{
     font-size:15px;
     height: 50px;
     width:130px;

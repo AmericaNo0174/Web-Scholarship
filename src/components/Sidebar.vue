@@ -30,7 +30,7 @@
        <router-link class="menu-list py-9" to="/contact"
         ><span><i class="fas fa-phone-alt"></i>ติดต่อเรา</span></router-link
       >
-       <router-link class="menu-list py-9" to="/history"
+       <router-link class="menu-list py-9" to="/nameorder"
         ><span><i class="fas fa-history"></i>ประวัติการขอทุน</span></router-link
       >
     </div>

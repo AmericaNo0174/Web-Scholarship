@@ -13,13 +13,14 @@ import Adminstatusinterview from '../views/admin-statusinterview/admin-statusint
 import Statusname from '../views/statusname/statusname.vue'
 import Statusinterview  from '../views/statusinterview/statusinterview.vue'
 import list_tun_nisit from '../views/totalboard_score/list_tun_nisit.vue'
-// import Nameorder from '../views/nameorder/nameorder.vue'
+import Nameorder from '../views/nameorder/nameorder.vue'
 import Step from '../views/step/step.vue'
-// import DetailsCP from '../views/details/detailsCP.vue'
-// import DetailsKU from '../views/details/detailsKU.vue'
-// import Detailsrub from '../views/details/detailsrub.vue'
-// import Main from '../views/main/main.vue'
+import Adminopencapital from '../views/admin-opencapital/admin-opencapital'
+import Adminstep from '../views/admin-step/admin-step.vue'
+import Adminaddstep from '../views/admin-addstep/admin-addstep.vue'
 import Profile from '../views/profile/profile'
+import Main from '../views/main/main.vue'
+import Adminaddcapital from '../views/admin-opencapital/admin-addcapital'
 Vue.use(VueRouter)
 
 const routes = [
@@ -66,11 +67,6 @@ const routes = [
         component: Open
       },
       {
-        path:'/admin-statusinterview',
-        name:'Adminstatusinterview',
-        component: Adminstatusinterview
-      },
-      {
         path:'/statusname',
         name:'Statusname',
         component: Statusname
@@ -90,16 +86,48 @@ const routes = [
         name:'Profile',
         component: Profile
       },
-      // {
-      //   path:'/nameorder',
-      //   name:'Nameorder',
-      //   component: Nameorder
-      // }
+      {
+        path:'/nameorder',
+        name:'Nameorder',
+        component: Nameorder
+      },
       {
         path:'/step',
         name:'Step',
         component: Step
       },
+      {
+        path:'/main',
+        name:'main',
+        component: Main
+      },
+
+      // ####### ADMIN ########
+      {
+        path:'/admin-statusinterview',
+        name:'Adminstatusinterview',
+        component: Adminstatusinterview
+      },
+      {
+        path:'/admin-opencapital',
+        name:'Adminopencapital',
+        component: Adminopencapital
+      },
+      {
+        path:'/admin-step',
+        name:'Adminstep',
+        component: Adminstep
+      },
+      {
+        path:'/admin-addstep',
+        name:'Adminaddstep',
+        component: Adminaddstep
+      },
+      {
+        path:'/admin-addcapital',
+        name:'Adminaddcapital',
+        component: Adminaddcapital
+      }
     ]
   },
   {
