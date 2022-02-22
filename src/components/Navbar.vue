@@ -4,7 +4,10 @@
       <div  @click="openSidebar" class="menu-icon"><i class="fa fa-bars text-white" aria-hidden="true"></i></div>
       <div class="logo"><img src="../assets/logo.svg" alt=""></div>
       <div class="nav-name"><p>623030XXXX นายนพวัสสต์ กาญจนนินทร์</p></div>
-      <div class="logout"><i class="fa fa-power-off text-white" aria-hidden="true"></i></div>
+      <!-- <div class="logout"><i class="fa fa-power-off text-white" aria-hidden="true"></i></div> -->
+      <router-link class="logout" to="/"
+        ><i class="fa fa-power-off text-white" aria-hidden="true"></i></router-link
+      >
     </div>
     <div class="nav2">
         <div class="nav-name"><p>คณะวิศวกรรมศาสตร์ศรีราชา มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา</p></div>

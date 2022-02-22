@@ -14,7 +14,10 @@
       </div>
     </center>
     <div class="back-interview">
-     <button type="button" class="btn btn-danger">Back</button>
+      <router-link class="" to="/status"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+      >
+     <!-- <button type="button" class="btn btn-danger">Back</button> -->
     </div>
     <Footer/>
 </div>

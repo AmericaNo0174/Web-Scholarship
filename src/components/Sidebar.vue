@@ -33,6 +33,9 @@
        <router-link class="menu-list py-9" to="/nameorder"
         ><span><i class="fas fa-history"></i>ประวัติการขอทุน</span></router-link
       >
+       <router-link class="menu-list py-9" to="/history"
+        ><span><i class="fas fa-calendar-alt"></i>ประวัติรายชื่อผู้ที่ได้รับทุน</span></router-link
+      >
     </div>
     <div style="display: flex; flex-direction: column; width: 100vmax">
       <Navbar @openSidebar="openSidebar" />

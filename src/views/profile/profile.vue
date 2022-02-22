@@ -57,9 +57,12 @@
       </div>
     </div>
     <div class="end-profile">
-      <div class="back-profile">
+      <router-link class="back-profile" to="/main"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+      >
+      <!-- <div class="back-profile">
         <button type="button" class="btn btn-danger">Back</button>
-      </div>
+      </div> -->
     </div>
     <Footer/>
   </div>

@@ -36,9 +36,12 @@
       </div>
     </div>
     <div class="end-cconnntact">
-      <div class="back-connntact">
+      <router-link class="back-connntact" to="/main"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+      >
+      <!-- <div class="back-connntact">
         <button type="button" class="btn btn-danger">Back</button>
-      </div>
+      </div> -->
       <div class="contract-connntact">
         <p>@Contract</p>
         <a href=""><i id="fb" class="fab fa-facebook"></i></a>
@@ -115,8 +118,6 @@ export default {
   }
   .end-cconnntact{
     margin-top: 10px;
-  }
-  .end-cconnntact .back-connntact{
     text-align: end;
   }
   .back-connntact button{

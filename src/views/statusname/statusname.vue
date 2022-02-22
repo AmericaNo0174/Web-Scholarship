@@ -67,9 +67,12 @@
         </div>
       </center>
       <div class="end-statusname">
-        <div class="back-statusname">
+        <router-link class="back-statusname" to="/open_capital"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+        >
+        <!-- <div class="back-statusname">
           <button type="button" class="btn btn-danger">Back</button>
-        </div>
+        </div> -->
         <div class="check-statusname">
           <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>
           <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน/ไม่สมบุรณ์</p>
@@ -99,6 +102,7 @@ export default {
   .container-statusname h2{
     margin-top: 25px;
     color: rgba(104, 12, 7, 1);
+    font-weight: bold;
   }
   .table-statusname{
     width: 100%;

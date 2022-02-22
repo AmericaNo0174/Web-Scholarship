@@ -24,9 +24,12 @@
       </div>    
     </div> 
     <div class="end-step">
-      <div class="back-step">
+      <router-link class="back-step" to="/main"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+      >
+      <!-- <div class="back-step">
         <button type="button" class="btn btn-danger">Back</button>
-      </div>
+      </div> -->
       <div class="contract-step">
         <p>@Contract</p>
         <a href=""><i id="fb" class="fab fa-facebook"></i></a>
@@ -132,8 +135,6 @@ export default {
   }
   .end-step{
     margin-top: 10px;
-  }
-  .end-step .back-step{
     text-align: end;
   }
   .back-step button{

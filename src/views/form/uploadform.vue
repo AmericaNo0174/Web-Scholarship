@@ -46,7 +46,12 @@
         </div>
 
         <div class="bbbup">
-          <button class="btfup"> Next </button>
+          <router-link class="btfback" to="/form"
+          ><button type="button" class="btn btn-danger">Back</button></router-link
+          >
+           <router-link class="btfup" to=""
+          ><button type="button" class="btn btn-danger">Save</button></router-link
+          >
         </div>
 
       </form>
@@ -67,9 +72,14 @@ export default {
 <style scoped>
 .container-upload{
   width: 100%;
-  text-align: center;
   max-height: 90vh;
   overflow-y:auto;
+}
+.container-upload h1{
+  text-align: center;
+}
+.upload .mb-4 label{
+  margin: 20px 0;
 }
 .hfup{
   color: #680C07 ;
@@ -86,27 +96,36 @@ export default {
 .upf:hover{
     opacity: 0.7;
 }
-.btfup{
+.bbbup{
+  display: flex;
+  justify-content: space-between;
+  margin: 50px 20px 0;
+
+}
+.bbbup:hover{
+  opacity: 0.8;
+}
+.bbbup .btfback button{
+   font-size:15px;
+  font-style:Roboto;
+  padding:13px;
+  width:130px;
+  border-radius: 25px 25px 25px 25px;
+  color:#FFFFFF;
+  background-color:rgba(104, 12, 7, 1);
+  float: right;
+
+}
+.bbbup .btfup button{
   font-size:15px;
   font-style:Roboto;
   padding:13px;
   width:130px;
   border-radius: 25px 25px 25px 25px;
   color:#FFFFFF;
-  background-color:#680c07;
+  background-color:rgba(37, 180, 51, 1);
   float: right;
-  position: relative;
-  top: 50px;
-  margin-bottom: 10px;
-}
-.bbbup{
-  height: 140px;
 
 }
-
-.bbbup:hover{
-  opacity: 0.8;
-}
-
 </style>
 

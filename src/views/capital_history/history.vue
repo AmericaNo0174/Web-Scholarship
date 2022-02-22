@@ -98,9 +98,12 @@
         </div>
       </center>
       <div class="end-history">
-        <div class="back-status">
+        <router-link class="back-status" to="/main"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+        >
+        <!-- <div class="back-status">
           <button type="button" class="btn btn-danger">Back</button>
-        </div>
+        </div> -->
         <div class="sum-history">
           <p><i class="fas fa-coins"></i>ยอดเงินรวมทั้งสิน</p>
           <p type="output">20000 บาท</p>
@@ -130,6 +133,7 @@ export default {
   }
   .container-history h3{
     margin-top: 20px;
+    font-weight: bold;
     color: rgba(104, 12, 7, 1);
   }
   .container-history label b{
@@ -145,7 +149,6 @@ export default {
     margin: 10px auto;
     align-items: center;
     justify-content: center;
-    /* border: 1px solid hotpink; */
   }
   .container-history form .button-search{
     display: flex;
@@ -174,10 +177,12 @@ export default {
     text-align: left;
     padding-block: 10px;
     padding-left: 10px;
+    border: 0.5px solid black;
   }
   .table-history table tbody tr,td{
     text-align: center;
     padding-block: 10px;
+    border: 0.5px solid black;
   } 
   .table-history table thead ,tr,th,td p{
     color: rgba(104, 12, 7, 1);
@@ -186,8 +191,6 @@ export default {
     display: flex;
     justify-content: space-between;
     margin-top: 177px;
-    /* border: 1px solid gold; */
-  
   }
   .sum-history{
     display: flex;

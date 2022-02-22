@@ -31,9 +31,12 @@
       </div>
     </center>
     <div class="end-nameorder">
-      <div class="back-nameorder">
+      <router-link class="back-nameorder" to="/main"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+      >
+      <!-- <div class="back-nameorder">
         <button type="button" class="btn btn-danger">Back</button>
-      </div>
+      </div> -->
     </div>
   <Footer/>
  </div>
@@ -74,7 +77,6 @@ import Footer from '../../components/footer.vue'
     align-items: center;
     height: 40vh;
     margin-top: 30px;
-    
   }
   .table-nameorder table{
     width: 80%; 
@@ -98,9 +100,10 @@ import Footer from '../../components/footer.vue'
   }
   .end-nameorder{
     display: flex;
-    margin-top: 20px;
+    margin-top: 10px;
     align-items: center;
     justify-content: flex-end;  
+    
 }
   .back-nameorder button{
   font-size:15px;

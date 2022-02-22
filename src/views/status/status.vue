@@ -10,7 +10,7 @@
         <table class="table table-sm">
           <thead>
             <tr>
-              <th scope="col">ทุนที่สมัค</th>
+              <th scope="col">ทุนที่สมัคร</th>
               <th scope="col">เอกสาร</th>
               <th scope="col">วันสัมภาษณ์</th>
               <th scope="col">สัมภาษณ์</th>
@@ -23,7 +23,9 @@
               <td><i class="fas fa-check-circle"></i></td>
               <td>15/8/2563</td>
               <td><i class="fas fa-check-circle"></i></td>
-              <td><i class="fas fa-mouse-pointer"></i> click</td>
+              <td><router-link class="go-interview" to="/interview"
+              ><i class="fas fa-mouse-pointer"></i> click</router-link
+              ></td>
             </tr>
             <tr>
               <td scope="row">ทุนฉลองสมโภชพระเจ้าหลานเธอ</td>
@@ -45,9 +47,12 @@
       </div>
     </center>
     <div class="end-status">
-      <div class="back-status">
+      <router-link class="back-status" to="/main"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+      >
+      <!-- <div class="back-status">
         <button type="button" class="btn btn-danger">Back</button>
-      </div>
+      </div> -->
       <div class="check-status">
         <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>
         <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน</p>
@@ -136,7 +141,9 @@
   color:#FFFFFF;
   background-color:rgba(180, 45, 37, 1);
   }
-
+.go-interview{
+  color: rgba(255, 0, 0, 1);
+}
   #yes{
     color: rgba(0, 255, 10, 1);
   }

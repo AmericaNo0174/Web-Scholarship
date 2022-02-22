@@ -18,7 +18,7 @@
   <form class="container mb-4" >
 <!-- ชื่อและนามสกุล -->
 
-    <div class=" input-group mb-4">
+    <div class="input-group mb-4">
       <span class="boxf input-group-text "> ชื่อและนามสกุล </span>
       <input type="text" aria-label="First name" class="inf form-control" placeholder="กรุณาระบุชื่อ" required>
       <input type="text" aria-label="Last name" class="inf form-control" placeholder="กรุณาระบุนามสกุล" required>
@@ -267,7 +267,12 @@
     </div>
     <!-- btn-next -->
     <div class="bbb">
-      <button class="btf"> Next </button>
+       <router-link class="btfb" to="/open_capital"
+          ><button type="button" class="btn btn-danger">Back</button></router-link
+          >
+      <router-link class="btf" to="/uploadform"
+          ><button type="button" class="btn btn-danger">Next</button></router-link
+          >
     </div>
   </div>
   </form>
@@ -289,10 +294,14 @@ export default {
 <style scoped>
 .container-from{
     width: 100%;
-    text-align: center;
+    
     max-height: 90vh;
     overflow-y:auto;
   }
+.container-from h2,h1{
+  text-align: center;
+  margin: 20px 0;
+}
 #h01{
   color: #680C07 ;
 }
@@ -318,21 +327,33 @@ export default {
   background-color: #FFECEB;
   border-color:rgb(219, 209, 209);
 }
-.btf{
+.btf button{
   font-size:15px;
   font-style:Roboto;
   padding:13px;
   width:130px;
   border-radius: 25px 25px 25px 25px;
   color:#FFFFFF;
-  background-color:#680c07;
+  background-color:rgba(104, 12, 7, 1);
   float: right;
   position: relative;
-  top: 50px;
-  margin-bottom: 10px;
+ 
+}
+.btfb button{
+  font-size:15px;
+  font-style:Roboto;
+  padding:13px;
+  width:130px;
+  border-radius: 25px 25px 25px 25px;
+  color:#FFFFFF;
+  background-color:rgba(180, 45, 37, 1);
+  float: right;
+  position: relative;
+
 }
 .bbb{
-  height: 140px;
+  display: flex;
+  justify-content: space-between;
 
 }
 

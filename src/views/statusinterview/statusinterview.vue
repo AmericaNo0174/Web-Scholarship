@@ -29,7 +29,7 @@
                 <th>Otto</th>
                 <td>T12</td>
                 <td>mmm</td>
-                <button class="btn"><i class="fas fa-video"></i></button>
+                <td><i class="fas fa-minus"></i></td>
               </tr>
               <tr>
                 <th scope="row">2</th>
@@ -37,7 +37,7 @@
                 <th>Thornton</th>
                 <td>T08</td>
                 <td>aaa</td>
-                <button class="btn"><i class="fas fa-video"></i></button>
+                <td><i class="fas fa-minus"></i></td>
               </tr>
               <tr>
                 <th scope="row">3</th>
@@ -45,7 +45,7 @@
                 <th>the Bird</th>
                 <td>T12</td>
                 <td>sss</td>
-                <button class="btn"><i class="fas fa-video"></i></button>
+                <td><i class="fas fa-minus"></i></td>
               </tr>
               <tr>
                 <th scope="row">4</th>
@@ -53,7 +53,7 @@
                 <th>Fin</th>
                 <td>T05</td>
                 <td>sss</td>
-                <button class="btn"><i class="fas fa-video"></i></button>
+                <td><i class="fas fa-minus"></i></td>
               </tr>
               <tr>
                 <th scope="row">4</th>
@@ -61,7 +61,7 @@
                 <th>Fin</th>
                 <td>T05</td>
                 <td>sss</td>
-                <button class="btn"><i class="fas fa-video"></i></button>
+                <td><i class="fas fa-minus"></i></td>
               </tr>
               <tr>
                 <th scope="row">4</th>
@@ -69,7 +69,7 @@
                 <th>Fin</th>
                 <td>T05</td>
                 <td>sss</td>
-                <button class="btn"><i class="fas fa-video"></i></button>
+                <td><i class="fas fa-minus"></i></td>
               </tr>
             </tbody>
           </table>
@@ -78,9 +78,12 @@
         </div>
       </center>
     <div class="end-statusinterview">
-        <div class="back-statusinterview">
+        <!-- <div class="back-statusinterview">
           <button type="button" class="btn btn-danger">Back</button>
-        </div>
+        </div> -->
+        <router-link class="back-statusinterview" to="/open_capital"
+        ><button type="button" class="btn btn-danger">Back</button></router-link
+        >
     </div>
     <Footer/>
 </div>
@@ -149,9 +152,13 @@ export default {
   .table-statusinterview table tbody th{
     text-align: left;
     padding-left: 10px;
+    border: 0.5px solid black;
   }
   .table-statusinterview table tbody tr,td{
     text-align: center;
+  }
+  .table-statusinterview .table button{
+    color: rgba(255, 0, 0, 1);
   }
   .end-statusinterview{
     display: flex;

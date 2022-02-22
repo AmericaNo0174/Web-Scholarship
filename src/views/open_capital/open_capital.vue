@@ -2,8 +2,14 @@
 <div class="container-capital">
   <h3>ทุนที่เปิดให้ลงทะเบียน</h3>
   <div class="capital-name">
-    <button type="button" class="btn btn-danger">รายชื่อผู้ขอทุน</button>
-    <button type="button" class="btn btn-danger">ผู้มีสิทธิ์สอบสัมภาษณ์</button>
+    <router-link class="name-capital" to="/statusname"
+    ><button type="button" class="btn btn-danger">รายชื่อผู้ขอทุน</button></router-link
+    >
+    <router-link class="nametest-capital" to="/statusinterview"
+    ><button type="button" class="btn btn-danger">ผู้มีสิทธิ์สอบสัมภาษณ์</button></router-link
+    >
+    <!-- <button type="button" class="btn btn-danger">รายชื่อผู้ขอทุน</button>
+    <button type="button" class="btn btn-danger">ผู้มีสิทธิ์สอบสัมภาษณ์</button> -->
   </div>
   <div class="main-capital">
     <div class="capital1">
@@ -15,8 +21,14 @@
         </div>
         <p>เครือเจริญโภคภัณฑ์ตระหนักถึงความสำคัญของการศึกษาซึ่งเป็นปัจจัยหลักในการพัฒนาเยาวชนของชาติจึงมีนโยบายสนับสนุนช่วยเหลือนักเรียนนิสิตนักศึกษาที่มีความประพฤติดีเรียนดีมีความมุ่งมั่นและความเป็นผู้นำแต่ขาดแคลนทุนทรัพย์ให้มีทุนทรัพยากรพอเพียงในการศึกษา เครือเจิญโภคภัณฑ์ 2564</p>
        <div class="btn-capital">
-        <button id="register-capital" type="button" class="btn btn-danger">สมัค</button>
-        <button id="about" type="button" class="btn btn-danger">อ่านเพิ่มเติม</button>
+        <router-link class="register-capital" to="/form"
+        ><button id="register-capital" type="button" class="btn btn-danger">สมัค</button> </router-link
+        >
+        <router-link class="about-capital" to=""
+        ><button id="about" type="button" class="btn btn-danger">อ่านเพิ่มเติม</button></router-link
+        >
+        <!-- <button id="register-capital" type="button" class="btn btn-danger">สมัค</button> -->
+        <!-- <button id="about" type="button" class="btn btn-danger">อ่านเพิ่มเติม</button> -->
       </div>
       </div>
     </div>
@@ -46,9 +58,12 @@
     </div>  -->
   </div>
   <div class="end-capital">
-    <div class="back-capital">
+      <router-link class="back-capital" to="/main"
+      ><button type="button" class="btn btn-danger">Back</button></router-link
+      >
+    <!-- <div class="back-capital">
       <button type="button" class="btn btn-danger">Back</button>
-    </div>
+    </div> -->
     <div class="contract-capital">
       <p>@Contract</p>
       <a href=""><i id="fb" class="fab fa-facebook"></i></a>
@@ -137,13 +152,12 @@
     color:#FFFFFF;
   }
   .end-capital {
-    margin-top: 30px;
-  }
-  .end-capital .back-capital{
+    margin-top: 50px;
     text-align: end;
-    margin-right: 30px;
+
   }
   .end-capital .back-capital button{
+    margin-right: 30px;
     font-size:15px;
     height: 50px;
     width:130px;
