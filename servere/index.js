@@ -11,7 +11,7 @@ const db = mysql.createConnection({
     database: "studentname",
   })
   app.get("/table", (req, res) => {
-    db.query("SELECT * FROM testname", (err, result) => {
+    db.query("SELECT * FROM form", (err, result) => {
       if (err) {
         console.log(err);
       } else {

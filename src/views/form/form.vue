@@ -1,4 +1,4 @@
-<template >
+S<template >
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +29,7 @@
       <span class="boxf input-group-text"> รหัสประจำตัวนิสิต </span>
       <input type="text"  class="inf form-control" placeholder="กรุณากรอกรหัสนิสิต" required>
       <span class="boxf input-group-text "> ชั้นปีที่ </span>
-      <input type="number" class="inf form-control " max="8" min="1" value="1">
+      <input type="number" class="inf form-control " max="8" min="1" value="1">  
     </div>
 
   <!-- วันเกิด อายุ -->
@@ -38,6 +38,20 @@
       <input type="date" name="date" class="inf form-control" >
       <span class="boxf input-group-text"> อายุ </span>
       <input type="number" name="age" max="100" min="1" class="inf form-control"><span class="boxf input-group-text"> ปี </span>
+    </div>
+
+    <div class="input-group mb-4">
+      <span class="boxf input-group-text"> รหัสประจำตัวประชาชน </span>
+      <input type="text"  class="inf form-control" placeholder="รหัสประจำตัวประชาชน13หลัก" required>
+    </div>
+
+    <div class="input-group mb-4">
+      <span class="boxf input-group-text"> สัญชาติ </span>
+      <input type="text"  class="inf form-control" required>
+      <span class="boxf input-group-text"> เชื้อชาติ </span>
+      <input type="text"  class="inf form-control" required>
+      <span class="boxf input-group-text"> ศาสนา </span>
+      <input type="text"  class="inf form-control" required>
     </div>
 
   <!-- ภาคเรียน -->
@@ -54,8 +68,10 @@
       </div>
     </div>
 
-  <!-- สาขา -->
+  <!-- คณะ สาขา -->
     <div class="input-group mb-4">
+        <span class="boxf input-group-text"> คณะ </span>
+        <input type="text"  class="inf form-control" placeholder="ระบุคณะที่เรียน" required>
         <span class="boxf input-group-text"> สาขา </span>
         <input type="text"  class="inf form-control" placeholder="ระบุสาขาที่เรียน" required>
     </div>
@@ -72,12 +88,16 @@
       <label class="laf form-label" for="address"><b> ที่อยู่ปัจจุบัน(สามารถติดต่อได้) </b></label>
       <textarea name="" class="inf form-control"  cols="30" rows="3" placeholder="กรุณาระบุที่อยู่ปัจจุบันของคุณ"></textarea>
     </div>
+
+    <div class= "input-group mb-4">
+      <span class="boxf input-group-text "> Email </span> 
+      <input type="email" class="inf form-control" name="email" placeholder="example@gmail.com" required>
+    </div>
     
     <div class= "input-group mb-5">
       <span class="boxf input-group-text "> เบอร์โทรศัพท์ </span> 
       <input type="tel" class="inf form-control" name="phone" placeholder="กรุณาระบุเบอร์โทรศัพท์ที่ติดต่อได้" required>
     </div>
-
 
   <!-- father -->
     <div>
@@ -227,11 +247,20 @@
       <input type="text" class="inf form-control" placeholder="หากระบุ บิดา มารดา ไม่ต้องระบุช่องนี้">
     </div>  
 
+      <div class="input-group mb-4 ">
+      <span class="boxf input-group-text "> ชื่อและนามสกุลผู้อุปการะ </span>
+      <input type="text" aria-label="First name" class="inf form-control" placeholder="หากระบุ บิดา มารดา ไม่ต้องระบุช่องนี้">
+      <input type="text" aria-label="Last name" class="inf form-control">
+
+      <span class="boxf input-group-text  "> อายุ </span>
+      <input type="number" class="inf form-control" name="age" max="99" min="1" ><span class="boxf input-group-text "> ปี </span>
+    </div>
+
   <!-- อาชีพผู้อุปการะ -->
     <div class="input-group mb-4">
       <span class="boxf input-group-text "> มีอาชีพ </span>
       <input type="text" class="inf form-control" placeholder="หากระบุ บิดา มารดา ไม่ต้องระบุช่องนี้">
-      <span class="boxf input-group-text "> ประกอบอาชีพ </span>
+      <span class="boxf input-group-text "> สถานที่ประกอบอาชีพ </span>
       <input type="text" class="inf form-control" placeholder="หากระบุ บิดา มารดา ไม่ต้องระบุช่องนี้">
     </div>
 
@@ -239,12 +268,6 @@
     <div class= "input-group mb-4">
       <span class="boxf input-group-text "> เบอร์โทรศัพท์ </span> 
       <input type="tel" class="inf form-control" name="phone" placeholder="เบอร์โทรศัพท์ผู้อุปการะ หากระบุบิดามารดา ไม่ต้องระบุช่องนี้">
-    </div>
-
-  <!-- เงินเดือนผู้อุปการะให้ -->
-  <div class="input-group mb-4">
-      <span class="boxf input-group-text "> ได้รับค่าใช้จ่ายเดือนละ </span>
-      <input type="text" class="inf form-control" placeholder="หากระบุบิดามารดา ไม่ต้องระบุช่องนี้"><span class="boxf input-group-text "> บาท </span>
     </div>
 
   <!-- กู้ยืม -->
