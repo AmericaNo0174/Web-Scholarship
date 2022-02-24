@@ -7,7 +7,9 @@
               <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/ENG_th-flat_transparent_%281%29.gif" width="150" height="150" alt="">
               <h1>SIGN IN</h1>
               <br>
-              <form @submit.prevent="login">
+              <GoogleLogin :params="params" :renderParams="renderParams" :onSuccess="onSuccess" :onFailure="onFailure"></GoogleLogin>
+              <!-- <button @click="login()">login</button> -->
+              <!-- <form @submit.prevent="login">
                   <div class="txt_field">
                       <p><i class="fas fa-user"></i><input v-model="username" required placeholder="Username/Email" type="text" name="" id=""></p>
                   </div>
@@ -19,7 +21,7 @@
                 <router-link class="back-nameorder" to="/main"
                 ><p><button type="submit">Login</button></p></router-link
                 >
-              </form>
+              </form> -->
             </center>
           </div>
  
@@ -59,9 +61,29 @@
 </template>
 
 <script>
-export default {
+import GoogleLogin from 'vue-google-login';
 
-}
+ export default {
+        name: 'App',
+        data() {
+            return {
+                // client_id is the only required property but you can add several more params, full list down bellow on the Auth api section
+                params: {
+                    client_id: "xxxxxx"
+                },
+                // only needed if you want to render the button with the google ui
+                renderParams: {
+                    width: 250,
+                    height: 50,
+                    longtitle: true
+                }
+            }
+        },
+        components: {
+            GoogleLogin
+        }
+    }
+
 </script>
 
 <style>
@@ -138,5 +160,4 @@ form .txt_field{
   background:none;
   outline:none;
 }
-
 </style>
