@@ -311,6 +311,11 @@ export default {
   components:{
     Footer,
   },
+   mounted() {
+        if(!window.isLogin){
+            this.$router.push({name:'Login'})
+        }
+     }
 
 }
 </script>

@@ -1,11 +1,11 @@
 <template>
-
+<div class="container-point">
   <div align="center" ><h1>เกณฑ์การให้คะเเนน</h1></div>
     <h2><br>หัวข้อในการให้คะเเนน</h2>
     <div class="box">
         <div class="item">
             <div class="content">
-                <p class="text">การตอบคำถาม</p></label><input type="text" name="score" maxlength="2" class="score">/30<img class="img" src="delete.svg" >
+                <p class="text">การตอบคำถาม</p><input type="text" name="score" maxlength="2" class="score">/30<img class="img" src="delete.svg" >
             </div>
         </div>
         <div class="item">
@@ -20,15 +20,14 @@
             </div>
         </div>
     </div>
-
     <div align="center"><br><h3>รายละเอียด</h3></div><input class="detail" type="text" name="ip-detail">
     <div>
         <button class="save">บันทึก</button>
-    </div>
-    <div>
         <button class="Back">BACK</button>
     </div>
+</div>
 </template>
+
 
 <script>
 export default {
@@ -43,10 +42,13 @@ export default {
         flex-direction: column;
         align-items: center;
         padding:10px;
-        
-        
-
     }
+    .container-point{
+    width: 100%;
+    text-align: center;
+    max-height: 90vh;
+    overflow-y:auto;
+  }
 
     .item{
         display: block;

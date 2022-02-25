@@ -8,5 +8,16 @@
         font-family: 'Roboto',sans-serif;
         
     }
-
 </style>
+
+
+<script>
+export default {
+    name: 'App',
+    data() {
+        return {
+            isLogin: false,
+        };
+    },
+};
+</script>

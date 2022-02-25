@@ -3,6 +3,9 @@ import App from './App.vue'
 import router from './router/index'
 import './assets/css/tailwind.css'
 
+
+// import GAuth from 'vue-google-oauth2'
+
 Vue.router = router
 Vue.use(router)
 Vue.config.productionTip = false
@@ -13,16 +16,8 @@ Vue.use(LoaderPlugin, {
 Vue.GoogleAuth.then(auth2 => {
   console.log(auth2.isSignedIn.get());
   console.log(auth2.currentUser.get())
+  window.isLogin = auth2.isSignedIn.get()
 })
-
-// import GAuth from 'vue-google-oauth2'
-// const gauthOption = {
-//   clientId: '170464062249-vd40pgbkemkkvpdc2m6flgavtepbhgrp.apps.googleusercontent.com',
-//   scope: 'profile email',
-//   prompt: 'consent',
-//   fetch_basic_profile:true
-// }
-// Vue.use(GAuth, gauthOption)
 
 new Vue({
   router,

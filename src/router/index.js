@@ -23,6 +23,24 @@ import Main from '../views/main/main.vue'
 import Adminaddcapital from '../views/admin-opencapital/admin-addcapital'
 Vue.use(VueRouter)
 
+// let express = require('express');
+// let router = express.Router();
+// let dbcon = require('../servere/index');
+
+
+// router.get('/',(req,res,next) => {
+//   dbcon.querry('SELECT * FROM testjs ORDER BY id desc',(err,rows) => {
+//     if(err){
+//       req.flash('error',err);
+//       res.render('testjs',{ data: ""});
+//     } else {
+//       res.render('testjs',{ data: rows});
+//     }
+//   })
+// })
+
+
+
 const routes = [
   {
     path: '/home',
@@ -98,7 +116,7 @@ const routes = [
       },
       {
         path:'/main',
-        name:'main',
+        name:'Main',
         component: Main
       },
 
@@ -137,7 +155,6 @@ const routes = [
   },
 ]
 
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -145,3 +162,4 @@ const router = new VueRouter({
 })
 
 export default router
+
