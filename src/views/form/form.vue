@@ -311,11 +311,14 @@ export default {
   components:{
     Footer,
   },
-   mounted() {
+  mounted() {
         if(!window.isLogin){
             this.$router.push({name:'Login'})
         }
-     }
+  },
+  data(){
+    
+  }
 
 }
 </script>

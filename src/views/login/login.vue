@@ -166,7 +166,7 @@ export default {
         })
         .then((res) => {
           console.log(res);
-          this.$router.push({name:'Main'})
+          this.$router.push({ name: "Main" });
           Swal.fire({
             position: "center",
             icon: "success",
@@ -184,7 +184,7 @@ export default {
             showConfirmButton: false,
             timer: 1500,
           });
-        })
+        });
     },
     onFailure(e) {
       console.log(e);
