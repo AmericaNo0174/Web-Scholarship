@@ -119,6 +119,7 @@
 <script>
 import Swal from "sweetalert2";
 import GoogleLogin from "vue-google-login";
+import 'lodash'
 import axios from "axios";
 export default {
   name: "App",
@@ -152,16 +153,18 @@ export default {
   methods: {
     onSuccess(googleUser) {
       console.log(googleUser.getBasicProfile());
-      var fname = googleUser.getBasicProfile().hY;
-      console.log(fname);
-      var lname = googleUser.getBasicProfile().vW;
-      console.log(lname);
-      var email = googleUser.getBasicProfile().zv;
-      console.log(email);
+      var profile = googleUser.getBasicProfile();
+      const fullName = profile.getName();
+      const [first, last] = fullName.split(' ');
+      console.log(first);
+      console.log(last); 
+      // var lname = googleUser.getBasicProfile().vW;
+      // console.log(lname);
+      const email = profile.getEmail();
       this.http
         .post("pf_student", {
-          fname: fname,
-          lname: lname,
+          fname: first,
+          lname: last,
           email: email,
         })
         .then((res) => {
@@ -192,6 +195,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style>
 .loginapp {
