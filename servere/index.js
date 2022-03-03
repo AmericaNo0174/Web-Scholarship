@@ -63,11 +63,11 @@ app.post("/pf_student", (req, res) => {
 app.post("/capital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  // const img = req.body.img;
-  // console.log(req.body);
+  console.log(req.body);
   req.body.forEach(capital => {
     console.log(capital);
-    // const img = capital.img;
+    // const img = capital.img.file;
+    // console.log(img);
     const type = capital.type;
     const name = capital.name;
     const detail = capital.detail;
@@ -109,6 +109,31 @@ app.post("/capital", (req, res) => {
 //   ); 
 });
 
+
+
+
+app.post("/form", (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+    // const testform = JSON.stringify(this.form);
+    const email = req.body.form_user.email
+     db.query(`SELECT user_id FROM user WHERE email = '${email}'`, (err, result) => {
+      const form_user = JSON.stringify(req.body.form_user)
+      const form_family = JSON.stringify(req.body.form_family)
+      const form_money = JSON.stringify(req.body.form_money)
+      db.query(
+                "INSERT INTO form (data_user,data_family,data_money,user_id) VALUES (?,?,?,?)",
+                [form_user,form_family, form_money,result[0].user_id],
+                (err, result) => {
+                  if (err) {
+                    console.log(err);
+                  } else {
+                      res.send(result);
+                  }
+                }
+              ); 
+    });
+  });
 app.get("/allCapital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');

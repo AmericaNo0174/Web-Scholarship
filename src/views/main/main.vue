@@ -28,9 +28,9 @@ export default {
         Footer
     },
     mounted() {
-        if(!window.isLogin){
-            this.$router.push({name:'Login'})
-        }
+        // if(!window.isLogin){
+        //     this.$router.push({name:'Login'})
+        // }
     }
 }
 </script>

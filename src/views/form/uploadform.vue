@@ -117,7 +117,7 @@ export default {
   width:130px;
   border-radius: 25px 25px 25px 25px;
   color:#FFFFFF;
-  background-color:rgba(104, 12, 7, 1);
+  background-color:rgba(180, 45, 37, 1);
   float: right;
 
 }
