@@ -59,15 +59,13 @@ app.post("/pf_student", (req, res) => {
   }
 });
 
-
 app.post("/capital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   console.log(req.body);
   req.body.forEach(capital => {
     console.log(capital);
-    // const img = capital.img.file;
-    // console.log(img);
+    const imageUpload = capital.imageUpload;
     const type = capital.type;
     const name = capital.name;
     const detail = capital.detail;
@@ -77,8 +75,8 @@ app.post("/capital", (req, res) => {
     const money = capital.money;
     const date_end =  capital.date_end;
     db.query(
-          "INSERT INTO capital (type,name,details,document,giver_name,money,date,date_end) VALUES (?,?,?,?,?,?,?,?)",
-          [type,name, detail,document,giver,money, date,date_end],
+          "INSERT INTO capital (image,type,name,details,document,giver_name,money,date,date_end) VALUES (?,?,?,?,?,?,?,?,?)",
+          [imageUpload,type,name, detail,document,giver,money, date,date_end],
           (err, result) => {
             if (err) {
               console.log(err);
@@ -148,6 +146,22 @@ app.get("/allCapital", (req, res) => {
     }
   ); 
 });
+// app.get("/showprofile", (req, res) => {
+//   res.header('Access-Control-Allow-Origin', '*');
+//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+//   db.query(
+//     "SELECT data_user FROM form",
+//     (err, result) => {
+//       if (err) {
+//         console.log(err);
+//       } else {
+         
+//         const myObj = {"name":"John", "age":30, "car":null};
+// document.getElementById("demo").innerHTML = myObj.name;
+//       }
+//     }
+//   ); 
+// });
 
 app.listen(3001, () => {
   console.log("Yey, your server is running on port 3001");

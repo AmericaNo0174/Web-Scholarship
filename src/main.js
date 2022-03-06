@@ -2,10 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
 import './assets/css/tailwind.css'
+import Croppa from 'vue-croppa';
+ 
+Vue.use(Croppa);
 
-
-// import GAuth from 'vue-google-oauth2'
-
+// import GAuth from 'vue-google-oauth2' 
 Vue.router = router
 Vue.use(router)
 Vue.config.productionTip = false

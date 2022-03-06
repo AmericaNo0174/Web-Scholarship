@@ -122,23 +122,20 @@
               class="inf form-check-input"
               v-model="form_user.simester"
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="option1"
+              name="simester flexRadioDefault"
+              value="ภาคปกติ"
             />
             <label class="laf form-check-label" for="inlineRadio1">
               ภาคปกติ
             </label>
           </div>
-
           <div class="form-check form-check-inline">
             <input
               class="inf form-check-input"
               v-model="form_user.simester"
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              value="option2"
+              name="simester flexRadioDefault"
+              value="ภาคพิเศษ"
             />
             <label class="laf form-check-label" for="inlineRadio2">
               ภาคพิเศษ
@@ -191,7 +188,6 @@
             v-model="form_user.address"
           ></textarea>
         </div>
-
         <div class="input-group mb-4">
           <span class="boxf input-group-text"> Email </span>
           <input
@@ -202,7 +198,6 @@
             v-model="form_user.email"
           />
         </div>
-
         <div class="input-group mb-5">
           <span class="boxf input-group-text"> เบอร์โทรศัพท์ </span>
           <input
@@ -234,7 +229,6 @@
               v-model="form_family.d_lname"
               placeholder="นามสกุลบิดา"
             />
-
             <span class="boxf input-group-text"> อายุ </span>
             <input
               type="number"
@@ -257,30 +251,26 @@
                 class="inf form-check-input"
                 v-model="form_family.d_status"
                 type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio1"
-                value="option1"
+                name="d_status flexRadioDefault"
+                value="ยังมีชีวิต"
               />
               <label class="laf form-check-label" for="inlineRadio1">
                 ยังมีชีวิต
               </label>
             </div>
-
             <div class="form-check form-check-inline">
               <input
                 class="inf form-check-input"
                 type="radio"
-                name="inlineRadioOptions"
+                name="d_status flexRadioDefault"
                 v-model="form_family.d_status"
-                id="inlineRadio2"
-                value="option2"
+                value="ถึงแก่กรรรม"
               />
               <label class="laf form-check-label" for="inlineRadio2">
                 ถึงแก่กรรรม
               </label>
             </div>
           </div>
-
           <!-- อาชีพ รายได้บิดา -->
           <div div class="input-group mb-4">
             <span class="boxf input-group-text"> อาชีพ </span>
@@ -380,9 +370,8 @@
               class="inf form-check-input"
               v-model="form_family.m_status"
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio1"
-              value="option1"
+              name="m_status flexRadioDefault"
+              value="ยังมีชีวิต"
             />
             <label class="laf form-check-label" for="inlineRadio1">
               ยังมีชีวิต
@@ -394,9 +383,8 @@
               class="inf form-check-input"
               v-model="form_family.m_status"
               type="radio"
-              name="inlineRadioOptions"
-              id="inlineRadio2"
-              value="option2"
+              name="m_status flexRadioDefault"
+              value="ถึงแก่กรรรม"
             />
             <label class="laf form-check-label" for="inlineRadio2">
               ถึงแก่กรรรม
@@ -486,10 +474,9 @@
               <input
                 class="inf form-check-input"
                 type="radio"
-                name="inlineRadioOptions"
+                name="manager_from flexRadioDefault"
                 v-model="form_money.manager_from"
-                id="inlineRadio1"
-                value="option1"
+                value="บิดา"
               />
               <label class="laf form-check-label" for="inlineRadio1"
                 >บิดา
@@ -500,10 +487,9 @@
               <input
                 class="inf form-check-input"
                 type="radio"
-                name="inlineRadioOptions"
+                name="manager_from flexRadioDefault"
                 v-model="form_money.manager_from"
-                id="inlineRadio2"
-                value="option2"
+                value="มารดา"
               />
               <label class="laf form-check-label" for="inlineRadio2">
                 มารดา
@@ -514,10 +500,9 @@
               <input
                 class="inf form-check-input"
                 type="radio"
-                name="inlineRadioOptions"
+                name="manager_from flexRadioDefault"
                 v-model="form_money.manager_from"
-                id="inlineRadio2"
-                value="option2"
+                value="ผู้อุปการะ"
               />
               <label class="laf form-check-label" for="inlineRadio2">
                 ผู้อุปการะ
@@ -609,9 +594,8 @@
                 class="inf form-check-input"
                 v-model="form_money.manager_statusgive"
                 type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio1"
-                value="option1"
+                name="form_money flexRadioDefault"
+                value="กยศ."
               />
               <label class="laf form-check-label" for="inlineRadio1">
                 กยศ.</label
@@ -623,9 +607,8 @@
                 class="inf form-check-input"
                 v-model="form_money.manager_statusgive"
                 type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio2"
-                value="option2"
+                name="form_money flexRadioDefault"
+                value="กรอ."
               />
               <label class="laf form-check-label" for="inlineRadio2">
                 กรอ.
@@ -637,9 +620,8 @@
                 class="inf form-check-input"
                 v-model="form_money.manager_statusgive"
                 type="radio"
-                name="inlineRadioOptions"
-                id="inlineRadio2"
-                value="option3"
+                name="form_moneyflexRadioDefault"
+                value="ไม่ได้กู้"
               />
               <label class="laf form-check-label" for="inlineRadio3">
                 ไม่ได้กู้
@@ -656,7 +638,7 @@
                 </button></router-link
               >
               <div class="btf">
-                <router-link  to="/uploadform"
+                <router-link to="/uploadform"
                   ><button class="btn btn-danger">Next</button></router-link
                 >
                 <button @click="add" class="btn-save btn-danger">Save</button>

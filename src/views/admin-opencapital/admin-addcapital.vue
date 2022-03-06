@@ -41,10 +41,7 @@
               <input type="date" v-model="temp.date_end" />
             </div>
             <div>
-              <img
-                src="https://images.unsplash.com/photo-1508919801845-fc2ae1bc2a28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                alt null
-              />
+              <img :src="imageUpload" alt="" />
             </div>
           </div>
           <div class="modal-footer">
@@ -55,7 +52,14 @@
             >
               Close
             </button>
-            <button  @click="save_edit" type="button" class="btn btn-primary"  data-bs-dismiss="modal">Save</button>
+            <button
+              @click="save_edit"
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal"
+            >
+              Save
+            </button>
           </div>
         </div>
       </div>
@@ -67,14 +71,21 @@
           <div class="input-group">
             <input
               type="file"
-              ref="file"
               class="form-control"
+              ref="file"
               id="inputGroupFile04"
               aria-describedby="inputGroupFileAddon04"
               aria-label="Upload"
               @change="upload"
+              accept="image/*"
             />
+            <!-- webkitdirectory -->
           </div>
+          <!-- <div id="app">
+            <croppa v-model="croppa"></croppa>
+            <button @click="output">output</button>
+            <br /><br />
+          </div> -->
 
           <div class="add-text">
             <label for="typecapital">ประเภททุน: </label>
@@ -107,10 +118,13 @@
           <!-- เอาตัวทุนเข้าไปเก็บในนี้ -->
           <div v-for="(item, idx) in capital" :key="idx" class="add-complece">
             <div>
-              <img
+              <!-- <img
                 src="https://images.unsplash.com/photo-1508919801845-fc2ae1bc2a28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                alt null
-              />
+                alt
+                null
+              /> -->
+              <!-- <img :src="objectUrl" @load="showimg" /> -->
+              <img :src="imageUpload" alt="" />
             </div>
             <div class="complece-text">
               <p>ประเภททุน: {{ item.type }}</p>
@@ -129,7 +143,11 @@
                 <i class="fas fa-trash-alt"></i>ลบทิ้ง
               </button>
             </div>
-            <button
+              <button @click="edit(idx)" class="btn-edit" data-bs-toggle="modal"
+              data-bs-target="#exampleModal">
+                <i class="fas fa-edit"></i>แก้ไข
+              </button>
+            <!-- <button
               type="button"
               class="btn btn-primary"
               data-bs-toggle="modal"
@@ -137,7 +155,7 @@
               @click="edit(idx)"
             >
               แก้ไข
-            </button>
+            </button> -->
           </div>
           <div class="add-button"></div>
         </div>
@@ -161,13 +179,14 @@
 <script>
 import Footer from "../../components/footer.vue";
 import axios from "axios";
+// import "vue-croppa/dist/vue-croppa.css";
 export default {
   components: {
     Footer,
   },
   data() {
     return {
-      img: null,
+      imageUpload: null,
       type: null,
       name: null,
       detail: null,
@@ -176,7 +195,8 @@ export default {
       giver: null,
       date: null,
       date_end: null,
-      temp:{
+      temp: {
+        imageUpload: null,
         type: null,
         name: null,
         detail: null,
@@ -186,11 +206,10 @@ export default {
         date: null,
         date_end: null,
       },
-      edit_idx:null ,
-      select_file:null,
-      capital: []
-      
-
+      edit_idx: null,
+      capital: [],
+      croppa: {},
+      objectUrl: "",
     };
   },
   mounted() {
@@ -200,34 +219,58 @@ export default {
       //           this.$router.push({name:'Login'})
     });
   },
+
   methods: {
-    upload(event){
-      console.log(event);
-      // this.select_file = event.file.files[0]
-      this.select_file = this.$refs.file.files[0]
-      console.log(this.select_file);
-      // console.log("this.capital.img",this.capital.img);
+    // async output() {
+    //   this.img = await this.croppa.promisedBlob();
+    //   var url = URL.createObjectURL(this.img);
+    //   this.objectUrl = url;
+    //   console.log(this.img);
+    // },
+    // showimg(evt) {
+    //   URL.revokeObjectURL(this.objectUrl);
+    //   console.log(evt);
+    // },
+    upload(event) {
+      var self = this;
+
+      var file = event.target.files[0];
+      console.log(file);
+      var arrayBuffer;
+      var reader = new FileReader();
+      reader.onload = async function () {
+        arrayBuffer = await new Uint8Array(reader.result);
+
+        // Change ArrayBuffer to Base64
+        var binary = "";
+        var bytes = new Uint8Array(arrayBuffer);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+
+        var imageArray = arrayBuffer              // For save to Database
+        var imageSource = window.btoa( binary );  // for show image to UI
+
+        console.log("image Source", imageSource);
+        console.log("image Array", imageArray);
+        console.log("file.name", file.name);
+
+        // Set imageSource data to show in UI
+        self.imageUpload = "data:image/png;base64," + imageSource;
+      };
+      reader.readAsArrayBuffer(file);
     },
+
     save_capital() {
       console.log(this.capital);
       this.http.post("capital", this.capital).then((res) => {
         console.log(res);
-        //     //     if (res.statusText === "OK") {
-        //     //       // ดึงทุนมาแสดง
-        //     //       this.http.get("allCapital").then((res) => {
-        //     //         console.log("all capital form database \n", res);
-        //     //         console.log(res.data);
-        //     //         // this.savecapital = res.data
-        //     //         // console.log(this.savecapital) // [{},{},{}]
-        //     //         // console.log(res.data[0].details)
-        //     //       });
-        //     //       // this page refresh
-        //     //     }
       });
     },
     add_capital() {
       this.capital.push({
-        img: null,
+        imageUpload: this.imageUpload,
         type: this.type,
         name: this.name,
         detail: this.detail,
@@ -237,6 +280,7 @@ export default {
         date: this.date,
         date_end: this.date_end,
       });
+      // (this.imageUpload = null),
       (this.type = null),
         (this.name = null),
         (this.detail = null),
@@ -250,15 +294,15 @@ export default {
       this.capital.splice(idx, 1);
     },
     //เอาข้อมูลไปแก้ใน arr เก่า
-    edit(idx){
-      this.temp = this.capital[idx]
-      this.edit_idx = idx
+    edit(idx) {
+      this.temp = this.capital[idx];
+      this.edit_idx = idx;
     },
-    save_edit(){
-      this.capital[this.edit_idx] = this.temp
-      this.edit_idx = null
+    save_edit() {
+      this.capital[this.edit_idx] = this.temp;
+      this.edit_idx = null;
       console.log(this.capital);
-    }
+    },
   },
 };
 </script>
@@ -284,7 +328,7 @@ export default {
   height: 600px;
   align-items: center;
 }
-.container-addcapital .modal-body img{
+.container-addcapital .modal-body img {
   margin: 30px 0;
   width: 300px;
   height: 300px;
@@ -356,6 +400,7 @@ export default {
   margin: 30px 0;
 }
 .addcapital .btn-edit {
+  display: flex;
   text-align: left;
   height: 50px;
   width: 120px;
@@ -364,6 +409,8 @@ export default {
   background-color: yellow;
 }
 .addcapital .btn-delete {
+  display: flex;
+  margin: 0 10px;
   text-align: left;
   height: 50px;
   width: 120px;
