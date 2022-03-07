@@ -3,7 +3,7 @@ const app = express();
 const mysql = require("mysql");
 const cors = require("cors");
 app.use(cors());
-app.use(express.json());
+app.use(express.json({limit:"100mb"}));
 
 const db = mysql.createConnection({
   user: "root",
@@ -28,9 +28,10 @@ app.post("/pf_student", (req, res) => {
   const name = req.body.fname;
   const lastname = req.body.lname;
   const email = req.body.email;
+  //ทำการเช็ค email ว่าต้องเป็นเมล ku login เข้ามา
   const check_mail = /@+[ku]+.+[th]/.test(email);
-  // const check_mail = true;
   if (check_mail) {
+    //ทำการเช็คว่ามีข้อมูลอยู่แล้วรึเปล่า
     db.query(`SELECT * FROM user WHERE email = '${email}'`, (err, result) => {
       if (err) {
         console.log(result);
@@ -63,8 +64,9 @@ app.post("/capital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   console.log(req.body);
+  //ทำการนำข้อมูลใน capital แต่ละอันมาเก้บจะวนตามจำนวน capital
   req.body.forEach(capital => {
-    console.log(capital);
+    console.log('capital',capital);
     const imageUpload = capital.imageUpload;
     const type = capital.type;
     const name = capital.name;
@@ -86,25 +88,6 @@ app.post("/capital", (req, res) => {
           }
         ); 
   });
-//   const type = req.body.type;
-//   const name = req.body.name;
-//   const detail = req.body.detail;
-//   const date = req.body.date;
-//   const document = req.body.document;
-//   const giver = req.body.giver;
-//   const money = req.body.money;
-//   const date_end =  req.body.date_end;
-//   db.query(
-//     "INSERT INTO capital (type,name,details,document,giver_name,money,date,date_end) VALUES (?,?,?,?,?,?,?,?)",
-//     [type,name, detail,document,giver,money, date,date_end],
-//     (err, result) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-//           res.send(result);
-//       }
-//     }
-//   ); 
 });
 
 
@@ -113,12 +96,22 @@ app.post("/capital", (req, res) => {
 app.post("/form", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-    // const testform = JSON.stringify(this.form);
+  //เอา email มาเช็ค user_id
     const email = req.body.form_user.email
      db.query(`SELECT user_id FROM user WHERE email = '${email}'`, (err, result) => {
+       //แปลง json to string
       const form_user = JSON.stringify(req.body.form_user)
       const form_family = JSON.stringify(req.body.form_family)
       const form_money = JSON.stringify(req.body.form_money)
+      const identity_card = req.body.form_img.identity_card_img
+      const identity_house = req.body.form_img.identity_house_img
+      const user_img = req.body.form_img.user_img
+      const house_img = req.body.form_img.house_img
+      const gpa_file = req.body.form_img.gpa_file
+      const essay = req.body.form_img.essay
+      console.log(form_user,form_family,form_money);
+      console.log(result[0].user_id);
+      //เอาข้อมูล form ไปเก็บ
       db.query(
                 "INSERT INTO form (data_user,data_family,data_money,user_id) VALUES (?,?,?,?)",
                 [form_user,form_family, form_money,result[0].user_id],
@@ -126,12 +119,30 @@ app.post("/form", (req, res) => {
                   if (err) {
                     console.log(err);
                   } else {
-                      res.send(result);
+                    //จะเอา form_id ไปใช้
+                    console.log(result.insertId);
+                      try {
+                        //เอาข้อมูล upload ไปเก้บ
+                        db.query(
+                          "INSERT INTO upload (identity_card,identity_house,user_image,house_image,gpa_file,essay,form_id) VALUES (?,?,?,?,?,?,?)",
+                          [identity_card,identity_house, user_img,house_img,gpa_file,essay,result.insertId],
+                          (err, result) => {
+                            if (err) {
+                              console.log(err);
+                            } else {
+                                res.send(result);
+                            }
+                          }
+                        )
+                      } catch (error) {
+                        console.log(err);
+                      }
                   }
                 }
               ); 
     });
   });
+
 app.get("/allCapital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
@@ -146,22 +157,29 @@ app.get("/allCapital", (req, res) => {
     }
   ); 
 });
-// app.get("/showprofile", (req, res) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-//   db.query(
-//     "SELECT data_user FROM form",
-//     (err, result) => {
-//       if (err) {
-//         console.log(err);
-//       } else {
-         
-//         const myObj = {"name":"John", "age":30, "car":null};
-// document.getElementById("demo").innerHTML = myObj.name;
-//       }
-//     }
-//   ); 
-// });
+
+//ทำการเอา profile ไปโชว์
+app.get("/showprofile", (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  db.query(
+    "SELECT data_user,user_image FROM form,upload",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } 
+      else {
+        console.log(result);
+        //แปลง string to json
+          const obj = JSON.parse(result[0].data_user);
+          const user_img = result[0].user_image
+          console.log(obj);
+          console.log(user_img);
+          res.send(obj);
+      }
+    }
+  ); 
+});
 
 app.listen(3001, () => {
   console.log("Yey, your server is running on port 3001");

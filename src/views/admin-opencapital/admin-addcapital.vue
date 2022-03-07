@@ -233,7 +233,6 @@ export default {
     // },
     upload(event) {
       var self = this;
-
       var file = event.target.files[0];
       console.log(file);
       var arrayBuffer;

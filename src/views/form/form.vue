@@ -638,10 +638,19 @@
                 </button></router-link
               >
               <div class="btf">
-                <router-link to="/uploadform"
+                <router-link
+                  :to="{
+                    name: 'uploadform',
+                    params: {
+                      form_user: form_user,
+                      form_family: form_family,
+                      form_money: form_money,
+                      form_img:form_img
+                    },
+                  }"
                   ><button class="btn btn-danger">Next</button></router-link
                 >
-                <button @click="add" class="btn-save btn-danger">Save</button>
+                <!-- <button @click="add" class="btn-save btn-danger">Save</button> -->
               </div>
             </div>
           </div>
@@ -713,6 +722,14 @@ export default {
         manager_phonenumber: null,
         manager_statusgive: null,
       },
+      form_img: {
+        identity_card_img: null,
+        identity_house_img: null,
+        user_image: null,
+        house_image: null,
+        gpa_file: null,
+        essay: null,
+      }
     };
   },
   mounted() {
@@ -722,28 +739,18 @@ export default {
     // if (!window.isLogin) {
     //   this.$router.push({ name: "Login" });
     // }
+
+    //ส่งข้อมุลที่กรอกกลับมาเก็บเผื่อ user แก้ไข แล้วทำการเช็คก่อนว่าเป็นการเข้าครั้งแรกหรือกลับมาจากหน้า upload
+    if (this.$route.params.form_user) {
+      console.log(this.$route.params);
+      this.form_user = this.$route.params.form_user
+      this.form_family = this.$route.params.form_family
+      this.form_money = this.$route.params.form_money
+      this.form_img = this.$route.params.form_img
+      console.log('form_user',this.form_user);
+    }
   },
   methods: {
-    // form_test() {
-    //   const testform = JSON.Stringify(this.form);
-    //   console.log('test',testform);
-    //   // console.log(this.form);
-    //   // this.http.post("form", this.form).then((res) => {
-    //   // //   console.log(res);
-    //   // });
-    // },
-    add() {
-      console.log("test", this.form_user);
-      this.http
-        .post("form", {
-          form_user: this.form_user,
-          form_family: this.form_family,
-          form_money: this.form_money,
-        })
-        .then((res) => {
-          console.log(res);
-        });
-    },
   },
 };
 </script>
