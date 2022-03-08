@@ -20,43 +20,31 @@
       </div>
       </div>
     </div>
-    <!-- <div class="capital2">
-      <img src="../../assets/\ku-capital.svg" alt="">
-      <div class="data-capital">
-        <h1>01</h1>
-        <h3>ทุนฉลองสมโภชพระเจ้าหลานเธอ พระองค์เจ้าทีปังกรรัศมีโชติ</h3>
-        <p>หน่วยกองกิจการนิสิตจะดำเนินการสมัครและคัดเลือกผู้ประสงค์ขอรับทุนฉลองสมโภชพระเจ้าหลานเธอพระองค์เจ้าทีปังกรรัศมีโชติประจำปีการศึกษา 2564</p>
-      </div>
-      <div class="btn-capital">
-        <button id="register-capital" type="button" class="btn btn-danger">สมัค</button>
-        <button id="about" type="button" class="btn btn-danger">อ่านเพิ่มเติม</button>
-      </div>
-    </div>
-    <div class="capital3">
-      <img src="../../assets/rubtun.svg" alt="">
-      <div class="data-capital">
-        <h1>03</h1>
-        <h3>รับสมัครทุนการศึกษา ประจำปีการศึกษา 2564</h3>
-        <p>รับสมัครทุนการศึกษา ประจำปีการศึกษา 2564 สำหรับนิสิตระดับปริญญาตรีทุกชั้นปี ทุกคณะ ทุกสาขาวิชา ทุกวิทยาเขต</p>
-      </div>
-      <div class="btn-capital">
-        <button id="register-capital" type="button" class="btn btn-danger">สมัค</button>
-        <button id="about" type="button" class="btn btn-danger">อ่านเพิ่มเติม</button>
-      </div>
-    </div>  -->
   </div>
   <div class="end-admincapital">
     <div class="back-admincapital">
       <button type="button" class="btn btn-danger">Back</button>
       <button id="editcapital" type="button" class="btn btn-danger">Edit</button>
     </div>
-    <div class="contract-capital">
+    <div class="contract-capital"> 
       <p>@Contract</p>
       <a href=""><i id="fb" class="fab fa-facebook"></i></a>
       <a href=""><i id="fm" class="fab fa-facebook-messenger"></i></a>
       <a href=""><i id="line" class="fab fa-line"></i></a>
     </div>
   </div>
+   <!--div class="adminopencapital-btt">
+      <router-link class="btt-openedit" to="/admin-addcapital"
+        ><button type="button" class="btn btn-danger">
+          EDIT
+        </button></-router-link
+      >
+      <router-link class="btt-openback" to="/main"
+        ><button type="button" class="btn btn-danger">
+          BACK
+        </button></router-link
+      >
+      </div-->
   <Footer/>
 </div>
 </template>
@@ -69,9 +57,9 @@
       Footer
     },
      mounted() {
-        if(!window.isLogin){
-            this.$router.push({name:'Login'})
-        }
+        //if(!window.isLogin){
+          //  this.$router.push({name:'Login'})
+        //}
      }
   }
 </script>

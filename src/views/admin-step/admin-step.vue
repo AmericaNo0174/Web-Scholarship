@@ -34,10 +34,54 @@
         <a href=""><i id="fm" class="fab fa-facebook-messenger"></i></a>
         <a href=""><i id="line" class="fab fa-line"></i></a>
       </div>
+      <!--div class="adminstep-btt">
+      <router-link class="btt-stepedit" to="/admin-addstep"
+        ><button type="button" class="btn btn-danger">
+          EDIT
+        </button></-router-link
+      >
+      <router-link class="btt-stepback" to="/main"
+        ><button type="button" class="btn btn-danger">
+          BACK
+        </button></router-link
+      >
+      </div-->
     </div>
     <Footer/>
   </div>  
 </template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
 import Footer from '../../components/footer.vue'
@@ -46,9 +90,9 @@ export default {
       Footer
     },
      mounted() {
-        if(!window.isLogin){
-            this.$router.push({name:'Login'})
-        }
+        //if(!window.isLogin){
+            //this.$router.push({name:'Login'})
+        //}
      }
   }
 

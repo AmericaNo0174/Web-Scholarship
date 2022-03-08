@@ -43,6 +43,18 @@
           <button type="button" class="btn btn-danger">Back</button>
           <button id="save" type="button" class="btn btn-danger">Save</button>
       </div>
+      <!--div class="addinterview-btt">
+      <router-link class="btt-interviewedit" to="/admin-statusinterview"
+        ><button type="button" class="btn btn-danger">
+          SAVE
+        </button></-router-link
+      >
+      <router-link class="btt-interviewback" to="/admin-opencapital"
+        ><button type="button" class="btn btn-danger">
+          BACK
+        </button></router-link
+      >
+      </div-->
     <Footer/>
   </div>
 </template>
@@ -55,9 +67,9 @@ export default {
     Footer
   },
    mounted() {
-        if(!window.isLogin){
-            this.$router.push({name:'Login'})
-        }
+       // if(!window.isLogin){
+         //   this.$router.push({name:'Login'})
+       // }
      }
 
 }

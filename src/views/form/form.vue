@@ -645,7 +645,8 @@
                       form_user: form_user,
                       form_family: form_family,
                       form_money: form_money,
-                      form_img:form_img
+                      form_img:form_img,
+                      capital_id:capital_id
                     },
                   }"
                   ><button class="btn btn-danger">Next</button></router-link
@@ -729,7 +730,8 @@ export default {
         house_image: null,
         gpa_file: null,
         essay: null,
-      }
+      },
+      capital_id:null
     };
   },
   mounted() {
@@ -747,7 +749,12 @@ export default {
       this.form_family = this.$route.params.form_family
       this.form_money = this.$route.params.form_money
       this.form_img = this.$route.params.form_img
+      this.capital_id = this.$route.params.capital_id
       console.log('form_user',this.form_user);
+    }
+    else if(this.$route.params){
+      this.capital_id = this.$route.params.capital_id
+      console.log('capital_id:',this.capital_id);
     }
   },
   methods: {

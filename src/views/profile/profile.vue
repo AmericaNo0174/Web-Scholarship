@@ -7,53 +7,63 @@
     <div class="data-profile">
       <!-- ชื่อ -->
       <div class="p-data1">
-        <h5>ชื่อ</h5>
-        <input type="text" v-model="form.fname" />
+        <h5>ชื่อ:</h5>
+        <p>{{form.fname}}</p>
+        <!-- <input type="text" v-model="form.fname" /> -->
       </div>
       <!-- นามสกุล -->
       <div class="p-data2">
-        <h5>นามสกุล</h5>
-        <input type="text" v-model="form.lname" />
+        <h5>นามสกุล:</h5>
+        <p>{{form.lname}}</p>
+        <!-- <input type="text" v-model="form.lname" /> -->
       </div>
       <!-- เลขบัตรประชาชน -->
       <div class="p-data3">
-        <h5>เลขบัตรประชาชน</h5>
-        <input type="text" v-model="form.idcard" />
+        <h5>เลขบัตรประชาชน:</h5>
+        <p>{{form.idcard}}</p>
+        <!-- <input type="text" v-model="form.idcard" /> -->
       </div>
       <!-- วันเกิด -->
       <div class="p-data4">
-        <h5>วันเกิด</h5>
-        <input type="text" v-model="form.birthday" />
+        <h5>วันเกิด:</h5>
+        <p>{{form.birthday}}</p>
+        <!-- <input type="text" v-model="form.birthday" /> -->
       </div>
       <!-- สัญชาติ -->
       <div class="p-data5">
-        <h5>สัญชาติ</h5>
-        <input type="text" v-model="form.nationality" />
+        <h5>สัญชาติ:</h5>
+        <p>{{form.nationality}}</p>
+        <!-- <input type="text" v-model="form.nationality" /> -->
       </div>
       <!-- ศาสนา -->
       <div class="p-data6">
-        <h5>ศาสนา</h5>
-        <input type="text" v-model="form.religion" />
+        <h5>ศาสนา:</h5>
+        <p>{{form.religion}}</p>
+        <!-- <input type="text" v-model="form.religion" /> -->
       </div>
       <!-- คณะ -->
       <div class="p-data7">
-        <h5>คณะ</h5>
-        <input type="text" v-model="form.faculty"/>
+        <h5>คณะ:</h5>
+        <p>{{form.faculty}}</p>
+        <!-- <input type="text" v-model="form.faculty"/> -->
       </div>
       <!-- สาขา -->
       <div class="p-data8">
-        <h5>สาขา</h5>
-        <input type="text" v-model="form.offset" />
+        <h5>สาขา:</h5>
+        <p>{{form.offset}}</p>
+        <!-- <input type="text" v-model="form.offset" /> -->
       </div>
       <!-- เบอร์โทรศัพท์ -->
       <div class="p-data9">
-        <h5>เบอร์โทรศัพท์</h5>
-        <input type="text" v-model="form.phonenumber"/>
+        <h5>เบอร์โทรศัพท์:</h5>
+        <p>{{form.phonenumber}}</p>
+        <!-- <input type="text" v-model="form.phonenumber"/> -->
       </div>
       <!-- อีเมล์ -->
       <div class="p-data10">
-        <h5>อีเมล์</h5>
-        <input type="email" v-model="form.email"/>
+        <h5>อีเมล์:</h5>
+        <p>{{form.email}}</p>
+        <!-- <input type="email" v-model="form.email"/> -->
       </div>
     </div>
     <div class="end-profile">
@@ -67,6 +77,7 @@
     <Footer />
   </div>
 </template>
+
 
 <script>
 import Footer from "../../components/footer.vue";
@@ -114,13 +125,13 @@ export default {
     open_profile() {
       this.http.get("showprofile").then(res =>{
         console.log('res:',res.data);
-        // this.form = res.data
+        this.form = res.data
         
         // console.log(this.form);
       })
-      // .catch(err =>{
-      //   console.log(err);
-      // })
+      .catch(err =>{
+        console.log(err);
+      })
     },
   },
 };
@@ -138,61 +149,31 @@ export default {
   height: 60%;
 }
 .data-profile h5 {
-  display: flex;
+  /* display: flex;
   align-items: center;
-  flex: initial;
-  text-align: left;
-  width: 12%;
+  flex: initial; */
+  text-align: end;
+  width: 180px;
+  /* background-color: aqua; */
+  margin-right: 20px;
 }
-.data-profile .p-data1 {
+.data-profile .p-data1,.p-data2,.p-data3,.p-data4,.p-data5,.p-data6,.p-data7,.p-data8,.p-data9,.p-data10 {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 13%;
+  /* background-color: red; */
 }
-.data-profile .p-data2 {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.data-profile .p-data3 {
+.data-profile p{
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.data-profile .p-data4 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.data-profile .p-data5 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.data-profile .p-data6 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.data-profile .p-data7 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.data-profile .p-data8 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.data-profile .p-data9 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.data-profile .p-data10 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  /* background-color: blue; */
+  text-align: center;
+  margin: 0;
+  width: 300px;
+  height: 35px;
+  background-color: rgba(255, 242, 242, 1);
 }
 .end-profile {
   text-align: end;

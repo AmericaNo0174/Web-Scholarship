@@ -110,6 +110,7 @@
                 form_family: form_family,
                 form_money: form_money,
                 form_img: form_img,
+                capital_id: capital_id
               },
             }"
             ><button type="button" class="btn btn-danger">
@@ -198,6 +199,7 @@ export default {
         essay: null,
       },
       temp: null,
+      capital_id:null
     };
   },
   mounted() {
@@ -215,8 +217,9 @@ export default {
       this.form_family = this.$route.params.form_family;
       this.form_money = this.$route.params.form_money;
       this.form_img = this.$route.params.form_img;
+      this.capital_id = this.$route.params.capital_id
       console.log("img", this.form_img);
-      console.log("form_user", this.form_user);
+      console.log('capital_id',this.capital_id);
     }
   },
   methods: {
@@ -227,7 +230,8 @@ export default {
           form_user: this.form_user,
           form_family: this.form_family,
           form_money: this.form_money,
-          form_img: this.form_img
+          form_img: this.form_img,
+          capital_id: this.capital_id
         })
         .then((res) => {
           console.log(res);

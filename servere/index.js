@@ -38,7 +38,8 @@ app.post("/pf_student", (req, res) => {
       } else {
         console.log(result);
         if (result.length > 0) {
-          res.send("มีข้อมูลอยู่แล้ว");
+          console.log('มีข้อมูลอยู่แล้ว');
+          res.send(result);
         } else {
           db.query(
             "INSERT INTO user (name,lastname,email) VALUES (?,?,?)",
@@ -60,38 +61,41 @@ app.post("/pf_student", (req, res) => {
   }
 });
 
+
 app.post("/capital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  console.log(req.body);
+  // console.log(req.body);
   //ทำการนำข้อมูลใน capital แต่ละอันมาเก้บจะวนตามจำนวน capital
   req.body.forEach(capital => {
-    console.log('capital',capital);
+    console.log(capital);
     const imageUpload = capital.imageUpload;
     const type = capital.type;
     const name = capital.name;
     const detail = capital.detail;
     const date = capital.date;
-    const document = capital.document;
+    const document = JSON.stringify(capital.document);
     const giver = capital.giver;
     const money = capital.money;
     const date_end =  capital.date_end;
-    db.query(
-          "INSERT INTO capital (image,type,name,details,document,giver_name,money,date,date_end) VALUES (?,?,?,?,?,?,?,?,?)",
-          [imageUpload,type,name, detail,document,giver,money, date,date_end],
-          (err, result) => {
-            if (err) {
-              console.log(err);
-            } else {
-                res.send(result);
-            }
+    try {
+      db.query(
+        "INSERT INTO capital (image,type,name,details,document,giver_name,money,date,date_end) VALUES (?,?,?,?,?,?,?,?,?)",
+        [imageUpload,type,name, detail,document,giver,money, date,date_end],
+        (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+              res.send(result);
+              console.log(result);
           }
-        ); 
+        }
+      ); 
+    } catch (error) {
+      console.log(error);
+    }
   });
 });
-
-
-
 
 app.post("/form", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -109,8 +113,10 @@ app.post("/form", (req, res) => {
       const house_img = req.body.form_img.house_img
       const gpa_file = req.body.form_img.gpa_file
       const essay = req.body.form_img.essay
+      const capital_id = req.body.capital_id
+      console.log('capital_id',capital_id);
       console.log(form_user,form_family,form_money);
-      console.log(result[0].user_id);
+      console.log('user_id',result[0].user_id);
       //เอาข้อมูล form ไปเก็บ
       db.query(
                 "INSERT INTO form (data_user,data_family,data_money,user_id) VALUES (?,?,?,?)",
@@ -124,8 +130,8 @@ app.post("/form", (req, res) => {
                       try {
                         //เอาข้อมูล upload ไปเก้บ
                         db.query(
-                          "INSERT INTO upload (identity_card,identity_house,user_image,house_image,gpa_file,essay,form_id) VALUES (?,?,?,?,?,?,?)",
-                          [identity_card,identity_house, user_img,house_img,gpa_file,essay,result.insertId],
+                          "INSERT INTO upload (identity_card,identity_house,user_image,house_image,gpa_file,essay,form_id,capital_id) VALUES (?,?,?,?,?,?,?,?)",
+                          [identity_card,identity_house, user_img,house_img,gpa_file,essay,result.insertId,capital_id],
                           (err, result) => {
                             if (err) {
                               console.log(err);
@@ -143,7 +149,7 @@ app.post("/form", (req, res) => {
     });
   });
 
-app.get("/allCapital", (req, res) => {
+app.get("/showcapital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   db.query(
@@ -152,7 +158,9 @@ app.get("/allCapital", (req, res) => {
       if (err) {
         console.log(err);
       } else {
-          res.send(result);
+          // console.log(result);
+          res.send(result)
+          
       }
     }
   ); 
@@ -176,6 +184,23 @@ app.get("/showprofile", (req, res) => {
           console.log(obj);
           console.log(user_img);
           res.send(obj);
+      }
+    }
+  ); 
+});
+
+app.get("/showuser", (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  db.query(
+    "SELECT * FROM user",
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } 
+      else {
+        console.log(result);
+        
       }
     }
   ); 

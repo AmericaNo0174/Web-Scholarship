@@ -54,7 +54,80 @@ export default {
      }
   }
 
+
+// methods: {
+//     upload_img(event) {
+//       var self = this;
+//       var file = event.target.files[0];
+//       console.log(file);
+//       var arrayBuffer;
+//       var reader = new FileReader();
+//       reader.onload = async function () {
+//         arrayBuffer = await new Uint8Array(reader.result);
+
+//         // Change ArrayBuffer to Base64
+//         var binary = "";
+//         var bytes = new Uint8Array(arrayBuffer);
+//         var len = bytes.byteLength;
+//         for (var i = 0; i < len; i++) {
+//           binary += String.fromCharCode(bytes[i]);
+//         }
+//         // var imageArray = arrayBuffer; // For save to Database
+//         var imageSource = window.btoa(binary); // for show image to UI
+//         // Set imageSource data to show in UI
+//         //เช็ค
+//          console.log(self.temp);
+//          //เช็คก่อนว่าที่เซฟรูปเข้าไปมาจากส่วนไหน
+//         if (self.temp == "id_card") {
+//           self.form_img.identity_card_img = "data:image/png;base64," + imageSource;
+//           console.log('id_card',self.form_img.identity_card_img);
+//         } if (self.temp == "id_house") {
+//           self.form_img.identity_house_img ="data:image/png;base64," + imageSource;
+//             console.log('id_house',self.form_img.identity_house_img);
+//         } if (self.temp == "user_img") {
+//           self.form_img.user_img = "data:image/png;base64," + imageSource;
+//           console.log('user_img',self.form_img.user_img);
+//         } if (self.temp == "house_img") {
+//           self.form_img.house_img = "data:image/png;base64," + imageSource;
+//           console.log('house_img',self.form_img.house_img);
+//         } if (self.temp == "gpa_file") {
+//           self.form_img.gpa_file = "data:image/png;base64," + imageSource;
+//           console.log('gpa_file',self.form_img.gpa_file);
+//         }
+// //       };
+// //       reader.readAsArrayBuffer(file);
+// //     }
+// }
+
+
+
+
+
 </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style>
   .container-step{

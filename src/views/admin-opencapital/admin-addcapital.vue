@@ -27,9 +27,62 @@
               <input type="text" v-model="temp.name" />
               <label for="detailcapital">รายละเอียดทุน: </label>
               <input type="text" v-model="temp.detail" />
-              <label for="detailcapital">เอกสารที่ต้องใช้: </label>
-              <input type="text" v-model="temp.document" />
             </div>
+            <div class="add-detail">
+              <label for="detailcapital">เอกสารที่ต้องใช้: </label>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="สำเนาบัตรประชาชนผู้สมัคร"
+                  v-model="temp.document"
+                />
+                <label class="form-check-label">
+                  สำเนาบัตรประชาชนผู้สมัคร
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="สำเนาทะเบียนบ้านของผู้สมัคร"
+                  v-model="temp.document"
+                />
+                <label class="form-check-label">
+                  สำเนาทะเบียนบ้านของผู้สมัคร
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="รูปถ่ายนิสิต"
+                  v-model="temp.document"
+                />
+                <label class="form-check-label"> รูปถ่ายนิสิต </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="รูปถ่ายที่พักอาศัยตามภูมิลำเนา"
+                  v-model="temp.document"
+                />
+                <label class="form-check-label">
+                  รูปถ่ายที่พักอาศัยตามภูมิลำเนา
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="ใบรายงานผลการศึกษา"
+                  v-model="temp.document"
+                />
+                <label class="form-check-label"> ใบรายงานผลการศึกษา </label>
+              </div>
+            </div>
+
             <div class="add-int">
               <label for="namecapital">ชื่อคนมอบทุน: </label>
               <input type="text" v-model="temp.giver" />
@@ -94,8 +147,58 @@
             <input type="text" v-model="name" />
             <label for="detailcapital">รายละเอียดทุน: </label>
             <input type="text" v-model="detail" />
+          </div>
+          <div class="add-detail">
             <label for="detailcapital">เอกสารที่ต้องใช้: </label>
-            <input type="text" v-model="document" />
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="สำเนาบัตรประชาชนผู้สมัคร"
+                v-model="document"
+              />
+              <label class="form-check-label"> สำเนาบัตรประชาชนผู้สมัคร </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="สำเนาทะเบียนบ้านของผู้สมัคร"
+                v-model="document"
+              />
+              <label class="form-check-label">
+                สำเนาทะเบียนบ้านของผู้สมัคร
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="รูปถ่ายนิสิต"
+                v-model="document"
+              />
+              <label class="form-check-label"> รูปถ่ายนิสิต </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="รูปถ่ายที่พักอาศัยตามภูมิลำเนา"
+                v-model="document"
+              />
+              <label class="form-check-label">
+                รูปถ่ายที่พักอาศัยตามภูมิลำเนา
+              </label>
+            </div>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="ใบรายงานผลการศึกษา"
+                v-model="document"
+              />
+              <label class="form-check-label"> ใบรายงานผลการศึกษา </label>
+            </div>
           </div>
           <div class="add-int">
             <label for="namecapital">ชื่อคนมอบทุน: </label>
@@ -130,7 +233,7 @@
               <p>ประเภททุน: {{ item.type }}</p>
               <p>ชื่อทุน: {{ item.name }}</p>
               <p>รายละเอียดทุน: {{ item.detail }}</p>
-              <p>เอกสารที่ต้องใช้: {{ item.document }}</p>
+              <p>เอกสารที่ต้องใช้: {{ item.document.join(",") }}</p>
             </div>
             <div class="complece-int">
               <p>ชื่อคนมอบทุน: {{ item.giver }}</p>
@@ -143,10 +246,14 @@
                 <i class="fas fa-trash-alt"></i>ลบทิ้ง
               </button>
             </div>
-              <button @click="edit(idx)" class="btn-edit" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">
-                <i class="fas fa-edit"></i>แก้ไข
-              </button>
+            <button
+              @click="edit(idx)"
+              class="btn-edit"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              <i class="fas fa-edit"></i>แก้ไข
+            </button>
             <!-- <button
               type="button"
               class="btn btn-primary"
@@ -171,6 +278,18 @@
           SAVE
         </button>
       </div>
+      <!--div class="addcapital-btt">
+      <router-link class="btt-capitalsave" to="/admin-opencapital"
+        ><button type="button" class="btn btn-danger">
+          SAVE
+        </button></-router-link
+      >
+      <router-link class="btt-capitalcancle" to="/admin-opencapital"
+        ><button type="button" class="btn btn-danger">
+          CANCLE
+        </button></router-link
+      >
+      </div-->
     </center>
     <Footer />
   </div>
@@ -190,7 +309,7 @@ export default {
       type: null,
       name: null,
       detail: null,
-      document: null,
+      document: [],
       money: null,
       giver: null,
       date: null,
@@ -221,16 +340,6 @@ export default {
   },
 
   methods: {
-    // async output() {
-    //   this.img = await this.croppa.promisedBlob();
-    //   var url = URL.createObjectURL(this.img);
-    //   this.objectUrl = url;
-    //   console.log(this.img);
-    // },
-    // showimg(evt) {
-    //   URL.revokeObjectURL(this.objectUrl);
-    //   console.log(evt);
-    // },
     upload(event) {
       var self = this;
       var file = event.target.files[0];
@@ -247,14 +356,11 @@ export default {
         for (var i = 0; i < len; i++) {
           binary += String.fromCharCode(bytes[i]);
         }
-
-        var imageArray = arrayBuffer              // For save to Database
-        var imageSource = window.btoa( binary );  // for show image to UI
-
+        var imageArray = arrayBuffer; // For save to Database
+        var imageSource = window.btoa(binary); // for show image to UI
         console.log("image Source", imageSource);
         console.log("image Array", imageArray);
         console.log("file.name", file.name);
-
         // Set imageSource data to show in UI
         self.imageUpload = "data:image/png;base64," + imageSource;
       };
@@ -267,6 +373,7 @@ export default {
         console.log(res);
       });
     },
+    //เพิ่มกล่องและรายละเอียดต่างๆของทุนทุน
     add_capital() {
       this.capital.push({
         imageUpload: this.imageUpload,
@@ -283,12 +390,13 @@ export default {
       (this.type = null),
         (this.name = null),
         (this.detail = null),
-        (this.document = null),
+        (this.document = []),
         (this.money = null),
         (this.giver = null),
         (this.date = null),
         (this.date_end = null);
     },
+    //ลบข้อมูลทุนในช่องข้อมูลเก่าของทุนนั้นๆ
     delete_capital: function (idx) {
       this.capital.splice(idx, 1);
     },
@@ -297,6 +405,7 @@ export default {
       this.temp = this.capital[idx];
       this.edit_idx = idx;
     },
+    //บันทักทุนที่ทำการเพิ่มลงไปใน array เดิมที่แก้ไข
     save_edit() {
       this.capital[this.edit_idx] = this.temp;
       this.edit_idx = null;
@@ -324,7 +433,7 @@ export default {
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 720px;
   align-items: center;
 }
 .container-addcapital .modal-body img {
@@ -342,6 +451,16 @@ export default {
 .add-text,
 .add-button {
   margin: 65px 0;
+}
+.add-detail {
+  display: flex;
+  margin: 60px 20px;
+  justify-content: center;
+  align-items: center;
+}
+.add-detail label {
+  margin-right: 20px;
+  font-size: 16px;
 }
 .add-text {
   display: flex;
