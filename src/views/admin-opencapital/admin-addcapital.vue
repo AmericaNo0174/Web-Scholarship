@@ -1,6 +1,6 @@
 <template>
   <div class="container-addcapital">
-    <!-- The Modal -->
+    <!-- The Modal ตอนแก้ไขทุน-->
     <div
       class="modal fade"
       id="exampleModal"
@@ -94,7 +94,7 @@
               <input type="date" v-model="temp.date_end" />
             </div>
             <div>
-              <img :src="imageUpload" alt="" />
+              <img :src="temp.imageUpload" alt="" />
             </div>
           </div>
           <div class="modal-footer">
@@ -118,6 +118,8 @@
       </div>
     </div>
     <h2>เพิ่มทุน</h2>
+
+    <!-- ตอนเพิ่มทุน -->
     <center>
       <div class="addcapital">
         <div class="add-capital1">
@@ -134,12 +136,6 @@
             />
             <!-- webkitdirectory -->
           </div>
-          <!-- <div id="app">
-            <croppa v-model="croppa"></croppa>
-            <button @click="output">output</button>
-            <br /><br />
-          </div> -->
-
           <div class="add-text">
             <label for="typecapital">ประเภททุน: </label>
             <input type="text" v-model="type" />
@@ -218,16 +214,11 @@
           >
             <i class="fas fa-plus-circle"></i>add
           </button>
-          <!-- เอาตัวทุนเข้าไปเก็บในนี้ -->
+
+          <!-- ตอนโชว์ทุนที่เพิ่มเข้าไป -->
           <div v-for="(item, idx) in capital" :key="idx" class="add-complece">
             <div>
-              <!-- <img
-                src="https://images.unsplash.com/photo-1508919801845-fc2ae1bc2a28?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8aW1nfGVufDB8fDB8fA%3D%3D&w=1000&q=80"
-                alt
-                null
-              /> -->
-              <!-- <img :src="objectUrl" @load="showimg" /> -->
-              <img :src="imageUpload" alt="" />
+              <img :src="item.imageUpload" alt="" />
             </div>
             <div class="complece-text">
               <p>ประเภททุน: {{ item.type }}</p>
@@ -254,15 +245,6 @@
             >
               <i class="fas fa-edit"></i>แก้ไข
             </button>
-            <!-- <button
-              type="button"
-              class="btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-              @click="edit(idx)"
-            >
-              แก้ไข
-            </button> -->
           </div>
           <div class="add-button"></div>
         </div>
@@ -278,18 +260,6 @@
           SAVE
         </button>
       </div>
-      <!--div class="addcapital-btt">
-      <router-link class="btt-capitalsave" to="/admin-opencapital"
-        ><button type="button" class="btn btn-danger">
-          SAVE
-        </button></-router-link
-      >
-      <router-link class="btt-capitalcancle" to="/admin-opencapital"
-        ><button type="button" class="btn btn-danger">
-          CANCLE
-        </button></router-link
-      >
-      </div-->
     </center>
     <Footer />
   </div>
@@ -363,6 +333,7 @@ export default {
         console.log("file.name", file.name);
         // Set imageSource data to show in UI
         self.imageUpload = "data:image/png;base64," + imageSource;
+        console.log('res',self.imageUpload);
       };
       reader.readAsArrayBuffer(file);
     },
@@ -386,7 +357,7 @@ export default {
         date: this.date,
         date_end: this.date_end,
       });
-      // (this.imageUpload = null),
+      (this.imageUpload = null),
       (this.type = null),
         (this.name = null),
         (this.detail = null),

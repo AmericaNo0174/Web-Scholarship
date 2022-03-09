@@ -12,6 +12,7 @@ const db = mysql.createConnection({
   database: "studentname",
 });
 
+
 app.get("/table", (req, res) => {
   db.query("SELECT * FROM user", (err, result) => {
     if (err) {
@@ -21,6 +22,7 @@ app.get("/table", (req, res) => {
     }
   });
 });
+
 
 app.post("/pf_student", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -34,12 +36,14 @@ app.post("/pf_student", (req, res) => {
     //ทำการเช็คว่ามีข้อมูลอยู่แล้วรึเปล่า
     db.query(`SELECT * FROM user WHERE email = '${email}'`, (err, result) => {
       if (err) {
-        console.log(result);
+        console.log(err);
       } else {
         console.log(result);
         if (result.length > 0) {
           console.log('มีข้อมูลอยู่แล้ว');
           res.send(result);
+          console.log('id',result[0].user_id);
+          return result[0].user_id
         } else {
           db.query(
             "INSERT INTO user (name,lastname,email) VALUES (?,?,?)",
@@ -49,6 +53,7 @@ app.post("/pf_student", (req, res) => {
                 console.log(err);
               } else {
                 res.send(result);
+                return result[0].user_id
               }
             }
           );
@@ -96,6 +101,7 @@ app.post("/capital", (req, res) => {
     }
   });
 });
+
 
 app.post("/form", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -149,41 +155,76 @@ app.post("/form", (req, res) => {
     });
   });
 
+
+  
 app.get("/showcapital", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   db.query(
-    "SELECT * FROM capital",
+    "INSERT * FROM capital",
     (err, result) => {
       if (err) {
         console.log(err);
       } else {
           // console.log(result);
-          res.send(result)
-          
+          res.send(result) 
       }
     }
   ); 
 });
+
+
+
+
+app.post("/step", (req, res) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  req.body.forEach(step => {
+    console.log('step',step);
+    console.log('res',res);
+    const imageUpload = step.imageUpload;
+    const heading = step.heading;
+    const detail = step.detail;
+    try {
+      db.query(
+        "INSERT INTO step (img,heading,detail) VALUES (?,?,?)",
+        [imageUpload,heading, detail],
+        (err, result) => {
+          if (err) {
+            console.log(err);
+          } else {
+              res.send(result);
+              console.log(result);
+          }
+        }
+      ); 
+    } catch (error) {
+      console.log(error);
+    }
+  });
+});
+
+
 
 //ทำการเอา profile ไปโชว์
 app.get("/showprofile", (req, res) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   db.query(
-    "SELECT data_user,user_image FROM form,upload",
+    "SELECT data_user FROM form ",
     (err, result) => {
       if (err) {
         console.log(err);
       } 
       else {
         console.log(result);
-        //แปลง string to json
+        // แปลง string to json
           const obj = JSON.parse(result[0].data_user);
           const user_img = result[0].user_image
           console.log(obj);
           console.log(user_img);
           res.send(obj);
+          
       }
     }
   ); 
@@ -205,6 +246,7 @@ app.get("/showuser", (req, res) => {
     }
   ); 
 });
+
 
 app.listen(3001, () => {
   console.log("Yey, your server is running on port 3001");

@@ -17,10 +17,10 @@ import Nameorder from '../views/nameorder/nameorder.vue'
 import Step from '../views/step/step.vue'
 import Adminopencapital from '../views/admin-opencapital/admin-opencapital'
 import Adminstep from '../views/admin-step/admin-step.vue'
-import Adminaddstep from '../views/admin-addstep/admin-addstep.vue'
-import Profile from '../views/profile/profile'
+import Profile from '../views/profile/profile.vue'
 import Main from '../views/main/main.vue'
-import Adminaddcapital from '../views/admin-opencapital/admin-addcapital'
+import Adminaddcapital from '../views/admin-opencapital/admin-addcapital.vue'
+import Adminaddstep from '../views/admin-step/admin-addstep.vue'
 Vue.use(VueRouter)
 
 // let express = require('express');
@@ -137,14 +137,14 @@ const routes = [
         component: Adminstep
       },
       {
-        path:'/admin-addstep',
-        name:'Adminaddstep',
-        component: Adminaddstep
-      },
-      {
         path:'/admin-addcapital',
         name:'Adminaddcapital',
         component: Adminaddcapital
+      },
+      {
+        path:'/admin-addstep',
+        name:'Adminaddstep',
+        component: Adminaddstep
       }
     ]
   },

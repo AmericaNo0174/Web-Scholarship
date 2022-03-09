@@ -15,21 +15,22 @@
     </div>
     <div class="main-capital" v-for="(item, idx) in form_capital" :key="idx">
       <div class="capital1">
-        <img src="../../assets/CP.svg" alt="" />
+        <img :src="item.imageUpload" alt="" />
         <div class="data-capital">
           <div class="main-data">
-            <h1>0{{idx+1}}</h1>
-            <h3>{{item.name}}</h3>
+            <h1>{{ idx + 1 }}</h1>
+            <h3>{{ item.name }}</h3>
           </div>
-          <p>{{item.details}}</p>
+          <p>{{ item.details }}</p>
           <div class="btn-capital">
-            <router-link class="register-capital" 
-             :to="{
-                    name: 'form',
-                    params: {
-                      capital_id: item.capital_id,
-                    },
-                  }"
+            <router-link
+              class="register-capital"
+              :to="{
+                name: 'form',
+                params: {
+                  capital_id: item.capital_id,
+                },
+              }"
               ><button
                 id="register-capital"
                 type="button"
@@ -102,14 +103,30 @@ export default {
   methods: {
     show_capital() {
       this.http.get("showcapital").then((res) => {
+        var self = this;
         console.log("res:", res.data);
-        this.form_capital = res.data;
-        console.log("form", this.form_capital);
+        self.form_capital = res.data;
+        console.log("form", self.form_capital);
+        console.log(self.form_capital.length);
+  
+            // Change ArrayBuffer to Base64
+          for (let index = 0; index < self.form_capital.length; index++) {
+             var binary = "";
+            var bytes = new Uint8Array(self.form_capital[index].image.data);
+            var len = bytes.byteLength;
+            for (var i = 0; i < len; i++) {
+              binary += String.fromCharCode(bytes[i]);
+            }
+            self.form_capital[index].imageUpload = binary;
+            console.log('arr:',self.form_capital[index].imageUpload);
+          }
       });
     },
   },
 };
 </script>
+
+
 
 <style>
 .container-capital {
@@ -139,12 +156,12 @@ export default {
 }
 .main-capital .capital1 {
   display: flex;
-  height: 300px;
   justify-content: space-between;
-  margin: 20px 0;
+  margin-top: 50px;
 }
-.main-capital .capital1 img {
-  width: 50%;
+.main-capital .capital1 img{
+  padding: 0 150px;
+
 }
 .main-capital .capital1 .data-capital {
   display: block;

@@ -50,7 +50,7 @@
         </button></-router-link
       >
       <router-link class="btt-interviewback" to="/admin-opencapital"
-        ><button type="button" class="btn btn-danger">
+        ><button type="button" class="btn btn-danger"></button>
           BACK
         </button></router-link
       >

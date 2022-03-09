@@ -5,7 +5,7 @@
         <i class="fa fa-bars text-white" aria-hidden="true"></i>
       </div>
       <div class="logo"><img src="../assets/logo.svg" alt="" /></div>
-      <div class="nav-name" ><p>{{form.fname}}</p></div>
+      <div class="nav-name" ><p>{{form.fname +" "+ form.lname+""+form.idstudent}}</p></div>
       <!-- <div class="logout"><i class="fa fa-power-off text-white" aria-hidden="true"></i></div> -->
       <router-link class="logout" to="/"
         ><i class="fa fa-power-off text-white" aria-hidden="true"></i
@@ -51,16 +51,17 @@ export default {
       this.$emit("openSidebar", this.isOpen);
     },
     open_profile() {
-    //   this.http
-    //     .get("showuser")
-    //     .then((res) => {
-    //       console.log("res navbar:", res.data);
-    //       this.form.fname = res.data[0].name;
-    //       console.log('form',this.form);
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
+      this.http
+        .get("showprofile")
+        .then((res) => {
+          console.log("res navbar:", res.data);
+          this.form = res.data;
+
+          // console.log(this.form);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
