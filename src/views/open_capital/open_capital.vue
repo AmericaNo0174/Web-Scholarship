@@ -39,7 +39,14 @@
                 สมัค
               </button>
             </router-link>
-            <router-link class="about-capital" to=""
+            <router-link
+              class="about-capital"
+              :to="{
+                name: 'Detailcapital',
+                params: {
+                  capital_id: item.capital_id,
+                },
+              }"
               ><button id="about" type="button" class="btn btn-danger">
                 อ่านเพิ่มเติม
               </button></router-link
@@ -105,21 +112,22 @@ export default {
       this.http.get("showcapital").then((res) => {
         var self = this;
         console.log("res:", res.data);
+        console.log("id_user", window.user_id);
         self.form_capital = res.data;
         console.log("form", self.form_capital);
         console.log(self.form_capital.length);
-  
-            // Change ArrayBuffer to Base64
-          for (let index = 0; index < self.form_capital.length; index++) {
-             var binary = "";
-            var bytes = new Uint8Array(self.form_capital[index].image.data);
-            var len = bytes.byteLength;
-            for (var i = 0; i < len; i++) {
-              binary += String.fromCharCode(bytes[i]);
-            }
-            self.form_capital[index].imageUpload = binary;
-            console.log('arr:',self.form_capital[index].imageUpload);
+
+        // Change ArrayBuffer to Base64
+        for (let index = 0; index < self.form_capital.length; index++) {
+          var binary = "";
+          var bytes = new Uint8Array(self.form_capital[index].image.data);
+          var len = bytes.byteLength;
+          for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
           }
+          self.form_capital[index].imageUpload = binary;
+          console.log("arr:", self.form_capital[index].imageUpload);
+        }
       });
     },
   },
@@ -159,9 +167,8 @@ export default {
   justify-content: space-between;
   margin-top: 50px;
 }
-.main-capital .capital1 img{
+.main-capital .capital1 img {
   padding: 0 150px;
-
 }
 .main-capital .capital1 .data-capital {
   display: block;

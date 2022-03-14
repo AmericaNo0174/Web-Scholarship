@@ -15,6 +15,17 @@
             <p>Kasetsart University</p>
         </div>
       </div>
+      <!-- <div class="img-box" v-for="(item, idx) in form" :key="idx">
+        <div class="">
+          <img class="img-profile"
+            :src="item.user_img"
+          />
+        </div>
+        <div class="user-info">
+            <p>{{item.fname +' '+item.lname}}</p>
+            <p>Kasetsart University</p>
+        </div>
+      </div> -->
       <router-link class="menu-list py-9" to="/profile"
         ><span><i class="fas fa-user-circle"></i>ข้อมูลส่วนตัว</span></router-link
       >
@@ -48,6 +59,7 @@
 
 <script>
 import Navbar from "./Navbar.vue";
+import axios from "axios";
 export default {
   components: {
     Navbar,
@@ -55,12 +67,61 @@ export default {
   data() {
     return {
       sidebarOpen: false,
+      form: {
+        fname: null,
+        lname: null,
+        idstudent: null,
+        grade: null,
+        birthday: null,
+        age: null,
+        idcard: null,
+        nationality: null,
+        origin: null,
+        religion: null,
+        simester: null,
+        faculty: null,
+        offset: null,
+        gpa: null,
+        professor: null,
+        address: null,
+        email: null,
+        phonenumber: null,
+        user_img: null,
+        imageUpload:null
+      },
     };
   },
+   mounted() {
+    this.http = axios.create({
+      baseURL: "http://localhost:3001/",
+    });
+    this.open_profile();
+    // if(!window.isLogin){
+    //     this.$router.push({name:'Login'})
+    // }
+  },
+
   methods: {
     openSidebar(isOpen) {
       // console.log(isOpen)
       this.sidebarOpen = isOpen;
+    },
+    open_profile() {
+      //เอา id ไปหาข้อมูลที่อยู่ใน database
+      const id_user = window.localStorage.getItem("id_user");
+      this.http
+        .post("showprofile", {
+          id_user: id_user,
+        })
+        .then((res) => {
+          console.log("res:", res.data);
+          // แปลง string to json
+          this.form = JSON.parse(res.data[0].data_user);
+          console.log('form',this.form);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };

@@ -1,68 +1,68 @@
 <template>
   <div class="container-profile">
     <div class="profile">
-      <a href="#"><img src="../../assets/profile.svg" alt="" /></a>
+      <a href="#"><img :src="form.user_img" alt="" /></a>
       <h2>ข้อมูลส่วนตัว</h2>
     </div>
     <div class="data-profile">
       <!-- ชื่อ -->
       <div class="p-data1">
         <h5>ชื่อ:</h5>
-        <p>{{form.fname}}</p>
+        <p>{{ form.fname }}</p>
         <!-- <input type="text" v-model="form.fname" /> -->
       </div>
       <!-- นามสกุล -->
       <div class="p-data2">
         <h5>นามสกุล:</h5>
-        <p>{{form.lname}}</p>
+        <p>{{ form.lname }}</p>
         <!-- <input type="text" v-model="form.lname" /> -->
       </div>
       <!-- เลขบัตรประชาชน -->
       <div class="p-data3">
         <h5>เลขบัตรประชาชน:</h5>
-        <p>{{form.idcard}}</p>
+        <p>{{ form.idcard }}</p>
         <!-- <input type="text" v-model="form.idcard" /> -->
       </div>
       <!-- วันเกิด -->
       <div class="p-data4">
         <h5>วันเกิด:</h5>
-        <p>{{form.birthday}}</p>
+        <p>{{ form.birthday }}</p>
         <!-- <input type="text" v-model="form.birthday" /> -->
       </div>
       <!-- สัญชาติ -->
       <div class="p-data5">
         <h5>สัญชาติ:</h5>
-        <p>{{form.nationality}}</p>
+        <p>{{ form.nationality }}</p>
         <!-- <input type="text" v-model="form.nationality" /> -->
       </div>
       <!-- ศาสนา -->
       <div class="p-data6">
         <h5>ศาสนา:</h5>
-        <p>{{form.religion}}</p>
+        <p>{{ form.religion }}</p>
         <!-- <input type="text" v-model="form.religion" /> -->
       </div>
       <!-- คณะ -->
       <div class="p-data7">
         <h5>คณะ:</h5>
-        <p>{{form.faculty}}</p>
+        <p>{{ form.faculty }}</p>
         <!-- <input type="text" v-model="form.faculty"/> -->
       </div>
       <!-- สาขา -->
       <div class="p-data8">
         <h5>สาขา:</h5>
-        <p>{{form.offset}}</p>
+        <p>{{ form.offset }}</p>
         <!-- <input type="text" v-model="form.offset" /> -->
       </div>
       <!-- เบอร์โทรศัพท์ -->
       <div class="p-data9">
         <h5>เบอร์โทรศัพท์:</h5>
-        <p>{{form.phonenumber}}</p>
+        <p>{{ form.phonenumber }}</p>
         <!-- <input type="text" v-model="form.phonenumber"/> -->
       </div>
       <!-- อีเมล์ -->
       <div class="p-data10">
         <h5>อีเมล์:</h5>
-        <p>{{form.email}}</p>
+        <p>{{ form.email }}</p>
         <!-- <input type="email" v-model="form.email"/> -->
       </div>
     </div>
@@ -87,7 +87,7 @@ export default {
     Footer,
   },
   data() {
-    return{
+    return {
       form: {
         fname: null,
         lname: null,
@@ -107,9 +107,10 @@ export default {
         address: null,
         email: null,
         phonenumber: null,
+        user_img: null,
+        imageUpload:null
       },
-      user_img:null
-    }
+    };
   },
   mounted() {
     this.http = axios.create({
@@ -119,19 +120,23 @@ export default {
     // if(!window.isLogin){
     //     this.$router.push({name:'Login'})
     // }
-    
   },
   methods: {
     open_profile() {
-      this.http.get("showprofile").then(res =>{
-        console.log('res:',res.data);
-        this.form = res.data
-        
-        // console.log(this.form);
-      })
-      .catch(err =>{
-        console.log(err);
-      })
+      const id_user = window.localStorage.getItem("id_user");
+      this.http
+        .post("showprofile", {
+          id_user: id_user,
+        })
+        .then((res) => {
+          console.log("res:", res.data);
+          // แปลง string to json
+          this.form = JSON.parse(res.data[0].data_user);
+          console.log('form',this.form);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 };
@@ -157,14 +162,23 @@ export default {
   /* background-color: aqua; */
   margin-right: 20px;
 }
-.data-profile .p-data1,.p-data2,.p-data3,.p-data4,.p-data5,.p-data6,.p-data7,.p-data8,.p-data9,.p-data10 {
+.data-profile .p-data1,
+.p-data2,
+.p-data3,
+.p-data4,
+.p-data5,
+.p-data6,
+.p-data7,
+.p-data8,
+.p-data9,
+.p-data10 {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 13%;
   /* background-color: red; */
 }
-.data-profile p{
+.data-profile p {
   display: flex;
   justify-content: center;
   align-items: center;

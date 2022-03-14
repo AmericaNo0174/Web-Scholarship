@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router/index'
 import './assets/css/tailwind.css'
 import Croppa from 'vue-croppa';
+
  
 Vue.use(Croppa);
 
@@ -18,7 +19,8 @@ Vue.GoogleAuth.then(auth2 => {
   console.log(auth2.isSignedIn.get());
   console.log(auth2.currentUser.get())
   window.isLogin = auth2.isSignedIn.get()
-})
+});
+
 
 new Vue({
   router,

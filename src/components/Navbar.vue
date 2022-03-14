@@ -5,7 +5,7 @@
         <i class="fa fa-bars text-white" aria-hidden="true"></i>
       </div>
       <div class="logo"><img src="../assets/logo.svg" alt="" /></div>
-      <div class="nav-name" ><p>{{form.fname +" "+ form.lname+""+form.idstudent}}</p></div>
+      <div class="nav-name" ><p>{{form.email}}</p></div>
       <!-- <div class="logout"><i class="fa fa-power-off text-white" aria-hidden="true"></i></div> -->
       <router-link class="logout" to="/"
         ><i class="fa fa-power-off text-white" aria-hidden="true"></i
@@ -51,13 +51,17 @@ export default {
       this.$emit("openSidebar", this.isOpen);
     },
     open_profile() {
+      //เอา id ไปหาข้อมูลที่อยู่ใน database
+      const id_user = window.localStorage.getItem("id_user");
+      console.log(id_user);
       this.http
-        .get("showprofile")
+        .post("showuser", {
+          id_user: id_user,
+        })
         .then((res) => {
-          console.log("res navbar:", res.data);
-          this.form = res.data;
-
-          // console.log(this.form);
+          console.log("res:", res.data);
+          this.form = res.data[0]
+          console.log(this.form);
         })
         .catch((err) => {
           console.log(err);
@@ -89,7 +93,7 @@ export default {
 }
 .logo {
   position: relative;
-  left: 130px;
+  left: 60px;
   margin: 0 auto;
 }
 .nav-name p {

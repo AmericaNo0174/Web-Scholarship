@@ -35,6 +35,7 @@
         </center>
       </div>
 
+
       <div class="boxlogin">
         <div
           id="carouselExampleIndicators"
@@ -116,6 +117,7 @@
   </div>
 </template>
 
+
 <script>
 import Swal from "sweetalert2";
 import GoogleLogin from "vue-google-login";
@@ -156,6 +158,7 @@ export default {
       var profile = googleUser.getBasicProfile();
       const fullName = profile.getName();
       const [first, last] = fullName.split(' ');
+      
       console.log(first);
       console.log(last); 
       // var lname = googleUser.getBasicProfile().vW;
@@ -168,7 +171,10 @@ export default {
           email: email,
         })
         .then((res) => {
-          console.log(res);
+          console.log('login',res);
+          // window.user_id = res.data[0].user_id;
+          // console.log(window.user_id);
+          window.localStorage.setItem('id_user',res.data[0].user_id );
           this.$router.push({ name: "Main" });
           Swal.fire({
             position: "center",
@@ -195,7 +201,6 @@ export default {
   },
 };
 </script>
-
 
 
 <style>
@@ -271,3 +276,5 @@ form .txt_field {
   outline: none;
 }
 </style>
+
+

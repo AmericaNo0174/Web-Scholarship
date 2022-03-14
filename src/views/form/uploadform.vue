@@ -157,6 +157,7 @@ export default {
         address: null,
         email: null,
         phonenumber: null,
+        user_img: null,
       },
       form_family: {
         d_fname: null,
@@ -193,7 +194,6 @@ export default {
       form_img: {
         identity_card_img: null,
         identity_house_img: null,
-        user_img: null,
         house_img: null,
         gpa_file: null,
         essay: null,
@@ -225,6 +225,7 @@ export default {
   methods: {
     //ทำการ add ค่าเข้าไปหลังบ้าน
     add() {
+      // console.log(this.form_user);
       this.http
         .post("form", {
           form_user: this.form_user,
@@ -269,8 +270,8 @@ export default {
           self.form_img.identity_house_img ="data:image/png;base64," + imageSource;
             console.log('id_house',self.form_img.identity_house_img);
         } if (self.temp == "user_img") {
-          self.form_img.user_img = "data:image/png;base64," + imageSource;
-          console.log('user_img',self.form_img.user_img);
+          self.form_user.user_img = "data:image/png;base64," + imageSource;
+          console.log('user_img',self.form_user.user_img);
         } if (self.temp == "house_img") {
           self.form_img.house_img = "data:image/png;base64," + imageSource;
           console.log('house_img',self.form_img.house_img);

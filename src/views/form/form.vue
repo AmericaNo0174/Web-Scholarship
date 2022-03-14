@@ -690,6 +690,7 @@ export default {
         address: null,
         email: null,
         phonenumber: null,
+        user_img: null,
       },
       form_family: {
         d_fname: null,
@@ -726,7 +727,6 @@ export default {
       form_img: {
         identity_card_img: null,
         identity_house_img: null,
-        user_image: null,
         house_image: null,
         gpa_file: null,
         essay: null,
@@ -761,7 +761,6 @@ export default {
   },
 };
 </script>
-
 
 
 <style scoped>
