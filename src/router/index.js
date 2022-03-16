@@ -21,27 +21,8 @@ import Profile from '../views/profile/profile.vue'
 import Main from '../views/main/main.vue'
 import Adminaddcapital from '../views/admin-opencapital/admin-addcapital.vue'
 import Adminaddstep from '../views/admin-step/admin-addstep.vue'
-import Nav from '../components/Navbar'
 import Detailcapital from '../views/open_capital/detail_capital.vue'
 Vue.use(VueRouter)
-
-// let express = require('express');
-// let router = express.Router();
-// let dbcon = require('../servere/index');
-
-
-// router.get('/',(req,res,next) => {
-//   dbcon.querry('SELECT * FROM testjs ORDER BY id desc',(err,rows) => {
-//     if(err){
-//       req.flash('error',err);
-//       res.render('testjs',{ data: ""});
-//     } else {
-//       res.render('testjs',{ data: rows});
-//     }
-//   })
-// })
-
-
 
 const routes = [
   {
@@ -160,11 +141,6 @@ const routes = [
     name:'Login',
     component: Login
   },
-  {
-    path:'/nav',
-    name:'Nav',
-    component: Nav
-  }
 ]
 
 const router = new VueRouter({

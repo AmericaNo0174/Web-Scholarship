@@ -48,6 +48,7 @@
     </html>    
 </template>
 
+
 <script>
 import axios from "axios";
 import Footer from "../../components/footer.vue";
@@ -85,6 +86,7 @@ export default {
    
 }
 </script>
+
 
 <style scoped>
   .h03 {

@@ -4,28 +4,27 @@
       class="sidebar-box"
       :class="{ 'w-0': !sidebarOpen, 'w-200': sidebarOpen }"
     >
-      <div class="img-box">
+      <div class="img-box" v-if="!isShow">
         <div class="">
           <img class="img-profile"
             src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=850&q=50"
           />
         </div>
         <div class="user-info">
-            <p>itthikorn wisetpong</p>
             <p>Kasetsart University</p>
         </div>
       </div>
-      <!-- <div class="img-box" v-for="(item, idx) in form" :key="idx">
+      <div class="img-box" v-else>
         <div class="">
           <img class="img-profile"
-            :src="item.user_img"
+            :src="form.user_img"
           />
         </div>
         <div class="user-info">
-            <p>{{item.fname +' '+item.lname}}</p>
+            <p>{{form.fname +' '+form.lname}}</p>
             <p>Kasetsart University</p>
         </div>
-      </div> -->
+      </div>
       <router-link class="menu-list py-9" to="/profile"
         ><span><i class="fas fa-user-circle"></i>ข้อมูลส่วนตัว</span></router-link
       >
@@ -58,14 +57,18 @@
 </template>
 
 <script>
+
 import Navbar from "./Navbar.vue";
 import axios from "axios";
 export default {
+
   components: {
     Navbar,
+    
   },
   data() {
     return {
+      isShow:false,
       sidebarOpen: false,
       form: {
         fname: null,
@@ -108,16 +111,17 @@ export default {
     },
     open_profile() {
       //เอา id ไปหาข้อมูลที่อยู่ใน database
-      const id_user = window.localStorage.getItem("id_user");
+      // const id_user = window.localStorage.getItem("id_user"); 
       this.http
         .post("showprofile", {
-          id_user: id_user,
+          id_user: window.id_user,
         })
         .then((res) => {
-          console.log("res:", res.data);
+          // console.log("res:", res.data);
           // แปลง string to json
           this.form = JSON.parse(res.data[0].data_user);
-          console.log('form',this.form);
+          this.isShow = true
+          // console.log('form',this.form);
         })
         .catch((err) => {
           console.log(err);

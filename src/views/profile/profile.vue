@@ -79,6 +79,7 @@
 </template>
 
 
+
 <script>
 import Footer from "../../components/footer.vue";
 import axios from "axios";
@@ -141,6 +142,8 @@ export default {
   },
 };
 </script>
+
+
 
 <style>
 .container-profile {

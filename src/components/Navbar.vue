@@ -52,16 +52,16 @@ export default {
     },
     open_profile() {
       //เอา id ไปหาข้อมูลที่อยู่ใน database
-      const id_user = window.localStorage.getItem("id_user");
-      console.log(id_user);
+       window.id_user = window.localStorage.getItem("id_user");
+      // console.log(id_user);
       this.http
         .post("showuser", {
-          id_user: id_user,
+          id_user: window.id_user,
         })
         .then((res) => {
-          console.log("res:", res.data);
+          // console.log("res:", res.data);
           this.form = res.data[0]
-          console.log(this.form);
+          // console.log(this.form);
         })
         .catch((err) => {
           console.log(err);

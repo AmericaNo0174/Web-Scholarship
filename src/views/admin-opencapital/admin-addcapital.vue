@@ -331,6 +331,7 @@ export default {
         console.log("image Source", imageSource);
         console.log("image Array", imageArray);
         console.log("file.name", file.name);
+
         // Set imageSource data to show in UI
         self.imageUpload = "data:image/png;base64," + imageSource;
         console.log('res',self.imageUpload);
@@ -341,7 +342,7 @@ export default {
     save_capital() {
       console.log(this.capital);
       this.http.post("capital", this.capital).then((res) => {
-        console.log(res);
+        console.log( res.data.insertId);
       });
     },
     //เพิ่มกล่องและรายละเอียดต่างๆของทุนทุน

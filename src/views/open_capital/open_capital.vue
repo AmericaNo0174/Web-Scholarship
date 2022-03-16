@@ -29,12 +29,14 @@
                 name: 'form',
                 params: {
                   capital_id: item.capital_id,
+                  check_capital:check_capital
                 },
               }"
               ><button
                 id="register-capital"
                 type="button"
                 class="btn btn-danger"
+                @click="checkapply(item)"
               >
                 สมัค
               </button>
@@ -75,6 +77,7 @@
 
 
 <script>
+import Swal from "sweetalert2";
 import axios from "axios";
 import Footer from "../../components/footer.vue";
 export default {
@@ -83,6 +86,7 @@ export default {
   },
   data() {
     return {
+      check_capital:false,
       form_capital: [
         {
           imageUpload: null,
@@ -109,10 +113,11 @@ export default {
   },
   methods: {
     show_capital() {
-      this.http.get("showcapital").then((res) => {
+      this.http.get("showcapital", {}).then((res) => {
         var self = this;
         console.log("res:", res.data);
-        console.log("id_user", window.user_id);
+        const id_user = window.localStorage.getItem("id_user");
+        console.log("is_user:", id_user);
         self.form_capital = res.data;
         console.log("form", self.form_capital);
         console.log(self.form_capital.length);
@@ -126,9 +131,36 @@ export default {
             binary += String.fromCharCode(bytes[i]);
           }
           self.form_capital[index].imageUpload = binary;
-          console.log("arr:", self.form_capital[index].imageUpload);
+          // console.log("arr:", self.form_capital[index].imageUpload);
         }
       });
+    },
+    checkapply(item) {
+      console.log(item);
+      const checkapply = item.capital_id;
+      const id_user = window.localStorage.getItem("id_user");
+      console.log(checkapply);
+      this.http
+        .post("checkcapital", {
+          checkapply: checkapply,
+          id_user: id_user,
+        })
+        .then((res) => {
+          console.log("สมัคแล้ว", res);
+          if (res.statusText == "OK") {
+                this.check_capital = true
+                console.log(this.check_capital);
+            Swal.fire({
+              title: "คุณได้เคยสมัคทุนนี้ไปแล้ว",
+              showClass: {
+                popup: "animate__animated animate__fadeInDown",
+              },
+              hideClass: {
+                popup: "animate__animated animate__fadeOutUp",
+              },
+            });
+          }
+        });
     },
   },
 };

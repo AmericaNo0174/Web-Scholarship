@@ -12,6 +12,7 @@ const db = mysql.createConnection({
   database: "studentname",
 });
 
+
 app.get("/table", (req, res) => {
   db.query("SELECT * FROM user", (err, result) => {
     if (err) {
@@ -202,6 +203,32 @@ app.get("/showcapital", (req, res) => {
   });
 });
 
+
+
+app.post("/checkcapital", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  // console.log(req.body);
+  const check =  req.body.checkapply;
+  const id_user = req.body.id_user;
+  db.query(`SELECT form.user_id,upload.capital_id FROM form INNER JOIN upload ON form.form_id = upload.form_id  WHERE form.user_id = "${id_user}"  `, (err, result) => {
+    if (err) {
+      console.log(err);
+    } else {
+      // console.log(result[0].capital_id);
+      // res.send(result);
+      if(check == result[0].capital_id){
+        res.send(result);
+      }
+    }
+  });
+});
+
+
+
 app.post("/capital_detail", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -219,6 +246,7 @@ app.post("/capital_detail", (req, res) => {
     }
   });
 });
+
 
 app.post("/step", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");

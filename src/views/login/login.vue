@@ -123,8 +123,11 @@ import Swal from "sweetalert2";
 import GoogleLogin from "vue-google-login";
 import 'lodash'
 import axios from "axios";
+
+
 export default {
   name: "App",
+
   /*Role 1). Admin
          2). คณะกรรมการ
          3). User */
@@ -148,6 +151,10 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
+    // console.log(this.user);
+    // if(this.user != null){
+    //   this.form = this.user
+    // }
   },
   components: {
     GoogleLogin,

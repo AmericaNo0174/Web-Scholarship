@@ -31,6 +31,7 @@
             class="inf form-control"
             v-model="form_user.fname"
             placeholder="กรุณาระบุชื่อ"
+            required
           />
           <input
             type="text"
@@ -42,12 +43,17 @@
         </div>
         <!-- รหัสนิสิต ชั้นปี -->
         <div class="input-group mb-4">
-          <span class="boxf input-group-text"> รหัสประจำตัวนิสิต </span>
-          <input
-            type="text"
+          <span class="boxf input-group-text" > รหัสประจำตัวนิสิต </span>
+          <input           
+            type="number"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            pattern="/^-?\d+\.?\d*$/" 
             class="inf form-control"
             v-model="form_user.idstudent"
             placeholder="กรุณากรอกรหัสนิสิต"
+            
+            
           />
           <span class="boxf input-group-text"> ชั้นปีที่ </span>
           <input
@@ -80,10 +86,13 @@
           /><span class="boxf input-group-text"> ปี </span>
         </div>
 
-        <div class="input-group mb-4">
-          <span class="boxf input-group-text"> รหัสประจำตัวประชาชน </span>
+        <div class="input-group mb-4" >
+          <span class="boxf input-group-text" > รหัสประจำตัวประชาชน </span>
           <input
-            type="text"
+            type="number"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="13"
+            pattern="/^-?\d+\.?\d*$/" 
             class="inf form-control"
             v-model="form_user.idcard"
             placeholder="รหัสประจำตัวประชาชน13หลัก"
@@ -164,7 +173,15 @@
         <!-- คะแนนเฉลี่ยสะสม -->
         <div div class="input-group mb-4">
           <span class="boxf input-group-text"> เกรดเฉลี่ยสะสม </span>
-          <input type="text" class="inf form-control" v-model="form_user.gpa" />
+          <input type="number"
+            step="0.01"
+            max="4"
+            min="0"
+            pattern="/^-?\d+\+-?\d*$/" 
+           class="inf form-control" 
+           placeholder="เกรดเฉลี่ยสะสม"
+           v-model="form_user.gpa" 
+           />
           <span class="boxf input-group-text"> อาจารย์ที่ปรึกษา </span>
           <input
             type="text"
@@ -202,6 +219,9 @@
           <span class="boxf input-group-text"> เบอร์โทรศัพท์ </span>
           <input
             type="tel"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            pattern="/^-?\d+\.?\d*$/" 
             class="inf form-control"
             name="phone"
             placeholder="กรุณาระบุเบอร์โทรศัพท์ที่ติดต่อได้"
@@ -271,7 +291,7 @@
               </label>
             </div>
           </div>
-          <!-- อาชีพ รายได้บิดา -->
+          <!-- อาชีพ รายได้บิด -->
           <div div class="input-group mb-4">
             <span class="boxf input-group-text"> อาชีพ </span>
             <input
@@ -320,6 +340,9 @@
             <span class="boxf input-group-text"> เบอร์โทรศัพท์ </span>
             <input
               type="tel"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            pattern="/^-?\d+\.?\d*$/" 
               class="inf form-control"
               name="phone"
               v-model="form_family.d_phonenumber"
@@ -441,6 +464,9 @@
           <span class="boxf input-group-text"> เบอร์โทรศัพท์ </span>
           <input
             type="tel"
+            oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            pattern="/^-?\d+\.?\d*$/" 
             class="inf form-control"
             v-model="form_family.m_phonenumber"
             name="phone"
@@ -575,6 +601,9 @@
             <span class="boxf input-group-text"> เบอร์โทรศัพท์ </span>
             <input
               type="tel"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+            maxlength="10"
+            pattern="/^-?\d+\.?\d*$/" 
               class="inf form-control"
               v-model="form_money.manager_phonenumber"
               name="phone"
@@ -731,9 +760,11 @@ export default {
         gpa_file: null,
         essay: null,
       },
-      capital_id:null
+      capital_id:null,
     };
   },
+
+
   mounted() {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
@@ -755,11 +786,17 @@ export default {
     else if(this.$route.params){
       this.capital_id = this.$route.params.capital_id
       console.log('capital_id:',this.capital_id);
+      this.check_capital = this.$route.params.check_capital
+      console.log('this.check_capital',this.check_capital);
     }
   },
   methods: {
   },
 };
+ 
+ 
+
+ 
 </script>
 
 
