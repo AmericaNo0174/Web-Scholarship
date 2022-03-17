@@ -23,24 +23,14 @@
           </div>
           <p>{{ item.details }}</p>
           <div class="btn-capital">
-            <router-link
-              class="register-capital"
-              :to="{
-                name: 'form',
-                params: {
-                  capital_id: item.capital_id,
-                  check_capital:check_capital
-                },
-              }"
-              ><button
-                id="register-capital"
-                type="button"
-                class="btn btn-danger"
-                @click="checkapply(item)"
-              >
-                สมัค
-              </button>
-            </router-link>
+            <button
+              id="register-capital"
+              type="button"
+              class="btn btn-danger"
+              @click="checkapply(item)"
+            >
+              สมัค
+            </button>
             <router-link
               class="about-capital"
               :to="{
@@ -86,7 +76,7 @@ export default {
   },
   data() {
     return {
-      check_capital:false,
+      check_capital: false,
       form_capital: [
         {
           imageUpload: null,
@@ -106,9 +96,9 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    // if(!window.isLogin){
-    //     this.$router.push({name:'Login'})
-    // }
+    if (!this.$store.state.login) {
+      this.$router.push({ name: "Login" });
+    }
     this.show_capital();
   },
   methods: {
@@ -116,8 +106,6 @@ export default {
       this.http.get("showcapital", {}).then((res) => {
         var self = this;
         console.log("res:", res.data);
-        const id_user = window.localStorage.getItem("id_user");
-        console.log("is_user:", id_user);
         self.form_capital = res.data;
         console.log("form", self.form_capital);
         console.log(self.form_capital.length);
@@ -138,7 +126,7 @@ export default {
     checkapply(item) {
       console.log(item);
       const checkapply = item.capital_id;
-      const id_user = window.localStorage.getItem("id_user");
+      const id_user = this.$store.state.user.user_id;
       console.log(checkapply);
       this.http
         .post("checkcapital", {
@@ -148,8 +136,13 @@ export default {
         .then((res) => {
           console.log("สมัคแล้ว", res);
           if (res.statusText == "OK") {
-                this.check_capital = true
-                console.log(this.check_capital);
+            this.check_capital = true;
+            console.log(this.check_capital);
+            // this.$router.params({
+            //   capital_id: item.capital_id,
+            //   check_capital:this.check_capital
+            // })
+            this.$router.push({ name: "form" });
             Swal.fire({
               title: "คุณได้เคยสมัคทุนนี้ไปแล้ว",
               showClass: {

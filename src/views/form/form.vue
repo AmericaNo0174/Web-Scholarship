@@ -769,9 +769,9 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    // if (!window.isLogin) {
-    //   this.$router.push({ name: "Login" });
-    // }
+     if(!this.$store.state.login){
+                this.$router.push({name:'Login'})
+    }
 
     //ส่งข้อมุลที่กรอกกลับมาเก็บเผื่อ user แก้ไข แล้วทำการเช็คก่อนว่าเป็นการเข้าครั้งแรกหรือกลับมาจากหน้า upload
     if (this.$route.params.form_user) {

@@ -727,9 +727,9 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    // if (!window.isLogin) {
-    //   this.$router.push({ name: "Login" });
-    // }
+    if(!this.$store.state.login){
+                this.$router.push({name:'Login'})
+    }
     if (this.$route.params.form_user) {
       console.log(this.$route.params);
       this.form_user = this.$route.params.form_user

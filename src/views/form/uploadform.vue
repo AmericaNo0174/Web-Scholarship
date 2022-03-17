@@ -110,7 +110,7 @@
                 form_family: form_family,
                 form_money: form_money,
                 form_img: form_img,
-                capital_id: capital_id
+                capital_id: capital_id,
               },
             }"
             ><button type="button" class="btn btn-danger">
@@ -130,6 +130,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 import Footer from "../../components/footer.vue";
 import axios from "axios";
 export default {
@@ -199,17 +200,16 @@ export default {
         essay: null,
       },
       temp: null,
-      capital_id:null
+      capital_id: null,
     };
   },
   mounted() {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    // if(!window.isLogin){
-    //     this.$router.push({name:'Login'})
-    // }
-
+    if (!this.$store.state.login) {
+      this.$router.push({ name: "Login" });
+    }
     //ส่งข้อมุลที่กรอกกลับมาเก็บเผื่อ user แก้ไข และเช็คก่อนว่ามาจากหน้า form หรือรีเฟรชหน้า
     if (this.$route.params.form_user) {
       console.log(this.$route.params);
@@ -217,9 +217,9 @@ export default {
       this.form_family = this.$route.params.form_family;
       this.form_money = this.$route.params.form_money;
       this.form_img = this.$route.params.form_img;
-      this.capital_id = this.$route.params.capital_id
+      this.capital_id = this.$route.params.capital_id;
       console.log("img", this.form_img);
-      console.log('capital_id',this.capital_id);
+      console.log("capital_id", this.capital_id);
     }
   },
   methods: {
@@ -232,10 +232,28 @@ export default {
           form_family: this.form_family,
           form_money: this.form_money,
           form_img: this.form_img,
-          capital_id: this.capital_id
+          capital_id: this.capital_id,
         })
         .then((res) => {
           console.log(res);
+          console.log(res.data.protocol41);
+          if (res.data.protocol41 == true) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "สมัคทุนสำเร็จ",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.$router.push({ name: "Open" });
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "สมัคทุนไม่สำเร็จ",
+              text: "Something went wrong!",
+              footer: '<a href="">Why do I have this issue?</a>',
+            });
+          }
         });
     },
 
@@ -261,23 +279,29 @@ export default {
 
         // Set imageSource data to show in UI
         //เช็ค
-         console.log(self.temp);
-         //เช็คก่อนว่าที่เซฟรูปเข้าไปมาจากส่วนไหน
+        console.log(self.temp);
+        //เช็คก่อนว่าที่เซฟรูปเข้าไปมาจากส่วนไหน
         if (self.temp == "id_card") {
-          self.form_img.identity_card_img = "data:image/png;base64," + imageSource;
-          console.log('id_card',self.form_img.identity_card_img);
-        } if (self.temp == "id_house") {
-          self.form_img.identity_house_img ="data:image/png;base64," + imageSource;
-            console.log('id_house',self.form_img.identity_house_img);
-        } if (self.temp == "user_img") {
+          self.form_img.identity_card_img =
+            "data:image/png;base64," + imageSource;
+          console.log("id_card", self.form_img.identity_card_img);
+        }
+        if (self.temp == "id_house") {
+          self.form_img.identity_house_img =
+            "data:image/png;base64," + imageSource;
+          console.log("id_house", self.form_img.identity_house_img);
+        }
+        if (self.temp == "user_img") {
           self.form_user.user_img = "data:image/png;base64," + imageSource;
-          console.log('user_img',self.form_user.user_img);
-        } if (self.temp == "house_img") {
+          console.log("user_img", self.form_user.user_img);
+        }
+        if (self.temp == "house_img") {
           self.form_img.house_img = "data:image/png;base64," + imageSource;
-          console.log('house_img',self.form_img.house_img);
-        } if (self.temp == "gpa_file") {
+          console.log("house_img", self.form_img.house_img);
+        }
+        if (self.temp == "gpa_file") {
           self.form_img.gpa_file = "data:image/png;base64," + imageSource;
-          console.log('gpa_file',self.form_img.gpa_file);
+          console.log("gpa_file", self.form_img.gpa_file);
         }
       };
       reader.readAsArrayBuffer(file);

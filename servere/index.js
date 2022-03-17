@@ -12,7 +12,6 @@ const db = mysql.createConnection({
   database: "studentname",
 });
 
-
 app.get("/table", (req, res) => {
   db.query("SELECT * FROM user", (err, result) => {
     if (err) {
@@ -22,8 +21,6 @@ app.get("/table", (req, res) => {
     }
   });
 });
-
-
 
 app.post("/pf_student", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -66,8 +63,6 @@ app.post("/pf_student", (req, res) => {
     res.send(500);
   }
 });
-
-
 
 app.post("/capital", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -115,8 +110,6 @@ app.post("/capital", (req, res) => {
     }
   });
 });
-
-
 
 app.post("/form", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -186,24 +179,26 @@ app.post("/form", (req, res) => {
   );
 });
 
-
 app.get("/showcapital", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  db.query("SELECT * FROM capital ", (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result);
-      res.send(result);
+  const d = new Date();
+  const day = [d.getFullYear(), d.getMonth() + 1, d.getDate()].join("-");
+  db.query(
+    `SELECT * FROM capital WHERE date_end > "${day}"  `,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.send(result);
+      }
     }
-  });
+  );
 });
-
-
 
 app.post("/checkcapital", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -212,22 +207,23 @@ app.post("/checkcapital", (req, res) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   // console.log(req.body);
-  const check =  req.body.checkapply;
+  const check = req.body.checkapply;
   const id_user = req.body.id_user;
-  db.query(`SELECT form.user_id,upload.capital_id FROM form INNER JOIN upload ON form.form_id = upload.form_id  WHERE form.user_id = "${id_user}"  `, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result[0].capital_id);
-      // res.send(result);
-      if(check == result[0].capital_id){
-        res.send(result);
+  db.query(
+    `SELECT form.user_id,upload.capital_id FROM form INNER JOIN upload ON form.form_id = upload.form_id  WHERE form.user_id = "${id_user}"  `,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result[0].capital_id);
+        // res.send(result);
+        if (check == result[0].capital_id) {
+          res.send(result);
+        }
       }
     }
-  });
+  );
 });
-
-
 
 app.post("/capital_detail", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -237,16 +233,18 @@ app.post("/capital_detail", (req, res) => {
   );
   const id_capital = req.body.id_capital;
   console.log();
-  db.query(`SELECT * FROM capital WHERE capital_id = "${id_capital}" `, (err, result) => {
-    if (err) {
-      console.log(err);
-    } else {
-      // console.log(result);
-      res.send(result);
+  db.query(
+    `SELECT * FROM capital WHERE capital_id = "${id_capital}" `,
+    (err, result) => {
+      if (err) {
+        console.log(err);
+      } else {
+        // console.log(result);
+        res.send(result);
+      }
     }
-  });
+  );
 });
-
 
 app.post("/step", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -287,24 +285,24 @@ app.post("/showprofile", (req, res) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   const id_user = req.body.id_user;
-  if (id_user != null) {
-    db.query(
-      `SELECT data_user FROM form WHERE user_id = '${id_user}'`,
-      (err, result) => {
-        if (err) {
-          console.log(err);
-        } else {
-          console.log(result);
-          res.send(result)
-          // แปลง string to json
-          // const obj = JSON.parse(result[0].data_user);
-          // // const user_img = result[0].user_image
-          // console.log(obj);
-          // res.send(obj);
-        }
+  db.query(
+    `SELECT data_user FROM form WHERE user_id = '${id_user}'`,
+    (err, result) => {
+      console.log(result);
+      if(result == ""){
+        result=false
+        res.send(result);
       }
-    );
-  }
+      else{
+        if (err) {
+              console.log(err);
+            } else {
+              console.log(result);
+              res.send(result);
+            }
+      }
+    }
+  );
 });
 
 app.post("/showuser", (req, res) => {
@@ -319,7 +317,7 @@ app.post("/showuser", (req, res) => {
       console.log(err);
     } else {
       console.log(result);
-      res.send(result)
+      res.send(result);
     }
   });
 });

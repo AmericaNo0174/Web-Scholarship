@@ -48,7 +48,7 @@ export default {
       Footer
     },
      mounted() {
-        if(!window.isLogin){
+        if(!this.$store.state.login){
             this.$router.push({name:'Login'})
         }
      }

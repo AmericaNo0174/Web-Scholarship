@@ -12,10 +12,9 @@ import Open from '../views/open_capital/open_capital.vue'
 import Adminstatusinterview from '../views/admin-statusinterview/admin-statusinterview.vue'
 import Statusname from '../views/statusname/statusname.vue'
 import Statusinterview  from '../views/statusinterview/statusinterview.vue'
-import list_tun_nisit from '../views/totalboard_score/list_tun_nisit.vue'
 import Nameorder from '../views/nameorder/nameorder.vue'
 import Step from '../views/step/step.vue'
-import Adminopencapital from '../views/admin-opencapital/admin-opencapital'
+import Adminopencapital from '../views/admin-opencapital/admin-opencapital.vue'
 import Adminstep from '../views/admin-step/admin-step.vue'
 import Profile from '../views/profile/profile.vue'
 import Main from '../views/main/main.vue'
@@ -77,11 +76,7 @@ const routes = [
         name:'Statusinterview',
         component: Statusinterview
       },
-      {
-        path:'/list_tun_nisit',
-        name:'list_tun_nisit',
-        component: list_tun_nisit
-      },
+   
       {
         path:'/profile',
         name:'Profile',

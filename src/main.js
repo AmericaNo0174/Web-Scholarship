@@ -2,6 +2,8 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router/index'
 import './assets/css/tailwind.css'
+import store from './store/store'
+
 
 
 // import GAuth from 'vue-google-oauth2' 
@@ -22,6 +24,6 @@ Vue.GoogleAuth.then(auth2 => {
 
 new Vue({
   router,
-
+  store,
   render: h => h(App)
 }).$mount('#app')

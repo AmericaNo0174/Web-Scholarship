@@ -99,9 +99,9 @@ export default {
       baseURL: "http://localhost:3001/",
     });
     this.open_profile();
-    // if(!window.isLogin){
-    //     this.$router.push({name:'Login'})
-    // }
+   if(!this.$store.state.login){
+                this.$router.push({name:'Login'})
+    }  
   },
 
   methods: {
@@ -111,17 +111,37 @@ export default {
     },
     open_profile() {
       //เอา id ไปหาข้อมูลที่อยู่ใน database
-      // const id_user = window.localStorage.getItem("id_user"); 
-      this.http
+      // this.http
+      //   .post("showprofile", {
+      //     id_user: this.$store.state.user.user_id,
+      //   })
+      //   .then((res) => {
+      //     // console.log("res:", res.data);
+      //     // แปลง string to json
+      //     this.form = JSON.parse(res.data[0].data_user);
+      //     this.isShow = true
+      //     // console.log('form',this.form);
+      //   })
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+       this.http
         .post("showprofile", {
-          id_user: window.id_user,
+          id_user: this.$store.state.user.user_id,
         })
         .then((res) => {
-          // console.log("res:", res.data);
-          // แปลง string to json
-          this.form = JSON.parse(res.data[0].data_user);
-          this.isShow = true
-          // console.log('form',this.form);
+          console.log("res:", res.data);
+
+         //เช็คว่ากรอกข้อมูลไปรึยัง
+          if(res.data){
+             // แปลง string to json
+            this.form = JSON.parse(res.data[0].data_user);
+            this.isShow = true
+            console.log('form',this.form);
+          }
+          else{
+            this.isShow = false
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -130,6 +150,7 @@ export default {
   },
 };
 </script>
+
 
 <style>
 .container-side {

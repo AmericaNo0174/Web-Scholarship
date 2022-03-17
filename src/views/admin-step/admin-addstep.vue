@@ -153,9 +153,10 @@ export default {
   mounted() {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
-      //       if(!window.isLogin){
-      //           this.$router.push({heading:'Login'})
     });
+     if(!this.$store.state.login){
+                this.$router.push({name:'Login'})
+    }
   },
 
   methods: {

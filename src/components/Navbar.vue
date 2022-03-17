@@ -5,10 +5,10 @@
         <i class="fa fa-bars text-white" aria-hidden="true"></i>
       </div>
       <div class="logo"><img src="../assets/logo.svg" alt="" /></div>
-      <div class="nav-name" ><p>{{form.email}}</p></div>
+      <div class="nav-name" ><p>{{$store.state.user.email}}</p></div>
       <!-- <div class="logout"><i class="fa fa-power-off text-white" aria-hidden="true"></i></div> -->
       <router-link class="logout" to="/"
-        ><i class="fa fa-power-off text-white" aria-hidden="true"></i
+        ><i class="fa fa-power-off text-white" aria-hidden="true" @click="logout" ></i
       ></router-link>
     </div>
     <div class="nav2">
@@ -39,10 +39,9 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    this.open_profile();
-    // if(!window.isLogin){
-    //     this.$router.push({name:'Login'})
-    // }
+     if(!this.$store.state.login){
+                this.$router.push({name:'Login'})
+    }
     
   },
   methods: {
@@ -50,23 +49,10 @@ export default {
       this.isOpen = !this.isOpen;
       this.$emit("openSidebar", this.isOpen);
     },
-    open_profile() {
-      //เอา id ไปหาข้อมูลที่อยู่ใน database
-       window.id_user = window.localStorage.getItem("id_user");
-      // console.log(id_user);
-      this.http
-        .post("showuser", {
-          id_user: window.id_user,
-        })
-        .then((res) => {
-          // console.log("res:", res.data);
-          this.form = res.data[0]
-          // console.log(this.form);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+   logout(){
+      this.$store.commit('setLogout')
+      console.log('status',this.$store.state.login);
+    }
   },
 };
 </script>

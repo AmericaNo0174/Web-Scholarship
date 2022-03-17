@@ -10,6 +10,7 @@
             height="150"
             alt=""
           />
+
           <h1>SIGN IN</h1>
           <br />
           <GoogleLogin
@@ -123,11 +124,10 @@ import Swal from "sweetalert2";
 import GoogleLogin from "vue-google-login";
 import 'lodash'
 import axios from "axios";
-
-
+import store from '../../store/store'
 export default {
   name: "App",
-
+  store,
   /*Role 1). Admin
          2). คณะกรรมการ
          3). User */
@@ -165,7 +165,7 @@ export default {
       var profile = googleUser.getBasicProfile();
       const fullName = profile.getName();
       const [first, last] = fullName.split(' ');
-      
+      this.$store.commit('setLogin')
       console.log(first);
       console.log(last); 
       // var lname = googleUser.getBasicProfile().vW;
@@ -181,7 +181,8 @@ export default {
           console.log('login',res);
           // window.user_id = res.data[0].user_id;
           // console.log(window.user_id);
-          window.localStorage.setItem('id_user',res.data[0].user_id );
+          this.$store.commit('setUser',res.data[0])
+          console.log('user',this.$store.state.user);
           this.$router.push({ name: "Main" });
           Swal.fire({
             position: "center",

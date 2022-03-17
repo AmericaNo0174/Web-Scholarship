@@ -1,7 +1,11 @@
 <template>
   <div class="container-profile">
-    <div class="profile">
-      <a href="#"><img :src="form.user_img" alt="" /></a>
+    <div class="profile" v-if="isShow">
+      <a href="#"><img class="img-profile" :src="form.user_img" alt="" /></a>
+      <h2>ข้อมูลส่วนตัว</h2>
+    </div>
+    <div class="profile" v-else>
+      <a href="#"><img class="img-profile" src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=850&q=50" alt="" /></a>
       <h2>ข้อมูลส่วนตัว</h2>
     </div>
     <div class="data-profile">
@@ -89,6 +93,7 @@ export default {
   },
   data() {
     return {
+      isShow:false,
       form: {
         fname: null,
         lname: null,
@@ -118,22 +123,30 @@ export default {
       baseURL: "http://localhost:3001/",
     });
     this.open_profile();
-    // if(!window.isLogin){
-    //     this.$router.push({name:'Login'})
-    // }
+    if(!this.$store.state.login){
+        this.$router.push({name:'Login'})
+    }
   },
   methods: {
     open_profile() {
-      const id_user = window.localStorage.getItem("id_user");
-      this.http
+       //เอาข้อมูลไปเช็คใน database
+       this.http
         .post("showprofile", {
-          id_user: id_user,
+          id_user: this.$store.state.user.user_id,
         })
         .then((res) => {
           console.log("res:", res.data);
-          // แปลง string to json
-          this.form = JSON.parse(res.data[0].data_user);
-          console.log('form',this.form);
+
+         //เช็คว่ากรอกข้อมูลไปรึยัง
+          if(res.data){
+             // แปลง string to json
+            this.form = JSON.parse(res.data[0].data_user);
+            this.isShow = true
+            console.log('form',this.form);
+          }
+          else{
+            this.isShow = false
+          }
         })
         .catch((err) => {
           console.log(err);
@@ -151,6 +164,14 @@ export default {
   text-align: center;
   max-height: 90vh;
   overflow-y: auto;
+}
+.container-profile .img-profile{
+    display: flex;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    align-items: center;
+    margin: 20px auto;
 }
 .data-profile {
   width: 100%;
