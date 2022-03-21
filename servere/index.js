@@ -305,6 +305,32 @@ app.post("/showprofile", (req, res) => {
   );
 });
 
+app.get("/getuser", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  db.query(
+    `SELECT * FROM user`,
+    (err, result) => {
+      console.log(result);
+      if(result == ""){
+        res.send(result);
+      }
+      else{
+        if (err) {
+              console.log(err);
+            } else {
+              console.log(result);
+              res.send(result);
+            }
+      }
+    }
+  );
+});
+
+
 app.post("/showuser", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(

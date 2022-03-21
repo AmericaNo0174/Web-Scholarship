@@ -110,21 +110,7 @@ export default {
       this.sidebarOpen = isOpen;
     },
     open_profile() {
-      //เอา id ไปหาข้อมูลที่อยู่ใน database
-      // this.http
-      //   .post("showprofile", {
-      //     id_user: this.$store.state.user.user_id,
-      //   })
-      //   .then((res) => {
-      //     // console.log("res:", res.data);
-      //     // แปลง string to json
-      //     this.form = JSON.parse(res.data[0].data_user);
-      //     this.isShow = true
-      //     // console.log('form',this.form);
-      //   })
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
+      //เอาข้อมูลไปเช็คใน database
        this.http
         .post("showprofile", {
           id_user: this.$store.state.user.user_id,

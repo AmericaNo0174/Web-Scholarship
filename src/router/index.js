@@ -20,7 +20,10 @@ import Profile from '../views/profile/profile.vue'
 import Main from '../views/main/main.vue'
 import Adminaddcapital from '../views/admin-opencapital/admin-addcapital.vue'
 import Adminaddstep from '../views/admin-step/admin-addstep.vue'
+import Role from '../views/Role/Role.vue'
+import Roleedit from '../views/Role/Role_edit.vue'
 import Detailcapital from '../views/open_capital/detail_capital.vue'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -123,6 +126,16 @@ const routes = [
         path:'/admin-addcapital',
         name:'Adminaddcapital',
         component: Adminaddcapital
+      },
+      {
+        path:'/Role',
+        name:'Role',
+        component: Role
+      },
+      {
+        path:'/Roleedit',
+        name:'Roleedit',
+        component: Roleedit
       },
       {
         path:'/admin-addstep',
