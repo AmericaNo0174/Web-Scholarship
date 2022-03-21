@@ -134,8 +134,8 @@ export default {
           id_user: id_user,
         })
         .then((res) => {
-          console.log("สมัคแล้ว", res);
-          if (res.statusText == "OK") {
+          if (res.data[0]) {
+            console.log("สมัคแล้ว", res);
             this.check_capital = true;
             console.log(this.check_capital);
             // this.$router.params({
@@ -152,6 +152,9 @@ export default {
                 popup: "animate__animated animate__fadeOutUp",
               },
             });
+          }
+          else{
+            this.$router.push({ name: "form" });
           }
         });
     },

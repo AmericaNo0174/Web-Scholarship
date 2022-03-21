@@ -212,13 +212,18 @@ app.post("/checkcapital", (req, res) => {
   db.query(
     `SELECT form.user_id,upload.capital_id FROM form INNER JOIN upload ON form.form_id = upload.form_id  WHERE form.user_id = "${id_user}"  `,
     (err, result) => {
+      
       if (err) {
         console.log(err);
       } else {
-        // console.log(result[0].capital_id);
         // res.send(result);
         if (check == result[0].capital_id) {
           res.send(result);
+        }
+        else{
+          // res.send(result);
+          console.log(err);
+          res.send(err);
         }
       }
     }
@@ -314,7 +319,6 @@ app.get("/getuser", (req, res) => {
   db.query(
     `SELECT * FROM user`,
     (err, result) => {
-      console.log(result);
       if(result == ""){
         res.send(result);
       }
