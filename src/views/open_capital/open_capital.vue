@@ -119,6 +119,7 @@ export default {
             binary += String.fromCharCode(bytes[i]);
           }
           self.form_capital[index].imageUpload = binary;
+
           // console.log("arr:", self.form_capital[index].imageUpload);
         }
       });
@@ -134,27 +135,45 @@ export default {
           id_user: id_user,
         })
         .then((res) => {
-          if (res.data[0]) {
-            console.log("สมัคแล้ว", res);
-            this.check_capital = true;
-            console.log(this.check_capital);
-            // this.$router.params({
-            //   capital_id: item.capital_id,
-            //   check_capital:this.check_capital
-            // })
-            this.$router.push({ name: "form" });
-            Swal.fire({
-              title: "คุณได้เคยสมัคทุนนี้ไปแล้ว",
-              showClass: {
-                popup: "animate__animated animate__fadeInDown",
-              },
-              hideClass: {
-                popup: "animate__animated animate__fadeOutUp",
+          console.log(res);
+          if (res.data.length > 0) {
+            if (res.data[0].capital_id == checkapply) {
+              console.log("สมัคแล้ว", res);
+              this.check_capital = true;
+              console.log(this.check_capital);
+              this.$router.push({
+                name: "form",
+                params: {
+                  capital_id: checkapply,
+                  check_capital: this.check_capital,
+                },
+              });
+              Swal.fire({
+                title: "คุณได้เคยสมัคทุนนี้ไปแล้ว",
+                showClass: {
+                  popup: "animate__animated animate__fadeInDown",
+                },
+                hideClass: {
+                  popup: "animate__animated animate__fadeOutUp",
+                },
+              });
+            } else {
+              this.$router.push({
+                name: "form",
+                params: {
+                  capital_id: item.capital_id,
+                  check_capital: this.check_capital,
+                },
+              });
+            }
+          } else {
+            this.$router.push({
+              name: "form",
+              params: {
+                capital_id: item.capital_id,
+                check_capital: this.check_capital,
               },
             });
-          }
-          else{
-            this.$router.push({ name: "form" });
           }
         });
     },

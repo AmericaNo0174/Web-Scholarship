@@ -101,7 +101,7 @@ app.post("/capital", (req, res) => {
             console.log(err);
           } else {
             res.send(result);
-            console.log(result);
+            console.log(result); 
           }
         }
       );
@@ -111,73 +111,109 @@ app.post("/capital", (req, res) => {
   });
 });
 
-app.post("/form", (req, res) => {
+//อัพเดตรูป
+app.put("/update_form_img", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  //เอา email มาเช็ค user_id
-  const email = req.body.form_user.email;
-  // const user_img = req.body.form_user.user_img
-  // console.log(user_img);
+  const user_image = req.body.user_img;
+  // const capital_id = req.body.capital_id;
+  const identity_card_img = req.body.form_img.identity_card_img;
+  const identity_house_img = req.body.form_img.identity_house_img;
+  const house_image = req.body.form_img.house_img;
+  const gpa_file = req.body.form_img.gpa_file;
+  const form_id = req.body.form_id;
   db.query(
-    `SELECT user_id FROM user WHERE email = '${email}'`,
+    `UPDATE upload SET identity_card=?,identity_house=?,house_image=?,gpa_file=? WHERE form_id = '${form_id}'`,
+    [identity_card_img,identity_house_img,house_image,gpa_file],
     (err, result) => {
-      //แปลง json to string
-      const form_user = JSON.stringify(req.body.form_user);
-      const form_family = JSON.stringify(req.body.form_family);
-      const form_money = JSON.stringify(req.body.form_money);
-      const identity_card = req.body.form_img.identity_card_img;
-      const identity_house = req.body.form_img.identity_house_img;
-      const user_img = req.body.form_user.user_img;
-      const house_img = req.body.form_img.house_img;
-      const gpa_file = req.body.form_img.gpa_file;
-      const essay = req.body.form_img.essay;
-      const capital_id = req.body.capital_id;
-      console.log("capital_id", capital_id);
-      // console.log(form_user, form_family, form_money);
-      // console.log("user_id", result[0].user_id);
-      //เอาข้อมูล form ไปเก็บ
-      db.query(
-        "INSERT INTO form (data_user,data_family,data_money,user_id,user_image) VALUES (?,?,?,?,?)",
-        [form_user, form_family, form_money, result[0].user_id, user_img],
-        (err, result) => {
-          if (err) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
+        db.query(`UPDATE form SET user_image='${user_image}'`),
+        (err,result)=>{
+          if(err){
             console.log(err);
-          } else {
-            //จะเอา form_id ไปใช้
-            console.log(result.insertId);
-            try {
-              //เอาข้อมูล upload ไปเก้บ
-              db.query(
-                "INSERT INTO upload (identity_card,identity_house,house_image,gpa_file,essay,form_id,capital_id) VALUES (?,?,?,?,?,?,?)",
-                [
-                  identity_card,
-                  identity_house,
-                  house_img,
-                  gpa_file,
-                  essay,
-                  result.insertId,
-                  capital_id,
-                ],
-                (err, result) => {
-                  if (err) {
-                    console.log(err);
-                  } else {
-                    res.send(result);
-                  }
-                }
-              );
-            } catch (error) {
-              console.log(err);
-            }
+          }
+          else{
+            console.log(result);
           }
         }
-      );
+      }
     }
   );
-});
+}),
+
+  app.post("/form", (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header(
+      "Access-Control-Allow-Headers",
+      "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    //เอา email มาเช็ค user_id
+    const email = req.body.form_user.email;
+    // const user_img = req.body.form_user.user_img
+    // console.log(user_img);
+    db.query(
+      `SELECT user_id FROM user WHERE email = '${email}'`,
+      (err, result) => {
+        //แปลง json to string
+        const form_user = JSON.stringify(req.body.form_user);
+        const form_family = JSON.stringify(req.body.form_family);
+        const form_money = JSON.stringify(req.body.form_money);
+        const identity_card = req.body.form_img.identity_card_img;
+        const identity_house = req.body.form_img.identity_house_img;
+        const user_img = req.body.form_user.user_img;
+        const house_img = req.body.form_img.house_img;
+        const gpa_file = req.body.form_img.gpa_file;
+        const essay = req.body.form_img.essay;
+        const capital_id = req.body.capital_id;
+        console.log("capital_id", capital_id);
+        // console.log(form_user, form_family, form_money);
+        // console.log("user_id", result[0].user_id);
+        //เอาข้อมูล form ไปเก็บ
+        db.query(
+          "INSERT INTO form (data_user,data_family,data_money,user_id,user_image) VALUES (?,?,?,?,?)",
+          [form_user, form_family, form_money, result[0].user_id, user_img],
+          (err, result) => {
+            if (err) {
+              console.log(err);
+            } else {
+              //จะเอา form_id ไปใช้
+              console.log(result.insertId);
+              try {
+                //เอาข้อมูล upload ไปเก้บ
+                db.query(
+                  "INSERT INTO upload (identity_card,identity_house,house_image,gpa_file,essay,form_id,capital_id) VALUES (?,?,?,?,?,?,?)",
+                  [
+                    identity_card,
+                    identity_house,
+                    house_img,
+                    gpa_file,
+                    essay,
+                    result.insertId,
+                    capital_id,
+                  ],
+                  (err, result) => {
+                    if (err) {
+                      console.log(err);
+                    } else {
+                      res.send(result);
+                    }
+                  }
+                );
+              } catch (error) {
+                console.log(err);
+              }
+            }
+          }
+        );
+      }
+    );
+  });
 
 app.get("/showcapital", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
@@ -185,15 +221,15 @@ app.get("/showcapital", (req, res) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  const d = new Date();
-  const day = [d.getFullYear(), d.getMonth() + 1, d.getDate()].join("-");
+  // const d = new Date();
+  // const day = [d.getFullYear(), d.getMonth() + 1, d.getDate()].join("-");
   db.query(
-    `SELECT * FROM capital WHERE date_end > "${day}"  `,
+    // `SELECT * FROM capital WHERE date_end > "${day}"  `,
+    `SELECT * FROM capital `,
     (err, result) => {
       if (err) {
         console.log(err);
       } else {
-        // console.log(result);
         res.send(result);
       }
     }
@@ -206,24 +242,28 @@ app.post("/checkcapital", (req, res) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  // console.log(req.body);
   const check = req.body.checkapply;
   const id_user = req.body.id_user;
+  console.log(id_user);
+  console.log(check);
   db.query(
-    `SELECT form.user_id,upload.capital_id FROM form INNER JOIN upload ON form.form_id = upload.form_id  WHERE form.user_id = "${id_user}"  `,
+    `SELECT form.user_id,upload.capital_id FROM form INNER JOIN upload ON form.form_id = upload.form_id  WHERE form.user_id = "${id_user}" and upload.capital_id = "${check}"  `,
     (err, result) => {
-      
       if (err) {
         console.log(err);
       } else {
         // res.send(result);
-        if (check == result[0].capital_id) {
+        console.log(result);
+        //เช็คว่ามีข้อมูลอยู่รึป่าว
+        if (result.length > 0) {
+          if (check == result[0].capital_id) {
+            res.send(result);
+          } else {
+            // res.send(result);
+            res.send(result);
+          }
+        } else {
           res.send(result);
-        }
-        else{
-          // res.send(result);
-          console.log(err);
-          res.send(err);
         }
       }
     }
@@ -237,7 +277,6 @@ app.post("/capital_detail", (req, res) => {
     "Origin, X-Requested-With, Content-Type, Accept"
   );
   const id_capital = req.body.id_capital;
-  console.log();
   db.query(
     `SELECT * FROM capital WHERE capital_id = "${id_capital}" `,
     (err, result) => {
@@ -283,6 +322,32 @@ app.post("/step", (req, res) => {
 });
 
 //ทำการเอา profile ไปโชว์
+app.post("/showform", (req, res) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  const id_user = req.body.id_user;
+  const capital_id = req.body.capital_id
+  console.log(capital_id);
+  db.query(
+    `SELECT * FROM form INNER JOIN upload ON form.form_id = upload.form_id  WHERE form.user_id = "${id_user}" and upload.capital_id = "${capital_id}"  `,
+    (err, result) => {
+      console.log(result);
+      if (result == "") {
+        result = false;
+        res.send(result);
+      } else {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(result);
+        }
+      }
+    }
+  );
+});
 app.post("/showprofile", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header(
@@ -291,20 +356,18 @@ app.post("/showprofile", (req, res) => {
   );
   const id_user = req.body.id_user;
   db.query(
-    `SELECT data_user FROM form WHERE user_id = '${id_user}'`,
+    `SELECT * FROM form WHERE user_id = '${id_user}'`,
     (err, result) => {
       console.log(result);
-      if(result == ""){
-        result=false
+      if (result == "") {
+        result = false;
         res.send(result);
-      }
-      else{
+      } else {
         if (err) {
-              console.log(err);
-            } else {
-              console.log(result);
-              res.send(result);
-            }
+          console.log(err);
+        } else {
+          res.send(result);
+        }
       }
     }
   );
@@ -316,24 +379,19 @@ app.get("/getuser", (req, res) => {
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
-  db.query(
-    `SELECT * FROM user`,
-    (err, result) => {
-      if(result == ""){
+  db.query(`SELECT * FROM user`, (err, result) => {
+    if (result == "") {
+      res.send(result);
+    } else {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(result);
         res.send(result);
       }
-      else{
-        if (err) {
-              console.log(err);
-            } else {
-              console.log(result);
-              res.send(result);
-            }
-      }
     }
-  );
+  });
 });
-
 
 app.post("/showuser", (req, res) => {
   res.header("Access-Control-Allow-Origin", "*");

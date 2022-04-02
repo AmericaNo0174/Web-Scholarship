@@ -111,6 +111,7 @@
                 form_money: form_money,
                 form_img: form_img,
                 capital_id: capital_id,
+                check_capital: check_capital
               },
             }"
             ><button type="button" class="btn btn-danger">
@@ -139,6 +140,7 @@ export default {
   },
   data() {
     return {
+      check_capital:null,
       form_user: {
         fname: null,
         lname: null,
@@ -218,6 +220,7 @@ export default {
       this.form_money = this.$route.params.form_money;
       this.form_img = this.$route.params.form_img;
       this.capital_id = this.$route.params.capital_id;
+      this.check_capital = this.$route.params.check_capital;
       console.log("img", this.form_img);
       console.log("capital_id", this.capital_id);
     }

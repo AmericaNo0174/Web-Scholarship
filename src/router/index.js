@@ -23,7 +23,8 @@ import Adminaddstep from '../views/admin-step/admin-addstep.vue'
 import Role from '../views/Role/Role.vue'
 import Roleedit from '../views/Role/Role_edit.vue'
 import Detailcapital from '../views/open_capital/detail_capital.vue'
-
+import Showform from '../views/form/show_form.vue'
+import Showupload from '../views/form/show_uploadform.vue'
 Vue.use(VueRouter)
 
 const routes = [
@@ -104,6 +105,16 @@ const routes = [
         path:'/main',
         name:'Main',
         component: Main
+      },
+      {
+        path:'/show_form',
+        name:'Show_form',
+        component: Showform
+      },
+      {
+        path:'/show_upload',
+        name:'Show_upload',
+        component: Showupload
       },
 
       // ####### ADMIN ########

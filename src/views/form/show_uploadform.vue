@@ -23,35 +23,65 @@
           <label for="formFile" class="lup form-label"
             ><b> สำเนาบัตรประชาชนผู้สมัคร </b></label
           >
-          <input class="upf form-control" type="file" id="formFile" />
+          <input
+            @change="upload_img"
+            @click="temp = 'id_card'"
+            class="upf form-control"
+            type="file"
+            id="formFile"
+          />
         </div>
 
         <div class="mb-4">
           <label for="formFile" class="lup form-label"
             ><b> สำเนาทะเบียนบ้านของผู้สมัคร </b></label
           >
-          <input class="upf form-control" type="file" id="formFile" />
+          <input
+            @change="upload_img"
+            @click="temp = 'id_house'"
+            class="upf form-control"
+            type="file"
+            id="formFile"
+          />
         </div>
 
         <div class="mb-4">
           <label for="formFile" class="lup form-label"
             ><b> รูปถ่ายนิสิต </b></label
           >
-          <input class="upf form-control" type="file" id="formFile" />
+          <input
+            @change="upload_img"
+            @click="temp = 'user_img'"
+            class="upf form-control"
+            type="file"
+            id="formFile"
+          />
         </div>
 
         <div class="mb-4">
           <label for="formFile" class="lup form-label"
             ><b> รูปถ่ายที่พักอาศัยตามภูมิลำเนา </b></label
           >
-          <input class="upf form-control" type="file" id="formFile" />
+          <input
+            @change="upload_img"
+            @click="temp = 'house_img'"
+            class="upf form-control"
+            type="file"
+            id="formFile"
+          />
         </div>
 
         <div class="mb-4">
           <label for="formFile" class="lup form-label"
             ><b> ใบรายงานผลการศึกษา </b></label
           >
-          <input class="upf form-control" type="file" id="formFile" />
+          <input
+            @change="upload_img"
+            @click="temp = 'gpa_file'"
+            class="upf form-control"
+            type="file"
+            id="formFile"
+          />
         </div>
 
         <div class="mb-4">
@@ -66,6 +96,8 @@
             cols="5"
             rows="35"
             placeholder="กรอกเรียงความประวัติของนิสิต"
+            v-model="form_img.essay"
+            disabled
           ></textarea>
         </div>
 
@@ -73,19 +105,22 @@
           <router-link
             class="btfback"
             :to="{
-              name: 'form',
+              name: 'Show_form',
               params: {
                 form_user: form_user,
                 form_family: form_family,
                 form_money: form_money,
+                form_img: form_img,
+                capital_id: capital_id,
+                form_id:form_id
               },
             }"
             ><button type="button" class="btn btn-danger">
               Back
             </button></router-link
           >
-          <router-link  class="btfup" to=""
-            ><button type="button" class="btn btn-danger">
+          <router-link class="btfup" to=""
+            ><button @click="update_img" type="button" class="btn btn-danger">
               Save
             </button></router-link
           >
@@ -105,6 +140,7 @@ export default {
   },
   data() {
     return {
+      form_id:null,
       form_user: {
         fname: null,
         lname: null,
@@ -124,6 +160,7 @@ export default {
         address: null,
         email: null,
         phonenumber: null,
+        user_img: null,
       },
       form_family: {
         d_fname: null,
@@ -157,39 +194,99 @@ export default {
         manager_phonenumber: null,
         manager_statusgive: null,
       },
-      identity_card: null,
-      identity_house: null,
-      user_image: null,
-      house_image: null,
-      gpa_file: null,
-      essay: null,
+      form_img: {
+        identity_card_img: null,
+        identity_house_img: null,
+        house_img: null,
+        gpa_file: null,
+        essay: null,
+      },
+      temp: null,
+      capital_id: null,
     };
   },
   mounted() {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-     if(!this.$store.state.login){
-                this.$router.push({name:'Login'})
+    if (!this.$store.state.login) {
+      this.$router.push({ name: "Login" });
     }
-    console.log(this.$route.params);
-    this.form_user = this.$route.params.form_user;
-    this.form_family = this.$route.params.form_family;
-    this.form_money = this.$route.params.form_money;
-    console.log("form_user", this.form_user);
+    //ส่งข้อมุลที่กรอกกลับมาเก็บเผื่อ user แก้ไข และเช็คก่อนว่ามาจากหน้า form หรือรีเฟรชหน้า
+    if (this.$route.params.form_user) {
+      console.log(this.$route.params);
+      this.form_user = this.$route.params.form_user;
+      this.form_family = this.$route.params.form_family;
+      this.form_money = this.$route.params.form_money;
+      this.form_img = this.$route.params.form_img;
+      this.capital_id = this.$route.params.capital_id;
+      this.form_id = this.$route.params.form_id
+      console.log("capital_id", this.capital_id);
+    }
   },
   methods: {
-    add() {
-      console.log("form_user", this.form_user);
+    //ทำการ update_img ค่าเข้าไปหลังบ้าน
+    update_img() {
+      // console.log(this.form_user);
       this.http
-        .post("form", {
-          form_user: this.form_user,
-          form_family: this.form_family,
-          form_money: this.form_money,
+        .put("update_form_img", {
+          user_img: this.form_user.user_img,
+          form_id: this.form_id,
+          form_img: this.form_img,
+          capital_id: this.capital_id,
         })
-        .then((res) => {
+        .then((res)=>{
           console.log(res);
-        });
+        })
+    },
+
+    upload_img(event) {
+      var self = this;
+      var file = event.target.files[0];
+      console.log(file);
+      var arrayBuffer;
+      var reader = new FileReader();
+      reader.onload = async function () {
+        arrayBuffer = await new Uint8Array(reader.result);
+
+        // Change ArrayBuffer to Base64
+        var binary = "";
+        var bytes = new Uint8Array(arrayBuffer);
+        var len = bytes.byteLength;
+        for (var i = 0; i < len; i++) {
+          binary += String.fromCharCode(bytes[i]);
+        }
+
+        // var imageArray = arrayBuffer; // For save to Database
+        var imageSource = window.btoa(binary); // for show image to UI
+
+        // Set imageSource data to show in UI
+        //เช็คก่อนว่าที่เซฟรูปเข้าไปมาจากส่วนไหน
+        if (self.temp == "id_card") {
+          self.form_img.identity_card_img =
+            "data:image/png;base64," + imageSource;
+          console.log("id_card", self.form_img.identity_card_img);
+        }
+        if (self.temp == "id_house") {
+          self.form_img.identity_house_img =
+            "data:image/png;base64," + imageSource;
+          console.log("id_house", self.form_img.identity_house_img);
+        }
+        if (self.temp == "user_img") {
+          self.form_user.user_img = "data:image/png;base64," + imageSource;
+          console.log("user_img", self.form_user.user_img);
+        }
+        if (self.temp == "house_img") {
+          self.form_img.house_img = "data:image/png;base64," + imageSource;
+          console.log("house_img", self.form_img.house_img);
+        }
+        if (self.temp == "gpa_file") {
+          self.form_img.gpa_file = "data:image/png;base64," + imageSource;
+          console.log("gpa_file", self.form_img.gpa_file);
+        }
+      };
+      reader.readAsArrayBuffer(file);
+
     },
   },
 };

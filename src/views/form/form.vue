@@ -43,17 +43,15 @@
         </div>
         <!-- รหัสนิสิต ชั้นปี -->
         <div class="input-group mb-4">
-          <span class="boxf input-group-text" > รหัสประจำตัวนิสิต </span>
-          <input           
+          <span class="boxf input-group-text"> รหัสประจำตัวนิสิต </span>
+          <input
             type="number"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
             maxlength="10"
-            pattern="/^-?\d+\.?\d*$/" 
+            pattern="/^-?\d+\.?\d*$/"
             class="inf form-control"
             v-model="form_user.idstudent"
             placeholder="กรุณากรอกรหัสนิสิต"
-            
-            
           />
           <span class="boxf input-group-text"> ชั้นปีที่ </span>
           <input
@@ -86,13 +84,13 @@
           /><span class="boxf input-group-text"> ปี </span>
         </div>
 
-        <div class="input-group mb-4" >
-          <span class="boxf input-group-text" > รหัสประจำตัวประชาชน </span>
+        <div class="input-group mb-4">
+          <span class="boxf input-group-text"> รหัสประจำตัวประชาชน </span>
           <input
             type="number"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
             maxlength="13"
-            pattern="/^-?\d+\.?\d*$/" 
+            pattern="/^-?\d+\.?\d*$/"
             class="inf form-control"
             v-model="form_user.idcard"
             placeholder="รหัสประจำตัวประชาชน13หลัก"
@@ -173,15 +171,16 @@
         <!-- คะแนนเฉลี่ยสะสม -->
         <div div class="input-group mb-4">
           <span class="boxf input-group-text"> เกรดเฉลี่ยสะสม </span>
-          <input type="number"
+          <input
+            type="number"
             step="0.01"
             max="4"
             min="0"
-            pattern="/^-?\d+\+-?\d*$/" 
-           class="inf form-control" 
-           placeholder="เกรดเฉลี่ยสะสม"
-           v-model="form_user.gpa" 
-           />
+            pattern="/^-?\d+\+-?\d*$/"
+            class="inf form-control"
+            placeholder="เกรดเฉลี่ยสะสม"
+            v-model="form_user.gpa"
+          />
           <span class="boxf input-group-text"> อาจารย์ที่ปรึกษา </span>
           <input
             type="text"
@@ -221,7 +220,7 @@
             type="tel"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
             maxlength="10"
-            pattern="/^-?\d+\.?\d*$/" 
+            pattern="/^-?\d+\.?\d*$/"
             class="inf form-control"
             name="phone"
             placeholder="กรุณาระบุเบอร์โทรศัพท์ที่ติดต่อได้"
@@ -341,8 +340,8 @@
             <input
               type="tel"
               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="10"
-            pattern="/^-?\d+\.?\d*$/" 
+              maxlength="10"
+              pattern="/^-?\d+\.?\d*$/"
               class="inf form-control"
               name="phone"
               v-model="form_family.d_phonenumber"
@@ -466,7 +465,7 @@
             type="tel"
             oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
             maxlength="10"
-            pattern="/^-?\d+\.?\d*$/" 
+            pattern="/^-?\d+\.?\d*$/"
             class="inf form-control"
             v-model="form_family.m_phonenumber"
             name="phone"
@@ -602,8 +601,8 @@
             <input
               type="tel"
               oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
-            maxlength="10"
-            pattern="/^-?\d+\.?\d*$/" 
+              maxlength="10"
+              pattern="/^-?\d+\.?\d*$/"
               class="inf form-control"
               v-model="form_money.manager_phonenumber"
               name="phone"
@@ -674,8 +673,9 @@
                       form_user: form_user,
                       form_family: form_family,
                       form_money: form_money,
-                      form_img:form_img,
-                      capital_id:capital_id
+                      form_img: form_img,
+                      capital_id: capital_id,
+                      check_capital:check_capital
                     },
                   }"
                   ><button class="btn btn-danger">Next</button></router-link
@@ -700,6 +700,7 @@ export default {
   },
   data() {
     return {
+      check_capital: null,
       form_user: {
         fname: null,
         lname: null,
@@ -760,43 +761,60 @@ export default {
         gpa_file: null,
         essay: null,
       },
-      capital_id:null,
+      capital_id: null,
     };
   },
-
 
   mounted() {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-     if(!this.$store.state.login){
-                this.$router.push({name:'Login'})
+    if (!this.$store.state.login) {
+      this.$router.push({ name: "Login" });
     }
 
     //ส่งข้อมุลที่กรอกกลับมาเก็บเผื่อ user แก้ไข แล้วทำการเช็คก่อนว่าเป็นการเข้าครั้งแรกหรือกลับมาจากหน้า upload
     if (this.$route.params.form_user) {
       console.log(this.$route.params);
-      this.form_user = this.$route.params.form_user
-      this.form_family = this.$route.params.form_family
-      this.form_money = this.$route.params.form_money
-      this.form_img = this.$route.params.form_img
-      this.capital_id = this.$route.params.capital_id
-      console.log('form_user',this.form_user);
+      this.form_user = this.$route.params.form_user;
+      this.form_family = this.$route.params.form_family;
+      this.form_money = this.$route.params.form_money;
+      this.form_img = this.$route.params.form_img;
+      this.capital_id = this.$route.params.capital_id;
+      this.check_capital = this.$route.params.check_capital;
+      console.log("form_user", this.form_user);
+    } else if (this.$route.params) {
+      this.capital_id = this.$route.params.capital_id;
+      console.log("capital_id:", this.capital_id);
+      this.check_capital = this.$route.params.check_capital;
+      console.log("this.check_capital", this.check_capital);
     }
-    else if(this.$route.params){
-      this.capital_id = this.$route.params.capital_id
-      console.log('capital_id:',this.capital_id);
-      this.check_capital = this.$route.params.check_capital
-      console.log('this.check_capital',this.check_capital);
+    if (this.check_capital != false) {
+      this.$router.push({
+        name: "Show_form",
+        params: {
+          capital_id: this.capital_id,
+          check_capital: this.check_capital,
+        },
+      });
     }
   },
   methods: {
+    showhistory() {
+      this.http
+        .post("showprofile", {
+          id_user: this.$store.state.user.user_id,
+        })
+        .then((res) => {
+          console.log(res);
+          this.form_user = JSON.parse(res.data[0].data_user);
+          this.form_family = JSON.parse(res.data[0].data_family);
+          this.form_money = JSON.parse(res.data[0].data_money);
+          console.log(this.form_user);
+        });
+    },
   },
 };
- 
- 
-
- 
 </script>
 
 
