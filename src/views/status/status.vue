@@ -1,10 +1,31 @@
 <template>
   <div class="container-status">
     <div>
-      <div class="profile">
-        <a href="#"><img src="../../assets/profile.svg" alt="" /></a>
+      <div class="profile" v-if="!isShow">
+        <img
+          class="img-profile"
+          src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=850&q=50"
+          alt=""
+        />
         <h2>สภานะขอทุน</h2>
-        <h5>นายกิตติ์ธเนศ ธานี 6230300xxx</h5>
+        <!-- <h5>นายกิตติ์ธเนศ ธานี 6230300xxx</h5> -->
+      </div>
+      <div class="profile" v-else>
+        <img
+          class="img-profile"
+          :src="form_status[0].data_user.user_img"
+          alt=""
+        />
+        <h2>สภานะขอทุน</h2>
+        <h5>
+          {{
+            form_status[0].data_user.fname +
+            " " +
+            form_status[0].data_user.lname +
+            " " +
+            form_status[0].data_user.idstudent
+          }}
+        </h5>
       </div>
       <center>
         <div class="table-status">
@@ -18,31 +39,39 @@
                 <th scope="col">รายละเอียดในการสัมภาษณ์</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody v-for="(item, idx) in form_status" :key="idx">
               <tr>
-                <td scope="row">โครงการทุนการศึกษา</td>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td>15/8/2563</td>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td>
+                <!-- ชื่อทุน -->
+                <td scope="row">{{item.name}}</td>
+                <!-- สถานะ upload -->
+                <td v-if="item.confirm_upload == 1 ">
+                  <i class="fas fa-check-circle" id="yes"></i>
+                </td>
+                <td v-else>
+                  <i class="fas fa-times-circle" id="no"></i>
+                </td>
+                <!-- วันที่สัมภาษณ์ -->
+                <td v-if="item.date_confirm">
+                  {{item.date_confirm}}
+                </td>
+                <td v-else>
+                  <i class="fas fa-minus-circle"  id="no"></i>
+                </td>
+                <!-- เช็คว่ามีสิทธิ์สัมภาษณ์ -->
+                <td v-if="item.confirm_interview">
+                  <i class="fas fa-check-circle" id="yes"></i>
+                </td>
+                <td v-else>
+                  <i class="fas fa-times-circle" id="no"></i>
+                </td>
+                <td v-if="item.confirm_interview">
                   <router-link class="go-interview" to="/interview"
                     ><i class="fas fa-mouse-pointer"></i> click</router-link
                   >
                 </td>
-              </tr>
-              <tr>
-                <td scope="row">ทุนฉลองสมโภชพระเจ้าหลานเธอ</td>
-                <td><i class="fas fa-check-circle"></i></td>
-                <td>21/9/2563</td>
-                <td><i class="fas fa-clock"></i></td>
-                <td><i class="fas fa-minus"></i></td>
-              </tr>
-              <tr>
-                <td scope="row">ทุนการศึกษาประจำปีการศึกษา2564</td>
-                <td><i class="fas fa-times-circle"></i></td>
-                <td>@25/10/2563</td>
-                <td><i class="fas fa-times-circle"></i></td>
-                <td><i class="fas fa-minus"></i></td>
+                <td v-else>
+                 <i class="fas fa-minus-circle"  id="no"></i>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -58,8 +87,7 @@
       </div> -->
       <div class="check-status">
         <p><i class="fas fa-check-circle" id="yes"></i>ผ่าน</p>
-        <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน</p>
-        <p><i class="fas fa-clock" id="load"></i>รอดำเนินการ</p>
+        <p><i class="fas fa-times-circle" id="no"></i>ไม่ผ่าน/รอดำเนินการ</p>
       </div>
     </div>
     <Footer />
@@ -76,68 +104,83 @@ export default {
   data() {
     return {
       isShow: false,
-      form: {
-        fname: null,
-        lname: null,
-        idstudent: null,
-        grade: null,
-        birthday: null,
-        age: null,
-        idcard: null,
-        nationality: null,
-        origin: null,
-        religion: null,
-        simester: null,
-        faculty: null,
-        offset: null,
-        gpa: null,
-        professor: null,
-        address: null,
-        email: null,
-        phonenumber: null,
-        user_img: null,
-        imageUpload:null
-      },
+      
+      form_status: [
+        {
+          check_gpa_file: null,
+          check_house_image: null,
+          check_identity_card: null,
+          check_identity_house: null,
+          check_status_upload: null,
+          check_user_image: null,
+          data_user: [],
+          capital_id: null,
+          form_id: null,
+          user_id: null,
+          complete: null,
+          confirm_interview:null,
+        },
+      ],
     };
   },
   mounted() {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    if (!this.$store.state.login) {
+    if (!this.$store.state.login || this.$store.state.user.Role !=2) {
       this.$router.push({ name: "Login" });
     }
-    this.open_profile();
+    this.open_status();
   },
-   methods: {
-    open_profile() {
+  methods: {
+    open_status() {
       //เอาข้อมูลไปเช็คใน database
-       this.http
-        .post("showprofile", {
+      this.http
+        .post("showstatus", {
           id_user: this.$store.state.user.user_id,
         })
         .then((res) => {
-          console.log("res:", res.data);
-
-         //เช็คว่ากรอกข้อมูลไปรึยัง
-          if(res.data){
-             // แปลง string to json
-            this.form = JSON.parse(res.data[0].data_user);
-            this.isShow = true
-          }
-          else{
-            this.isShow = false
+          //เช็คว่ากรอกข้อมูลไปรึยัง
+          if (res.data.length > 0) {
+            this.form_status = res.data;
+            this.isShow = true;
+            // แปลง string to json
+            for (let i = 0; i < res.data.length; i++) {
+              this.form_status[i].data_user = JSON.parse(res.data[i].data_user);
+            }
+            console.log(this.form_status);
+            this.ConfirmInterview(this.form_status)
+          } else {
+            this.isShow = false;
           }
         })
         .catch((err) => {
           console.log(err);
         });
     },
+    //อัพเดตสถานะสัมภาษณ์
+    ConfirmInterview(data){
+      for(let i = 0;i< data.length;i++ ){
+        if(data[i].confirm_upload == 1 && data[i].date_confirm != null){
+          this.form_status[i].confirm_interview = true
+        }
+        else{
+          this.form_status[i].confirm_interview = false
+        }
+      }
+    }
   },
 };
 </script>
 
 <style >
+.img-profile {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  margin: 20px auto;
+}
 .container-status {
   width: 100%;
   text-align: center;
@@ -174,10 +217,16 @@ tbody {
   font-size: 20px;
   border: 1px solid black;
   padding-block: 10px;
+  text-align: center;
 }
 .table-status table tbody td {
   padding-block: 10px;
   border: 1px solid gray;
+  text-align: center;
+}
+
+.table-status table tbody td i{
+  margin-right: 30px;
 }
 
 .table-status table thead,

@@ -83,7 +83,9 @@ export default {
   margin: 0 auto;
 }
 .nav-name p {
-  margin: auto 0;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto ;
   color: white;
 }
 .logout {

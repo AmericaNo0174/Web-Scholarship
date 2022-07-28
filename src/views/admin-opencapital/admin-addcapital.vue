@@ -22,11 +22,20 @@
           <div class="modal-body">
             <div class="add-text">
               <label for="typecapital">ประเภททุน: </label>
-              <input type="text" v-model="temp.type" />
+              <textarea type="text" v-model="temp.type" cols="40" rows="1" />
               <label for="namecapital">ชื่อทุน: </label>
-              <input type="text" v-model="temp.name" />
+              <textarea type="text" v-model="temp.name" cols="55" rows="1" />
+            </div>
+            <div>
               <label for="detailcapital">รายละเอียดทุน: </label>
-              <input type="text" v-model="temp.detail" />
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="temp.detail"
+                placeholder="รายละเอียดทุน"
+                cols="100"
+                rows="5"
+              ></textarea>
             </div>
             <div class="add-detail">
               <label for="detailcapital">เอกสารที่ต้องใช้: </label>
@@ -82,16 +91,92 @@
                 <label class="form-check-label"> ใบรายงานผลการศึกษา </label>
               </div>
             </div>
-
+            <!-- score -->
+            <div class="add-text">
+            <div
+              v-for="(item, idx) in temp.arr_score"
+              :key="idx"
+              class="add-complece"
+            >
+              <label for="">เกณฑ์การให้คะแนน</label>
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="item.topic"
+                placeholder="topic"
+                cols="20"
+                rows="1"
+              />
+              <label for="">ตัวคะแนน</label>
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="item.score"
+                placeholder="score"
+                cols="20"
+                rows="1"
+              />
+              <button @click="delete_temp_score(idx)" class="btn-delete">
+                <i class="fas fa-trash-alt"></i>ลบทิ้ง
+              </button>
+            </div>
+            </div>
+            <!-- email -->
+            <div class="add-text">
+              <div
+              v-for="(item, idx) in temp.arr_email"
+              :key="idx"
+              class="add-complece"
+            >
+              <label for="">ผู้สัมภาษณ์:</label>
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="item.email"
+                placeholder="XXX.X@ku.th"
+                cols="20"
+                rows="1"
+              />
+              <button @click="delete_temp_email(idx)" class="btn-delete">
+                <i class="fas fa-trash-alt"></i>ลบทิ้ง
+              </button>
+            </div>
+            </div>
             <div class="add-int">
               <label for="namecapital">ชื่อคนมอบทุน: </label>
               <input type="text" v-model="temp.giver" />
               <label for="detailcapital">ทุนที่ได้รับ: </label>
               <input type="number" v-model="temp.money" />
+            </div>
+            <div class="add-text">
               <label for="datecapital">วันที่เปิด: </label>
               <input type="date" v-model="temp.date" />
               <label for="datecapital">วันที่ปิด: </label>
               <input type="date" v-model="temp.date_end" />
+              <label for="datecapital">เวลาประชุม: </label>
+              <input type="time" v-model="temp.meeting" />
+            </div>
+            <div class="add-text">
+              <label for="linkcapital">ลิงก์สัมภาษณ์: </label>
+              <textarea
+                v-model="temp.link"
+                placeholder="https://www.facebook.com/?_rdc=2_rdr"
+                cols="50"
+                rows="1"
+              />
+            </div>
+            <div class="add-text">
+              <label for="">รายละเอียดวันนัดสัมภาษณ์</label>
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="temp.interview_detail"
+                placeholder="a แต่งกายชุดนิสิตสุภาพ
+b. กล้องและไมค์โครโฟนพร้อมใช้งานได้
+c. และอื่นๆ"
+                cols="50"
+                rows="5"
+              />
             </div>
             <div>
               <img :src="temp.imageUpload" alt="" />
@@ -136,129 +221,365 @@
             />
             <!-- webkitdirectory -->
           </div>
-          <div class="add-text">
-            <label for="typecapital">ประเภททุน: </label>
-            <input type="text" v-model="type" />
-            <label for="namecapital">ชื่อทุน: </label>
-            <input type="text" v-model="name" />
-            <label for="detailcapital">รายละเอียดทุน: </label>
-            <input type="text" v-model="detail" />
-          </div>
-          <div class="add-detail">
-            <label for="detailcapital">เอกสารที่ต้องใช้: </label>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value="สำเนาบัตรประชาชนผู้สมัคร"
-                v-model="document"
-              />
-              <label class="form-check-label"> สำเนาบัตรประชาชนผู้สมัคร </label>
+          <div>
+            <div class="add-text">
+              <label for="typecapital">ประเภททุน: </label>
+              <textarea type="text" v-model="type" cols="50" rows="1" />
+              <label for="namecapital">ชื่อทุน: </label>
+              <textarea
+                type="text"
+                v-model="name"
+                cols="70"
+                rows="1"
+              ></textarea>
             </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value="สำเนาทะเบียนบ้านของผู้สมัคร"
-                v-model="document"
-              />
-              <label class="form-check-label">
-                สำเนาทะเบียนบ้านของผู้สมัคร
-              </label>
+            <div class="add-text">
+              <label for="detailcapital">รายละเอียดทุน: </label>
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="detail"
+                placeholder="รายละเอียดทุน"
+                cols="50"
+                rows="5"
+              ></textarea>
             </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value="รูปถ่ายนิสิต"
-                v-model="document"
-              />
-              <label class="form-check-label"> รูปถ่ายนิสิต </label>
+            <div class="add-detail">
+              <label for="detailcapital">เอกสารที่ต้องใช้: </label>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="สำเนาบัตรประชาชนผู้สมัคร"
+                  v-model="document"
+                />
+                <label class="form-check-label">
+                  สำเนาบัตรประชาชนผู้สมัคร
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="สำเนาทะเบียนบ้านของผู้สมัคร"
+                  v-model="document"
+                />
+                <label class="form-check-label">
+                  สำเนาทะเบียนบ้านของผู้สมัคร
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="รูปถ่ายนิสิต"
+                  v-model="document"
+                />
+                <label class="form-check-label"> รูปถ่ายนิสิต </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="รูปถ่ายที่พักอาศัยตามภูมิลำเนา"
+                  v-model="document"
+                />
+                <label class="form-check-label">
+                  รูปถ่ายที่พักอาศัยตามภูมิลำเนา
+                </label>
+              </div>
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value="ใบรายงานผลการศึกษา"
+                  v-model="document"
+                />
+                <label class="form-check-label"> ใบรายงานผลการศึกษา </label>
+              </div>
             </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value="รูปถ่ายที่พักอาศัยตามภูมิลำเนา"
-                v-model="document"
+            <div class="add-text">
+              <label for="namecapital">ชื่อคนมอบทุน: </label>
+              <textarea
+                v-model="giver"
+                placeholder="นายก."
+                cols="50"
+                rows="1"
               />
-              <label class="form-check-label">
-                รูปถ่ายที่พักอาศัยตามภูมิลำเนา
-              </label>
+              <label for="detailcapital">ทุนที่ได้รับ: </label>
+              <textarea v-model="money"  placeholder="5000" cols="50" rows="1" />
             </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value="ใบรายงานผลการศึกษา"
-                v-model="document"
+            <div class="add-text">
+              <label for="linkcapital">ลิงก์สัมภาษณ์: </label>
+              <textarea
+                v-model="link"
+                placeholder="https://www.facebook.com/?_rdc=2_rdr"
+                cols="80"
+                rows="1"
               />
-              <label class="form-check-label"> ใบรายงานผลการศึกษา </label>
             </div>
-          </div>
-          <div class="add-int">
-            <label for="namecapital">ชื่อคนมอบทุน: </label>
-            <input type="text" v-model="giver" />
-            <label for="detailcapital">ทุนที่ได้รับ: </label>
-            <input type="number" v-model="money" />
-            <label for="datecapital">วันที่เปิด: </label>
-            <input type="date" v-model="date" />
-            <label for="datecapital">วันที่ปิด: </label>
-            <input type="date" v-model="date_end" />
-          </div>
-          <button
-            @click="add_capital"
-            id="add-add"
-            type="button"
-            class="btn-add btn-danger"
-          >
-            <i class="fas fa-plus-circle"></i>add
-          </button>
-
-          <!-- ตอนโชว์ทุนที่เพิ่มเข้าไป -->
-          <div v-for="(item, idx) in capital" :key="idx" class="add-complece">
             <div>
-              <img :src="item.imageUpload" alt="" />
+              <div
+                v-for="(item, idx) in arr_score"
+                :key="idx"
+                class="add-complece"
+              >
+                <label for="">เกณฑ์การให้คะแนน</label>
+                <textarea
+                  name="home"
+                  class="inf form-control"
+                  v-model="item.topic"
+                  placeholder="topic"
+                  cols="20"
+                  rows="1"
+                />
+                <label for="">ตัวคะแนน</label>
+                <textarea
+                  name="home"
+                  class="inf form-control"
+                  v-model="item.score"
+                  placeholder="score"
+                  cols="20"
+                  rows="1"
+                />
+                <button @click="delete_score(idx)" class="btn-delete">
+                  <i class="fas fa-trash-alt"></i>ลบทิ้ง
+                </button>
+              </div>
+
+              <button
+                @click="add_score"
+                id="add-add"
+                type="button"
+                class="btn-add btn-danger"
+              >
+                <i class="fas fa-plus-circle"></i>เกณฑ์
+              </button>
             </div>
-            <div class="complece-text">
-              <p>ประเภททุน: {{ item.type }}</p>
-              <p>ชื่อทุน: {{ item.name }}</p>
-              <p>รายละเอียดทุน: {{ item.detail }}</p>
-              <p>เอกสารที่ต้องใช้: {{ item.document.join(",") }}</p>
-            </div>
-            <div class="complece-int">
-              <p>ชื่อคนมอบทุน: {{ item.giver }}</p>
-              <p>ทุนที่ได้รับ: {{ item.money }}</p>
-              <p>วันที่เปิด: {{ item.date }}</p>
-              <p>วันที่ปิด: {{ item.date_end }}</p>
-            </div>
-            <div class="d-capital">
-              <button @click="delete_capital(idx)" class="btn-delete">
+            <div
+              v-for="(item, idx) in arr_email"
+              :key="idx"
+              class="add-complece"
+            >
+              <label for="">ผู้สัมภาษณ์: </label>
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="item.email"
+                placeholder="XXX.X@ku.th"
+                cols="20"
+                rows="1"
+              />
+              <button @click="delete_email(idx)" class="btn-delete">
                 <i class="fas fa-trash-alt"></i>ลบทิ้ง
               </button>
             </div>
             <button
-              @click="edit(idx)"
-              class="btn-edit"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              @click="add_email"
+              id="add-add"
+              type="button"
+              class="btn-add btn-danger"
             >
-              <i class="fas fa-edit"></i>แก้ไข
+              <i class="fas fa-plus-circle"></i>email
             </button>
+            <div class="add-text">
+              <label for="">รายละเอียดวันนัดสัมภาษณ์</label>
+              <textarea
+                name="home"
+                class="inf form-control"
+                v-model="interview_detail"
+                placeholder="a แต่งกายชุดนิสิตสุภาพ
+b. กล้องและไมค์โครโฟนพร้อมใช้งานได้
+c. และอื่นๆ"
+                cols="50"
+                rows="5"
+              />
+            </div>
+            <div class="add-text">
+              <label for="datecapital">วันที่เปิด: </label>
+              <input type="date" v-model="date" />
+              <label for="datecapital">วันที่ปิด: </label>
+              <input type="date" v-model="date_end" />
+              <label for="datecapital">เวลาประชุม: </label>
+              <input type="time" v-model="meeting" />
+            </div>
+            <button
+              @click="add_capital"
+              id="add-add"
+              type="button"
+              class="btn-add btn-danger"
+            >
+              <i class="fas fa-plus-circle"></i>add
+            </button>
+
+            <!-- ตอนโชว์ทุนที่เพิ่มเข้าไป -->
+            <div v-for="(item, idx) in capital" :key="idx" class="add-complece">
+              <div>
+                <img :src="item.imageUpload" alt="" />
+              </div>
+              <div class="add-text">
+                <label for="typecapital">ประเภททุน: </label>
+                <textarea
+                  type="text"
+                  v-model="item.type"
+                  cols="50"
+                  rows="1"
+                  disabled
+                />
+                <label for="namecapital">ชื่อทุน: </label>
+                <textarea
+                  type="text"
+                  v-model="item.name"
+                  cols="70"
+                  rows="1"
+                  disabled
+                ></textarea>
+              </div>
+              <div class="add-text">
+                <label for="detailcapital">รายละเอียดทุน: </label>
+                <textarea
+                  name="home"
+                  class="inf form-control"
+                  v-model="item.detail"
+                  placeholder="รายละเอียดทุน"
+                  cols="50"
+                  rows="5"
+                  disabled
+                ></textarea>
+              </div>
+              <div class="add-detail">
+                <label for="detailcapital">เอกสารที่ต้องใช้: </label>
+                <p>{{ item.document.join(" / ") }}</p>
+              </div>
+              <div class="add-text">
+                <label for="namecapital">ชื่อคนมอบทุน: </label>
+                <!-- <input type="text" v-model="giver" /> -->
+                <textarea
+                  v-model="item.giver"
+                  placeholder="นายก."
+                  cols="50"
+                  rows="1"
+                  disabled
+                />
+                <label for="detailcapital">ทุนที่ได้รับ: </label>
+                <!-- <input type="number" v-model="money" /> -->
+                <textarea
+                  v-model="item.money"
+                  placeholder="500"
+                  cols="50"
+                  rows="1"
+                  disabled
+                />
+              </div>
+              <div class="add-text">
+                <label for="linkcapital">ลิงก์สัมภาษณ์: </label>
+                <textarea
+                  v-model="item.link"
+                  placeholder="https://www.facebook.com/?_rdc=2_rdr"
+                  cols="80"
+                  rows="1"
+                  disabled
+                />
+              </div>
+              <div class="add-text">
+                <div
+                  v-for="(item2, i) in item.arr_score"
+                  :key="i"
+                  class="add-complece"
+                >
+                  <label for="">เกณฑ์การให้คะแนน</label>
+                  <textarea
+                    name="home"
+                    class="inf form-control"
+                    v-model="item2.topic"
+                    placeholder="topic"
+                    cols="20"
+                    rows="1"
+                    disabled
+                  />
+                  <label for="">ตัวคะแนน</label>
+                  <textarea
+                    name="home"
+                    class="inf form-control"
+                    v-model="item2.score"
+                    placeholder="score"
+                    cols="20"
+                    rows="1"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="add-text">
+                <div
+                  v-for="(item2, i) in item.arr_email"
+                  :key="i"
+                  class="add-complece"
+                >
+                  <label for="">ผู้สัมภาษณ์: </label>
+                  <textarea
+                    v-model="item2.email"
+                    placeholder="topic"
+                    cols="20"
+                    rows="1"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="add-text">
+                <label for="">รายละเอียดวันนัดสัมภาษณ์</label>
+                <textarea
+                  name="home"
+                  class="inf form-control"
+                  v-model="item.interview_detail"
+                  placeholder="a แต่งกายชุดนิสิตสุภาพ
+b. กล้องและไมค์โครโฟนพร้อมใช้งานได้
+c. และอื่นๆ"
+                  cols="50"
+                  rows="5"
+                  disabled
+                />
+              </div>
+              <div class="add-text">
+                <label for="datecapital">วันที่เปิด: </label>
+                <input type="date" v-model="item.date" disabled />
+                <label for="datecapital">วันที่ปิด: </label>
+                <input type="date" v-model="item.date_end" disabled />
+                <label for="datecapital">เวลาประชุม: </label>
+                <input type="time" v-model="item.meeting" disabled />
+              </div>
+              <div class="d-capital">
+                <button @click="delete_capital(idx)" class="btn-delete">
+                  <i class="fas fa-trash-alt"></i>ลบทิ้ง
+                </button>
+
+                <button
+                  @click="edit(idx)"
+                  class="btn-edit"
+                  data-bs-toggle="modal"
+                  data-bs-target="#exampleModal"
+                >
+                  <i class="fas fa-edit"></i>แก้ไข
+                </button>
+              </div>
+            </div>
+            <div class="add-button"></div>
           </div>
-          <div class="add-button"></div>
         </div>
-      </div>
-      <div class="back-addcapital">
-        <button id="cancle" type="button" class="btn btn-danger">CANCLE</button>
-        <button
-          @click="save_capital"
-          id="save"
-          type="button"
-          class="btn btn-danger"
-        >
-          SAVE
-        </button>
+        <div class="back-addcapital">
+          <router-link class="back-capital" to="/open_capital"
+            ><button id="cancle" type="button" class="btn btn-danger">
+              CANCLE
+            </button></router-link
+          >
+          <button
+            @click="save_capital"
+            id="save"
+            type="button"
+            class="btn btn-danger"
+          >
+            SAVE
+          </button>
+        </div>
       </div>
     </center>
     <Footer />
@@ -268,6 +589,7 @@
 <script>
 import Footer from "../../components/footer.vue";
 import axios from "axios";
+import Swal from "sweetalert2";
 // import "vue-croppa/dist/vue-croppa.css";
 export default {
   components: {
@@ -284,6 +606,20 @@ export default {
       giver: null,
       date: null,
       date_end: null,
+      link: null,
+      arr_score: [
+        {
+          topic: null,
+          score: null,
+        },
+      ],
+      arr_email: [
+        {
+          email: null,
+        },
+      ],
+      interview_detail: null,
+      meeting: null,
       temp: {
         imageUpload: null,
         type: null,
@@ -294,6 +630,11 @@ export default {
         giver: null,
         date: null,
         date_end: null,
+        link: null,
+        arr_score: null,
+        arr_email: null,
+        interview_detail: null,
+        meeting: null,
       },
       edit_idx: null,
       capital: [],
@@ -305,8 +646,8 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    if(!this.$store.state.login){
-                this.$router.push({name:'Login'})
+    if (!this.$store.state.login || this.$store.state.user.Role != 1) {
+      this.$router.push({ name: "Login" });
     }
   },
 
@@ -335,7 +676,7 @@ export default {
 
         // Set imageSource data to show in UI
         self.imageUpload = "data:image/png;base64," + imageSource;
-        console.log('res',self.imageUpload);
+        console.log("res", self.imageUpload);
       };
       reader.readAsArrayBuffer(file);
     },
@@ -343,11 +684,54 @@ export default {
     save_capital() {
       console.log(this.capital);
       this.http.post("capital", this.capital).then((res) => {
-        console.log( res.data.insertId);
+        console.log(res);
+        console.log(res.data.protocol41);
+        if (res.data.protocol41 == true) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "เพิ่มทุนสำเร็จ",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          this.$router.push({ name: "Open" });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "เพิ่มทุนไม่สำเร็จ",
+            text: "Something went wrong!",
+            footer: '<a href="">Why do I have this issue?</a>',
+          });
+        }
       });
     },
     //เพิ่มกล่องและรายละเอียดต่างๆของทุนทุน
+    add_score() {
+      this.arr_score.push({
+        topic: this.topic,
+        score: this.score,
+      });
+      this.topic = null;
+      this.score = null;
+      console.log(this.arr_score);
+    },
+    add_email() {
+      this.arr_email.push({
+        email: this.email,
+      });
+      this.email = null;
+      console.log(this.arr_email);
+    },
     add_capital() {
+      // let checkIsmoney= /[0-9]/.test(this.money)
+      // let checkIsscore= /[0-9]/.test(this.arr_score.score)
+      //   if(!checkIsscore || !checkIsmoney){
+      //     Swal.fire({
+      //       title:'กรอกข้อมูลไม่ถูกต้อง!!',
+      //       icon:'error'
+      //     })
+      //      return
+      //   }
       this.capital.push({
         imageUpload: this.imageUpload,
         type: this.type,
@@ -358,9 +742,14 @@ export default {
         giver: this.giver,
         date: this.date,
         date_end: this.date_end,
+        link: this.link,
+        arr_score: this.arr_score,
+        arr_email: this.arr_email,
+        interview_detail: this.interview_detail,
+        meeting: this.meeting,
       });
       (this.imageUpload = null),
-      (this.type = null),
+        (this.type = null),
         (this.name = null),
         (this.detail = null),
         (this.document = []),
@@ -368,10 +757,28 @@ export default {
         (this.giver = null),
         (this.date = null),
         (this.date_end = null);
+      this.meeting = null;
+      this.link = null;
+      this.arr_score = [];
+      this.arr_email = [];
+      this.interview_detail = null;
+      console.log(this.capital);
     },
     //ลบข้อมูลทุนในช่องข้อมูลเก่าของทุนนั้นๆ
     delete_capital: function (idx) {
       this.capital.splice(idx, 1);
+    },
+    delete_temp_score: function (idx) {
+      this.temp.arr_score.splice(idx, 1);
+    },
+    delete_temp_email: function (idx) {
+      this.temp.arr_email.splice(idx, 1);
+    },
+    delete_score: function (idx) {
+      this.arr_score.splice(idx, 1);
+    },
+    delete_email: function (idx) {
+      this.arr_email.splice(idx, 1);
     },
     //เอาข้อมูลไปแก้ใน arr เก่า
     edit(idx) {
@@ -396,6 +803,7 @@ export default {
   text-align: center;
   max-height: 90vh;
   overflow-y: auto;
+  
 }
 .container-addcapital h2 {
   margin: 30px 0;
@@ -406,7 +814,7 @@ export default {
   text-align: center;
   display: flex;
   flex-direction: column;
-  height: 720px;
+  height: auto;
   align-items: center;
 }
 .container-addcapital .modal-body img {
@@ -425,6 +833,7 @@ export default {
 .add-button {
   margin: 65px 0;
 }
+
 .add-detail {
   display: flex;
   margin: 60px 20px;
@@ -440,6 +849,9 @@ export default {
   align-items: flex-start;
   justify-content: center;
 }
+.add-text label {
+  margin: 0 20px;
+}
 .add-int {
   display: flex;
   align-items: flex-start;
@@ -452,27 +864,30 @@ export default {
   margin: 0 10px;
 }
 .add-complece {
-  display: flex;
   border: 1px solid black;
   padding: 10px;
   justify-content: center;
   justify-content: space-between;
   margin: 10px;
 }
+.add-detail {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
 .add-complece img {
   width: 300px;
   height: 300px;
 }
 .add-complece .complece-text {
-  text-align: left;
-  width: 350px;
+  /* text-align: left; */
+  display: flex;
 }
 .add-complece .complece-text p {
   margin-bottom: 50px;
 }
 .add-complece .complece-int {
   text-align: left;
-  width: 350px;
 }
 .add-complece .complece-int p {
   margin-bottom: 50px;
@@ -498,6 +913,11 @@ export default {
   border-radius: 25px 25px 25px 25px;
   color: #ffffff;
   background-color: yellow;
+}
+.d-capital {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .addcapital .btn-delete {
   display: flex;

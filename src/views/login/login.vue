@@ -129,8 +129,8 @@ export default {
   name: "App",
   store,
   /*Role 1). Admin
-         2). คณะกรรมการ
-         3). User */
+         2). user
+         3). คณะกรรมการ */
   data() {
     return {
       http: null,

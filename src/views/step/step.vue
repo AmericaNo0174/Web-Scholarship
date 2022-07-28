@@ -25,13 +25,13 @@
     </div> 
     <div class="end-step">
       <router-link class="back-step" to="/main"
-        ><button type="button" class="btn btn-danger">Back</button></router-link
+        ><button type="button" class="btn bstep btn-danger">Back</button></router-link
       >
       <!-- <div class="back-step">
         <button type="button" class="btn btn-danger">Back</button>
       </div> -->
-      <div class="contract-step">
-        <p>@Contract</p>
+      <div class="container contract-step">
+        <p class="contract-step">@Contract</p>
         <a href=""><i id="fb" class="fab fa-facebook"></i></a>
         <a href=""><i id="fm" class="fab fa-facebook-messenger"></i></a>
         <a href=""><i id="line" class="fab fa-line"></i></a>
@@ -234,5 +234,12 @@ export default {
   .end-step.contract-stepi{
     text-align: center;
     margin: 0 12px;
+  }
+  .bstep:hover{
+    opacity: 0.8;
+  }
+
+  .contract-step{
+    float: c;
   }
 </style>

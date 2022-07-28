@@ -1,11 +1,12 @@
 <template>
   <div class="container-role">
     <center>
+    <div class="container">
     <div class="role">
-      <h2>ข้อมูลสมาชิก</h2>
+      <h2 class="h2-role mt-5"><b>ข้อมูลสมาชิก</b></h2>
     </div>
       <div>
-        <table>
+        <table class="mt-5 mb-5">
           <thead>
             <tr>
               <th>ลำดับ</th>
@@ -21,13 +22,33 @@
               <td>{{user.name}}</td>
               <td>{{user.lastname}}</td>
               <td>{{user.email}}</td>
-              <td><button type="button" class="btn btn-dark">Edit</button></td>
+              <router-link class="edit_id"
+              :to="{
+                name:'Roleedit',
+                params: {
+                  user_id: user.user_id,
+                },
+              }">
+              <td><button type="button" class="btn btn-dark">Edit</button></td></router-link>
             </tr>
           </tbody>
         </table>
+        <center>
+          <div>
+            <div class="button-roleedit">
+              <router-link class="menu-edit" to="/main"
+              ><button type="button" class="btn BRhov btn-danger">
+              Back
+              </button></router-link>
+            </div>
+          </div>
+        </center>
+      </div>
       </div>
     </center>
+    <div class="R-footer">
   <Footer/>
+    </div>
   </div>
 </template>
 
@@ -52,7 +73,7 @@ export default {
       baseURL: "http://localhost:3001/",
     });
     this.getuser();
-    if (!this.$store.state.login) {
+    if (!this.$store.state.login || this.$store.state.user.Role != 1) {
       this.$router.push({ name: "Login" });
     }
   },
@@ -95,4 +116,12 @@ td, th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+/*.R-footer{
+  margin-top: 75px;
+}
+*/
+.h2-role{
+  color: #680c07;
+}
+
 </style>

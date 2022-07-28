@@ -17,8 +17,7 @@
       <div class="upload container mt-5 mb-5 hup">
         <h1 class="hfup"><b>อัพโหลดเอกสาร</b></h1>
       </div>
-
-      <form class="upload container mb-5">
+      <form @submit.prevent="add" class="upload container mb-5" >
         <div class="mb-4">
           <label for="formFile" class="lup form-label"
             ><b> สำเนาบัตรประชาชนผู้สมัคร </b></label
@@ -29,6 +28,7 @@
             class="upf form-control"
             type="file"
             id="formFile"
+            required
           />
         </div>
 
@@ -42,6 +42,7 @@
             class="upf form-control"
             type="file"
             id="formFile"
+            required
           />
         </div>
 
@@ -55,6 +56,7 @@
             class="upf form-control"
             type="file"
             id="formFile"
+            required
           />
         </div>
 
@@ -68,6 +70,7 @@
             class="upf form-control"
             type="file"
             id="formFile"
+            required
           />
         </div>
 
@@ -81,6 +84,7 @@
             class="upf form-control"
             type="file"
             id="formFile"
+            required
           />
         </div>
 
@@ -97,6 +101,7 @@
             rows="35"
             placeholder="กรอกเรียงความประวัติของนิสิต"
             v-model="form_img.essay"
+            required
           ></textarea>
         </div>
 
@@ -118,11 +123,11 @@
               Back
             </button></router-link
           >
-          <router-link class="btfup" to=""
-            ><button @click="add" type="button" class="btn btn-danger">
+          <button  type="submit" id="save" class="btn btn-danger" >
               Save
-            </button></router-link
-          >
+            </button>
+          
+          
         </div>
       </form>
       <Footer />
@@ -209,7 +214,7 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    if (!this.$store.state.login) {
+    if (!this.$store.state.login || this.$store.state.user.Role !=2) {
       this.$router.push({ name: "Login" });
     }
     //ส่งข้อมุลที่กรอกกลับมาเก็บเผื่อ user แก้ไข และเช็คก่อนว่ามาจากหน้า form หรือรีเฟรชหน้า
@@ -229,7 +234,9 @@ export default {
     //ทำการ add ค่าเข้าไปหลังบ้าน
     add() {
       // console.log(this.form_user);
-      this.http
+      if(this.form_user.email == this.$store.state.user.email)
+      {
+         this.http
         .post("form", {
           form_user: this.form_user,
           form_family: this.form_family,
@@ -258,6 +265,15 @@ export default {
             });
           }
         });
+      }
+      else{
+        Swal.fire({
+              icon: "error",
+              title: "email ไม่ถูกต้อง",
+              text: "Something went wrong!",
+              footer: '<a href="">Why do I have this issue?</a>',
+              });
+      }
     },
 
     upload_img(event) {
@@ -360,6 +376,16 @@ export default {
 }
 .bbbup .btfup button {
   font-size: 15px;
+  font-style: Roboto;
+  padding: 13px;
+  width: 130px;
+  border-radius: 25px 25px 25px 25px;
+  color: #ffffff;
+  background-color: rgba(37, 180, 51, 1);
+  float: right;
+}
+#save{
+   font-size: 15px;
   font-style: Roboto;
   padding: 13px;
   width: 130px;

@@ -105,7 +105,7 @@
           <router-link
             class="btfback"
             :to="{
-              name: 'Show_form',
+              name:'Show_form',
               params: {
                 form_user: form_user,
                 form_family: form_family,
@@ -134,6 +134,7 @@
 <script>
 import Footer from "../../components/footer.vue";
 import axios from "axios";
+import Swal from "sweetalert2";
 export default {
   components: {
     Footer,
@@ -223,6 +224,7 @@ export default {
       this.form_id = this.$route.params.form_id
       console.log("capital_id", this.capital_id);
     }
+  //  this.show_upload()
   },
   methods: {
     //ทำการ update_img ค่าเข้าไปหลังบ้าน
@@ -236,7 +238,19 @@ export default {
           capital_id: this.capital_id,
         })
         .then((res)=>{
-          console.log(res);
+          console.log(res)
+          if (res.data.changedRows == 1 ){
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "อัพเดตข้อมูลเรียบร้อย",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.$router.push({ name: "Open" });
+          } else {
+            this.$router.push({ name: "Open" });
+          }
         })
     },
 

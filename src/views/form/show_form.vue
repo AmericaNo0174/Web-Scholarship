@@ -700,7 +700,7 @@
                 class="inf form-check-input"
                 v-model="form_money.manager_statusgive"
                 type="radio"
-                name="form_moneyflexRadioDefault"
+                name="form_money flexRadioDefault"
                 value="ไม่ได้กู้"
                 disabled
               />
@@ -836,6 +836,7 @@ export default {
       this.capital_id = this.$route.params.capital_id;
       this.form_id = this.$route.params.form_id;
     } else if (this.$route.params) {
+      console.log(this.$route.params);
       this.capital_id = this.$route.params.capital_id;
       console.log("capital_id:", this.capital_id);
     }
@@ -847,7 +848,7 @@ export default {
       this.http
         .post("showform", {
           id_user: this.$store.state.user.user_id,
-          capital_id:this.capital_id
+          capital_id: this.capital_id,
         })
         .then((res) => {
           console.log(res);
@@ -871,7 +872,7 @@ export default {
             }
             this.form_img.identity_card_img = binary;
           }
-          if(res.data[0].identity_house){
+          if (res.data[0].identity_house) {
             // Change ArrayBuffer to Base64
             let binary = "";
             let bytes = new Uint8Array(res.data[0].identity_house.data);
@@ -881,7 +882,7 @@ export default {
             }
             this.form_img.identity_house_img = binary;
           }
-          if(res.data[0].house_image){
+          if (res.data[0].house_image) {
             // Change ArrayBuffer to Base64
             let binary = "";
             let bytes = new Uint8Array(res.data[0].house_image.data);
@@ -891,7 +892,7 @@ export default {
             }
             this.form_img.house_image = binary;
           }
-          if(res.data[0].gpa_file){
+          if (res.data[0].gpa_file) {
             // Change ArrayBuffer to Base64
             let binary = "";
             let bytes = new Uint8Array(res.data[0].gpa_file.data);
@@ -901,7 +902,7 @@ export default {
             }
             this.form_img.gpa_file = binary;
           }
-           if(res.data[0].user_image){
+          if (res.data[0].user_image) {
             // Change ArrayBuffer to Base64
             let binary = "";
             let bytes = new Uint8Array(res.data[0].user_image.data);

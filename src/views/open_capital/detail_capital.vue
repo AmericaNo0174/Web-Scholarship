@@ -1,11 +1,12 @@
 <template >
   <!DOCTYPE html>
+  <div>
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>detail_tun</title>
+      <title></title>
       <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
         rel="stylesheet"
@@ -13,40 +14,53 @@
         crossorigin="anonymous"
       />
     </head>
-        <body class="container">
-            <div class="container mt-5 mb-5" ><h1><b> การรับสมัครทุนการศึกษา เครือเจริญโภคภัณฑ์ ประจำปีการศึกษา 2563 </b></h1></div><br>
-              <center><img src="../../assets/CP.svg" alt="" /></center><br><br><br>
-                <p>ชื่อโคตรการ</p>
-                <p> ด้วยเครือเจริญโภคภัณฑ์ มีความประสงค์จะสนับสนุนทุนการศึกษาเพื่อช่วยเหลือนักศึกษา ที่มีความประพฤติดี เรียนดี มีความเป็นผู้นำ แต่ขาดแคลนทุนทรัพย์ ให้มีทุนทรัพย์เพียงพอจนสำเร็จการศึกษา</p>
-                <p>ในปีการศึกษา 2563 ได้ให้การสนับสนุนทุนการศึกษา มูลค่าทุนละ 30,000 บาทต่อปีการศึกษา เป็นทุนต่อเนื่องจนสำเร็จการศึกษา ให้แก่นักศึกษาที่มีคุณสมบัติ ดังต่อไปนี้</p>
-                <p>
-                1. เป็นนักศึกษาระดับปริญญาตรี ในสาขาวิชาที่กำหนดในเอกสารแนบ<br>
-                2. ศึกษาในชั้นปีที่ 2 (สำหรับหลักสูตร 4 ปี) หรือศึกษาในชั้นปีที่ 3 (สำหรับหลักสูตร 5 ปี)<br>
-                3. มีผลการเรียนเฉลี่ยสะสมตั้งแต่ชั้นปีที่ 1 จนถึงชั้นปีล่าสุด ไม่ต่ำกว่า 2.75<br>
-                4. เป็นผู้ซึ่งขาดแคลนทุนทรัพย์<br>
-                5. สามารถเข้ารับการฝึกอบรม เข้าร่วมโครงการพัฒนาศักยภาพ และเข้ารับการฝึกงานได้ตามที่คณะกรรมการกำหนด<br>
-                </p>
-                <p>
-                สำหรับนักศึกษาที่สนใจสมัครให้ดำเนินการกรอกข้อมูลสมัครและแนบไฟล์เอกสารตามขั้นตอนที่เครือเจริญโภคภัณฑ์กำหนด รายละเอียดดังเอกสารที่แนบมาด้วย ตั้งแต่วันนี้ ถึงวันที่ 15 กันยายน พ.ศ.2563<br><br>
+      <div class="container mt-5 mb-5">
+        <h1>
+          <b>
+            การรับสมัครทุนการศึกษา {{form_capital.name}}
+          </b>
+        </h1>
+      </div>
+      <br />
+      <center>
+      <img :src="form_capital.imageUpload" alt=""/>
+      </center>
+      <div class=" container mt-5 mb-3">
+      <h3 class="hd03 mb-4"><b> รายละเอียดทุน </b></h3>
 
-                ประกาศทุนการศึกษาเครือเจริญโภคภัณฑ์ 2563<br>
+      <p> <b class="txt-dc" > ประเภททุน&nbsp;&nbsp; : </b> &nbsp;&nbsp; {{form_capital.type}} </p>
+      <p> <b class="txt-dc" > ชื่อทุน&nbsp;&nbsp; : </b> &nbsp;&nbsp; {{form_capital.name}} </p>
+      <p> <b class="txt-dc" > รายละเอียดของทุน&nbsp;&nbsp; : </b> &nbsp;&nbsp; {{form_capital.details}} </p>
+      <p> <b class="txt-dc" > ผู้สนับสนุนทุน&nbsp;&nbsp; : </b> &nbsp;&nbsp; {{form_capital.giver_name}} </p>
+      <p> <b class="txt-dc" > เงินทุนที่ได้รับ&nbsp;&nbsp; : </b> &nbsp;&nbsp; {{form_capital.money}} บาท </p>
+      <p> <b class="txt-dc" > วันเปิดให้ลงทะเบียน&nbsp;&nbsp; : </b> &nbsp;&nbsp; {{form_capital.date}}</p>
+      <p> <b class="txt-dc" > วันปิดให้ลงทะเบียน&nbsp;&nbsp; : </b> &nbsp;&nbsp; {{form_capital.date_end}}</p>
+      <br />
+      </div>
+<div class="container" >
+      <hr />
+</div>
+      <div class="container mt-5 mb-3">
+        <h3 class="hd03 mb-4"><b> เอกสารที่ต้องใช้ </b></h3>
+      <div v-for="(item, idx) in form_capital.document" :key="idx">
+        <p>{{idx+1}}: {{item}}</p>
+      </div>
+      </div>
 
-                สาขาประกาศทุนการศึกษาระดับปริญญาตรี 2563<br> </p><br>
-
-                <hr>
-
-                  <div class="container mt-5 mb-3" ><h3 class="h03"><b> เอกสารที่ใช้สมัคร </b></h3></div>
-                  <p> สำเนาบัตรประชาชนผู้สมัคร </p>
-                  <p> สำเนาทะเบียนบ้านของผู้สมัคร </p>
-                  <p> รูปถ่ายนิสิต </p>
-                  <p> รูปถ่ายที่พักอาศัยตามภูมิลำเนา </p>
-                  <p> ใบรายงานผลการศึกษา </p>
-                  <p> เรียงความเล่าประวัติส่วนตัวของตนเองและปัญหาความเดือดร้อน </p>
-
-        <Footer />
-        </body>
-    </html>    
+      <div class="container mt-5 mb-5" >
+      <div class="bdc">
+       <router-link class="back-opencapital" to="/open_capital">
+        <button type="button" class="btn-dc btn-danger">
+              Back
+        </button></router-link>
+      </div>
+      </div>
+      <Footer />
+    </html>
+  </div>
 </template>
+
+
 
 
 <script>
@@ -56,12 +70,27 @@ export default {
   components: {
     Footer,
   },
-  data(){
-    return{
-      capital_id:null
-    }
+  data() {
+    return {
+      capital_id: null,
+      form_capital: [
+        {
+          imageUpload: null,
+          type: null,
+          name: null,
+          detail: null,
+          document: [],
+          money: null,
+          giver: null,
+          date: null,
+          date_end: null,
+        },
+      ],
+    };
   },
-   mounted() {
+
+
+  mounted() {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
@@ -69,27 +98,57 @@ export default {
       this.$router.push({ name: "Login" });
     }
     this.show_capital();
-   },
-   methods:{
-     show_capital(){
-        this.capital_id = this.$route.params.capital_id
-        console.log('capital_id:',this.capital_id);
-       this.http
+  },
+  methods: {
+    show_capital() {
+      this.capital_id = this.$route.params.capital_id;
+      console.log("capital_id:", this.capital_id);
+      this.http
         .post("capital_detail", {
           id_capital: this.capital_id,
         })
-         .then((res) => {
-          console.log("res:", res.data);
-        })
-     }
-   }
-   
-}
+        .then((res) => {
+          var self = this;
+          self.form_capital = res.data[0];
+          console.log("form", self.form_capital);
+          self.form_capital.document = JSON.parse(res.data[0].document);
+          // Change ArrayBuffer to Base64
+          var binary = "";
+          var bytes = new Uint8Array(self.form_capital.image.data);
+          var len = bytes.byteLength;
+          for (var i = 0; i < len; i++) {
+            binary += String.fromCharCode(bytes[i]);
+          }
+          self.form_capital.imageUpload = binary;
+          console.log(self.form_capital);
+        });
+    },
+  },
+};
 </script>
 
 
+
+
 <style scoped>
-  .h03 {
+.hd03 {
   color: #680c07;
+}
+
+.txt-dc{
+  color: #680c07;
+}
+.btn-dc{
+    font-size: 15px;
+  font-style: Roboto;
+  padding: 13px;
+  width: 130px;
+  border-radius: 25px 25px 25px 25px;
+  color: #ffffff;
+  background-color: rgba(180, 45, 37, 1);
+  position: relative;
+}
+.bdc:hover{
+ opacity: 0.8;
 }
 </style>

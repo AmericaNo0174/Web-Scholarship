@@ -12,7 +12,8 @@
           ผู้มีสิทธิ์สอบสัมภาษณ์
         </button></router-link
       >
-    </div>
+    </div >
+    <div class="main">
     <div class="main-capital" v-for="(item, idx) in form_capital" :key="idx">
       <div class="capital1">
         <img :src="item.imageUpload" alt="" />
@@ -23,13 +24,13 @@
           </div>
           <p>{{ item.details }}</p>
           <div class="btn-capital">
-            <button
+            <button v-if="$store.state.user.Role == 2"
               id="register-capital"
               type="button"
               class="btn btn-danger"
               @click="checkapply(item)"
             >
-              สมัค
+              สมัคร
             </button>
             <router-link
               class="about-capital"
@@ -38,8 +39,8 @@
                 params: {
                   capital_id: item.capital_id,
                 },
-              }"
-              ><button id="about" type="button" class="btn btn-danger">
+              }">
+              <button id="about" type="button" class="btn boc btn-danger">
                 อ่านเพิ่มเติม
               </button></router-link
             >
@@ -47,13 +48,15 @@
         </div>
       </div>
     </div>
+    </div>
     <div class="end-capital">
       <router-link class="back-capital" to="/main"
-        ><button type="button" class="btn btn-danger">Back</button></router-link
+        ><button type="button" class="boc btn btn-danger">Back</button></router-link
       >
-      <!-- <div class="back-capital">
-      <button type="button" class="btn btn-danger">Back</button>
-    </div> -->
+  
+      <router-link class="back-capital" to="/admin-addcapital" v-if="$store.state.user.Role == 1"
+        ><button type="button" class="boc btn btn-danger" id="edit">เพิ่มทุน</button></router-link
+      >
       <div class="contract-capital">
         <p>@Contract</p>
         <a href=""><i id="fb" class="fab fa-facebook"></i></a>
@@ -61,7 +64,8 @@
         <a href=""><i id="line" class="fab fa-line"></i></a>
       </div>
     </div>
-    <Footer />
+    
+    <Footer/>
   </div>
 </template>
 
@@ -125,6 +129,7 @@ export default {
       });
     },
     checkapply(item) {
+      let app = this;
       console.log(item);
       const checkapply = item.capital_id;
       const id_user = this.$store.state.user.user_id;
@@ -135,21 +140,19 @@ export default {
           id_user: id_user,
         })
         .then((res) => {
-          console.log(res);
           if (res.data.length > 0) {
             if (res.data[0].capital_id == checkapply) {
-              console.log("สมัคแล้ว", res);
-              this.check_capital = true;
-              console.log(this.check_capital);
-              this.$router.push({
-                name: "form",
+              app.check_capital = true;
+              console.log(app.check_capital);
+              app.$router.push({
+                name: "Show_form",
                 params: {
                   capital_id: checkapply,
-                  check_capital: this.check_capital,
+                  check_capital: app.check_capital,
                 },
               });
               Swal.fire({
-                title: "คุณได้เคยสมัคทุนนี้ไปแล้ว",
+                title: "คุณได้เคยสมัครทุนนี้ไปแล้ว",
                 showClass: {
                   popup: "animate__animated animate__fadeInDown",
                 },
@@ -205,6 +208,9 @@ export default {
   color: #ffffff;
   background-color: rgba(104, 12, 7, 1);
 }
+.main{
+  height: 35%;
+}
 .main-capital {
   margin-top: 30px;
   height: 60%;
@@ -237,7 +243,6 @@ export default {
 .main-capital .capital1 .data-capital p {
   font-size: 15px;
   color: rgba(135, 18, 12, 1);
-  /* background-color:wheat; */
 }
 .btn-capital button {
   font-size: 15px;
@@ -264,7 +269,7 @@ export default {
   text-align: center;
 }
 .end-capital .contract-capital p {
-  text-align: center;
+  margin: 10px 47%;
 }
 .end-capital .contract-capital i {
   text-align: center;
@@ -284,5 +289,12 @@ export default {
 }
 #line {
   color: rgba(4, 216, 38, 1);
+}
+#edit{
+  background-color: #B8860B;
+}
+
+.boc:hover{
+ opacity: 0.8;
 }
 </style>

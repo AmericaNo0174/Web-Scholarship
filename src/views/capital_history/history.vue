@@ -1,53 +1,24 @@
 <template>
   <div class="container-history">
     <h3>ประวัติรายชื่อผู้ได้รับทุน</h3>
-    <form class="row row-cols-lg-auto g-2 align-items-center">
-        <div class="row" id="ID">
-          <label class="col-6 col-sm-4 col-form-label" style="width:90px"><b>รหัสนิสิต</b></label>
-          <div class="col-sm-8" style="width:150px">
-            <input type="text" class="form-control" placeholder="623030XXXX">
-          </div>
-        </div>
-      <div class="row" id="Type">
-        <label class="col-6 col-sm-4 col-form-label" style="width:110px"><b>ประเภททุน</b></label>
-        <div class="row col-8">
-          <select class="form-select" style="width:150px">
-            <option selected >ทั้งหมด</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
+   <div class="main-search">
+      <div class="col-md-8">
+        <div class="search">
+          <input
+            @change="show_complete()"
+            type="text"
+            title="Type in a name"
+            class="form-control"
+            placeholder="ชื่อ/รหัสนิสิต"
+            v-model="filterText"
+          />
+          <button class="btn btn-dark">
+            <i class="fa fa-search"></i>Search
+          </button>
         </div>
       </div>
-      <div class="row " id="Name">
-        <label class="col-6 col-sm-4 col-form-label" style="width:90px"><b>ชื่อทุน</b></label>
-        <div class="row col-8">
-          <input list="datalistOptions"  style="width:150px" placeholder="ทั้งหมด">
-          <datalist id="datalistOptions">
-            <option value="San Francisco"></option>
-            <option value="New York"></option>
-            <option value="Seattle"></option>
-            <option value="Los Angeles"></option>
-            <option value="Chicago"></option>
-          </datalist>
-        </div>
-      </div>
-      <div class="row" id="Year">
-       <label class="col-6 col-sm-4 col-form-label " style="width:120px"><b>ปีการศึกษา</b></label>
-        <div class="row col-6">
-          <select class="form-select" style="width:150px" >
-            <option selected>ทั้งหมด</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-        </div>
-      </div>
-      <div class="row col-12">
-        <button  class="button-search btn-danger">ค้นหา<i class="fas fa-search"></i></button>
-      </div>
-    </form>
-     <center>
+    </div>
+     <center v-if="isShow">
         <div class="table-history">
           <table class="table table-sm">
             <thead>
@@ -59,54 +30,32 @@
                 <th scope="col">ชื่อทุน</th>
                 <th scope="col">วัน/เดือน/ปี</th>
                 <th scope="col">ทุนการศึกษาที่ได้รับ</th>
-                <th scope="col">หมายเหตุ</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
+            <tbody v-for="(item, idx) in list_name_complete" :key="idx">
+              <tr >
                 <th scope="row">1</th>
-                <th>623030XXXX</th>
-                <th >นายกิตติ์ธเนศ ธานี</th>
-                <th>ทุนเรียนดี</th>
-                <th>ทุนเรียนดีก็เรียนฟรีไปเลยสิจ๊ะ</th>
-                <td>15/08/2554</td>
-                <td>25,000 บาท</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <th>623030XXXX</th>
-                <th>นายนพวัสสต์ กาญจนนินทร์</th>
-                <th>ทุนเรียนเด็กขยัน</th>
-                <th>ทุนเด็กมีพรสวรรค์</th>
-                <td>18/08/2544</td>
-                <td>100,000 บาท</td>
-                <td>-</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <th>623030XXXX</th>
-                <th>นายชม พู</th>
-                <th>ทุนเรียนดี</th>
-                <th>ทุนฉลองสมโภชพระเจ้าหลานเธอ</th>
-                <td>12/08/2554</td>
-                <td>15,000 บาท</td>
-                <td>-</td>
+                <th>{{item.data_user.idstudent}}</th>
+                <th >{{ item.data_user.fname + " " + item.data_user.lname }}</th>
+                <th>{{item.type}}</th>
+                <th>{{item.name}}</th>
+                <td>{{item.date_confirm}}</td>
+                <td>{{item.money}} บาท</td>
               </tr>
             </tbody>
           </table>
         </div>
       </center>
-      <div class="end-history">
+       <div class="end-history">
         <router-link class="back-status" to="/main"
         ><button type="button" class="btn btn-danger">Back</button></router-link
         >
         <!-- <div class="back-status">
           <button type="button" class="btn btn-danger">Back</button>
         </div> -->
-        <div class="sum-history">
+        <div class="sum-history" >
           <p><i class="fas fa-coins"></i>ยอดเงินรวมทั้งสิน</p>
-          <p type="output">20000 บาท</p>
+          <p type="output">{{summoney}} บาท</p>
         </div>
       </div>
     <div class="Footer-history">
@@ -116,16 +65,58 @@
 </template>
 
 <script>
+import axios from "axios";
 import Footer from '../../components/footer.vue';
 export default {
   components: {
     Footer,
   },
+  data(){
+    return{
+      filterText:"",
+      isShow:null,
+      summoney:null,
+      list_name_complete:[
+        {
+          data_user:null,
+        }
+      ]
+    }
+  },
    mounted() {
+      this.http = axios.create({
+      baseURL: "http://localhost:3001/",
+    });
          if(!this.$store.state.login){
                 this.$router.push({name:'Login'})
     }
-     }
+    this.show_complete()
+     },
+    methods:{
+      show_complete(){
+        this.http.post("show_complete",{
+          filter: this.filterText,
+        }).then((res)=>{
+          console.log(res);
+          if(res.data.length > 0)
+          {
+            this.list_name_complete = res.data;
+            this.isShow=true
+            for (let i = 0; i < res.data.length; i++) {
+            //   this.list_name_complete[i].data_user = JSON.parse(
+            //     res.data[i].data_user
+            //   );
+              this.summoney += res.data[i].money
+            //   console.log( this.summoney );
+            }
+            console.log(this.list_name_complete);
+          }
+          else{
+            this.isShow=false
+          }
+        })
+      }
+    }
 }
 </script>
 
@@ -221,7 +212,7 @@ export default {
   margin-left: 30px;
   }
   .Footer-history{
-    margin-top: 48px;
+    margin-top: 282px;
   }
   
 </style>

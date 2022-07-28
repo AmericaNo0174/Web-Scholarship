@@ -4,9 +4,9 @@ import router from './router/index'
 import './assets/css/tailwind.css'
 import store from './store/store'
 
-
-
 // import GAuth from 'vue-google-oauth2' 
+
+
 Vue.router = router
 Vue.use(router)
 Vue.config.productionTip = false

@@ -1,54 +1,65 @@
 <template>
   <div class="container-role_edit">
-    <div class="role_edit">
-      <h2>ข้อมูลส่วนตัว</h2>
+    <div class=" role_edit">
+      <h2 class="h2-eidtrole mt-5 mb-5"><b>ข้อมูลส่วนตัว</b></h2>
     </div>
+    <div class="container">
     <div class="data-role_edit">
-      <div class="roleeditposition1">
-        <div class="p-data1">
-          <h5>ชื่อ:</h5>
-          <p>{{ form.fname }}</p>
-           <!-- <input type="text" v-model="form.fname" /> -->
-        </div>
-        <div class="p-data2">
-          <h5>นามสกุล:</h5>
-          <p>{{ form.lname }}</p>
-          <!-- <input type="text" v-model="form.lname" /> -->
-        </div>
+      <div class="p-data">
+        <h5>ชื่อ:</h5>
+        <p>{{editform.name }}</p>
+        <h5>นามสกุล:</h5>
+        <p>{{ editform.lastname}}</p>
       </div>
-      <div class="roleeditposition2">
-        <div class="p-data3">
-          <h5>เลขบัตรประชาชน:</h5>
-          <p>{{ form.idcard }}</p>
-          <!-- <input type="text" v-model="form.idcard" /> -->
-        </div>
-        <div class="p-data4">
-          <h5>วันเกิด:</h5>
-          <p>{{ form.birthday }}</p>
-          <!-- <input type="text" v-model="form.birthday" /> -->
-        </div>
+      <center>
+      <div class="p-data">
+        <h5>Email:</h5>
+        <p>{{editform.email}}</p>
       </div>
-      <div class="p-data5">
-        <h5>สัญชาติ:</h5>
-        <p>{{ form.nationality }}</p>
-        <!-- <input type="text" v-model="form.nationality" /> -->
+      </center>
+      <div>
+        <input
+          class="bgrole-edit form-check-input"
+          v-model="role"
+          type="radio"
+          name="m_status flexRadioDefault"
+          value="2"
+        />
+        <label class="edit-role-laf form-check-label" for="inlineRadio1"><b>User</b></label>
+        <input
+          class="bgrole-edit form-check-input"
+          v-model="role"
+          type="radio"
+          name="m_status flexRadioDefault"
+          value="1"
+        />
+        <label class="edit-role-laf form-check-label" for="inlineRadio1"><b>Admin</b></label>
+        <input
+          class="bgrole-edit form-check-input"
+          v-model="role"
+          type="radio"
+          name="m_status flexRadioDefault"
+          value="3"
+        />
+        <label class="edit-role-laf form-check-label" for="inlineRadio1"><b>commit</b></label>
       </div>
-      <div class="p-data6">
-        <h5>ศาสนา:</h5>
-        <p>{{ form.religion }}</p>
-        <!-- <input type="text" v-model="form.religion" /> -->
+      <div class="end-role_edit">
+        <div class="mt-5 mb-5 button-roleedit">
+          <router-link class="menu-edit" to="/Role"
+            ><button type="button" class="btn btn-danger">
+              Back
+            </button></router-link
+          >
+          <button @click="save_role" type="button" class="btn btn-dark">
+            Save
+          </button>
+        </div>
       </div>
     </div>
-    <div class="end-role_edit">
-        <div class="button-roleedit">
-          <button type="button" class="btn btn-danger">Back</button>
-          <button type="button" class="btn btn-dark">Save</button>
-        </div>
     </div>
-      <!-- <div class="back-role_edit">
-        <button type="button" class="btn btn-danger">Back</button>
-      </div> -->
+    <div class="redit-footer">
     <Footer />
+    </div>
   </div>
 </template>
 
@@ -57,14 +68,17 @@
 <script>
 import Footer from "../../components/footer.vue";
 import axios from "axios";
+import Swal from "sweetalert2";
 export default {
   components: {
     Footer,
   },
   data() {
     return {
-      isShow:false,
-      form: {
+      check: null,
+      role: null,
+      editform: {
+        data_user: [],
         fname: null,
         lname: null,
         idstudent: null,
@@ -84,7 +98,7 @@ export default {
         email: null,
         phonenumber: null,
         user_img: null,
-        imageUpload:null
+        imageUpload: null,
       },
     };
   },
@@ -92,34 +106,54 @@ export default {
     this.http = axios.create({
       baseURL: "http://localhost:3001/",
     });
-    this.open_profile();
-    if(!this.$store.state.login){
-        this.$router.push({name:'Login'})
+    if (!this.$store.state.login || this.$store.state.user.Role != 1) {
+      this.$router.push({ name: "Login" });
     }
+    if (this.$route.params) {
+      this.user_id = this.$route.params.user_id;
+      console.log("user_id:", this.user_id);
+    }
+    this.show_editrole();
   },
   methods: {
-    open_profile() {
-       //เอาข้อมูลไปเช็คใน database
-       this.http
-        .post("showprofile", {
-          id_user: this.$store.state.user.user_id,
+    show_editrole() {
+      console.log(this.user_id);
+      this.http
+        .post("showrole", {
+          id_user: this.user_id,
         })
         .then((res) => {
-          console.log("res:", res.data);
-
-         //เช็คว่ากรอกข้อมูลไปรึยัง
-          if(res.data){
-             // แปลง string to json
-            this.form = JSON.parse(res.data[0].data_user);
-            this.isShow = true
-            console.log('form',this.form);
+          if (res.data) {
+            this.editform = res.data[0];
+            console.log(res.data[0]);
+            
+          } else {
+            this.isShow = false;
           }
-          else{
-            this.isShow = false
-          }
+          console.log(this.editform);
+        });
+    },
+    save_role() {
+      console.log(this.role);
+      this.http
+        .put("editrole", {
+          user_id: this.user_id,
+          role: this.role,
         })
-        .catch((err) => {
-          console.log(err);
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.changedRows == 1) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "แก้ไขสำเร็จ",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            this.$router.push({ name: "Role" });
+          } else {
+            this.$router.push({ name: "Role" });
+          }
         });
     },
   },
@@ -135,13 +169,13 @@ export default {
   max-height: 90vh;
   overflow-y: auto;
 }
-.container-role_edit .img-role_edit{
-    display: flex;
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    align-items: center;
-    margin: 20px auto;
+.container-role_edit .img-role_edit {
+  display: flex;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  align-items: center;
+  margin: 20px auto;
 }
 
 .data-role_edit {
@@ -157,35 +191,27 @@ export default {
   /* background-color: aqua; */
   margin-right: 20px;
 }
-.roleeditposition1{
-   display: flex;
-   justify-content: space-between;
-   margin: 10px 0;   
+.roleeditposition1 {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
-.roleeditposition2{
-   display: flex;
-   justify-content: space-between;
-   margin: 10px 0;   
+.roleeditposition2 {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
-.button-roleedit{
-   display: flex;
-   justify-content: space-between;
-  margin: 10px 0;   
+.button-roleedit {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
 }
-.data-role_edit .p-data1,
-.p-data2,
-.p-data3,
-.p-data4,
-.p-data5,
-.p-data6,
-.p-data7,
-.p-data8,
-.p-data9,
-.p-data10 {
+.data-role_edit .p-data {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-right: 13%;
+  margin-bottom: 50px;
   /* background-color: red; */
 }
 
@@ -211,5 +237,21 @@ export default {
   border-radius: 25px 25px 25px 25px;
   color: #ffffff;
   background-color: rgba(180, 45, 37, 1);
+}
+
+.redit-footer{
+  margin-top: 195px;
+}
+
+.h2-eidtrole{
+  color: #680c07;
+}
+.edit-role-laf{
+  color: #680c07;
+  font-size: large;
+}
+
+.bgrole-edit{
+  background-color:rgb(219, 209, 209);
 }
 </style>

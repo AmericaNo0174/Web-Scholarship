@@ -1,21 +1,21 @@
 <template>
-  <div class="container-contact">
+  <div class=" container-contact">
     <h3>ข้อมูลติดต่อ</h3>
-    <div class="data-contact">
-      <p>คณะวิศวกรรมศาสตร์ ศรีราชา<br/>
+    <div class=" container data-contact" >
+      <h6 class="ccen">คณะวิศวกรรมศาสตร์ ศรีราชา<br/>
         มหาวิทยาลัยเกษตรศาสตร์ วิทยาเขตศรีราชา<br/>
-        เลขที่ 199 หมู่ 6 ถ.สุขุมวิท ต.ทุ่งสุขลา อ.ศรีราชา จ.ชลบุรี 20230</p><br/>
-      <p>โทรศัพท์: 0 3835 4580 ถึง 3<br/>
+        เลขที่ 199 หมู่ 6 ถ.สุขุมวิท ต.ทุ่งสุขลา อ.ศรีราชา จ.ชลบุรี 20230</h6><br/>
+      <h6 class="ccen">โทรศัพท์: 0 3835 4580 ถึง 3<br/>
         ต่อ 662202 งานประชาสัมพันธ์<br/>
         ต่อ 662217 งานรับเข้าศึกษาต่อ<br/>
-        ต่อ 662214 งานรับฝึกงานและสหกิจศึกษา</p><br/>
-      <p>งานรับเขัาศึกษาต่อปริญญาโท โทร 090 316 3790</p><br/>
-      <p>ศูนย์ทดสอบวัสดุวิศวกรรมโยธา<br/>
-      โทร 092 248 8390, 081 437 8296</p><br/>
-      <p>ศูนย์วิจัยและบริการวิศวกรรม<br/>
+        ต่อ 662214 งานรับฝึกงานและสหกิจศึกษา</h6><br/>
+      <h6 class="ccen">งานรับเขัาศึกษาต่อปริญญาโท โทร 090 316 3790</h6><br/>
+      <h6 class="ccen">ศูนย์ทดสอบวัสดุวิศวกรรมโยธา<br/>
+      โทร 092 248 8390, 081 437 8296</h6><br/>
+      <h6 class="ccen">ศูนย์วิจัยและบริการวิศวกรรม<br/>
       โทร 0 3835 4580 ถึง 3<br/>
       ต่อ 662260, 662261<br/>
-      หรือ 099 701 2838</p><br/>
+      หรือ 099 701 2838</h6><br/>
       <div class="img-contact">
         <div class="ku-contact">
           <img src="../../assets/ku.svg" alt="">
@@ -43,7 +43,7 @@
         <button type="button" class="btn btn-danger">Back</button>
       </div> -->
       <div class="contract-connntact">
-        <p>@Contract</p>
+        <h6>@Contract</h6>
         <a href=""><i id="fb" class="fab fa-facebook"></i></a>
         <a href=""><i id="fm" class="fab fa-facebook-messenger"></i></a>
         <a href=""><i id="line" class="fab fa-line"></i></a>
@@ -87,8 +87,10 @@ export default {
   .data-contact .img-contact{
     display: flex;
     justify-content: center;
+    text-align: center;
     /* background-color: aquamarine; */
     margin-top: 10px;
+    
   }
   .data-contact .img-contact h6{
     color:rgba(104, 12, 7, 1) ;
@@ -145,4 +147,11 @@ export default {
     text-align: center;
     margin: 0 12px;
   }
-</style>
+  
+  .ccen{
+    text-align: center;
+    color:rgba(104, 12, 7, 1) ;
+    font-weight: bold;
+  }
+  
+  </style>

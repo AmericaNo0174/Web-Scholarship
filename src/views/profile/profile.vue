@@ -123,7 +123,7 @@ export default {
       baseURL: "http://localhost:3001/",
     });
     this.open_profile();
-    if(!this.$store.state.login){
+    if(!this.$store.state.login || this.$store.state.user.Role !=2 ){
         this.$router.push({name:'Login'})
     }
   },
@@ -136,10 +136,7 @@ export default {
         })
         .then((res) => {
           console.log("res:", res.data);
-
-         //เช็คว่ากรอกข้อมูลไปรึยัง
           if(res.data){
-             // แปลง string to json
             this.form = JSON.parse(res.data[0].data_user);
             this.isShow = true
             console.log('form',this.form);

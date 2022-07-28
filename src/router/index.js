@@ -9,13 +9,10 @@ import History from '../views/capital_history/history.vue'
 import form from '../views/form/form.vue'
 import uploadform from '../views/form/uploadform.vue'
 import Open from '../views/open_capital/open_capital.vue'
-import Adminstatusinterview from '../views/admin-statusinterview/admin-statusinterview.vue'
 import Statusname from '../views/statusname/statusname.vue'
 import Statusinterview  from '../views/statusinterview/statusinterview.vue'
 import Nameorder from '../views/nameorder/nameorder.vue'
 import Step from '../views/step/step.vue'
-import Adminopencapital from '../views/admin-opencapital/admin-opencapital.vue'
-import Adminstep from '../views/admin-step/admin-step.vue'
 import Profile from '../views/profile/profile.vue'
 import Main from '../views/main/main.vue'
 import Adminaddcapital from '../views/admin-opencapital/admin-addcapital.vue'
@@ -25,6 +22,16 @@ import Roleedit from '../views/Role/Role_edit.vue'
 import Detailcapital from '../views/open_capital/detail_capital.vue'
 import Showform from '../views/form/show_form.vue'
 import Showupload from '../views/form/show_uploadform.vue'
+import Adminform from '../views/admin-form/admin_form.vue'
+import Adminupload from '../views/admin-form/admin_upload.vue'
+import scorecommit from '../views/Scorecommit/scorecommit.vue'
+import scoreadmin from '../views/Scorecommit/scoreadmin.vue'
+import formscore from '../views/form/formscore.vue'
+import uploadscore from '../views/form/uploadscore.vue'
+
+
+
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -80,7 +87,16 @@ const routes = [
         name:'Statusinterview',
         component: Statusinterview
       },
-   
+      {
+        path:'/uploadscore',
+        name:'uploadscore',
+        component: uploadscore
+      },
+      {
+        path:'/Scorecommit',
+        name:'scoreadmin',
+        component: scoreadmin
+      },
       {
         path:'/profile',
         name:'Profile',
@@ -112,27 +128,32 @@ const routes = [
         component: Showform
       },
       {
-        path:'/show_upload',
-        name:'Show_upload',
-        component: Showupload
+        path:'/Scorecommit',
+        name:'scorecommit',
+        component: scorecommit  
       },
-
+      // {
+      //   path:'/show_form/:capital_id',
+      //   name:'Show_form',
+      //   component: Showform
+      // },
+      {
+          path:'/show_upload',
+          name:'Show_upload',
+          component: Showupload
+        },
+      // {
+      //   path:'/show_upload/:capital_id',
+      //   name:'Show_upload',
+      //   component: Showupload
+      // },
       // ####### ADMIN ########
       {
-        path:'/admin-statusinterview',
-        name:'Adminstatusinterview',
-        component: Adminstatusinterview
+        path:'/formscore',
+        name:'formscore',
+        component: formscore
       },
-      {
-        path:'/admin-opencapital',
-        name:'Adminopencapital',
-        component: Adminopencapital
-      },
-      {
-        path:'/admin-step',
-        name:'Adminstep',
-        component: Adminstep
-      },
+
       {
         path:'/admin-addcapital',
         name:'Adminaddcapital',
@@ -153,6 +174,16 @@ const routes = [
         name:'Adminaddstep',
         component: Adminaddstep
       },
+      {
+        path:'/admin-form',
+        name:'Adminform',
+        component: Adminform
+      },
+      {
+        path:'/admin-upload',
+        name:'Adminupload',
+        component: Adminupload
+      }
     ]
   },
   {
